@@ -1,6 +1,7 @@
 import selenium.webdriver as webdriver
 from bs4 import BeautifulSoup
 import time
+import random
 
 
 def launch_webdriver():
@@ -31,8 +32,12 @@ def retrieve_urls(account_name, driver):
     for item in divs:
         url_list.append(item.find('a').get('href'))
 
-    # return a list of the urls
+    print("Printing list of URLS retrieved: ")
 
+    for item in url_list:
+        print(item)
+
+    # return a list of the urls
     return url_list
 
 
@@ -46,6 +51,8 @@ def collect_post_raw(url_list, driver):
         driver.get("https://instagram.com" + url)
         page_sources.append(driver.page_source)
 
-        time.sleep(15)
+        rand = random.randrange(30, 60)
+
+        time.sleep(rand)
 
     return page_sources
