@@ -1,10 +1,10 @@
 import selenium.webdriver as webdriver
 from bs4 import BeautifulSoup
-import time
-import random
 
 
 def launch_webdriver():
+    # Creates and returns our webdriver
+
     mobile_emulation = {"deviceName": "Nexus 5"}
 
     options = webdriver.ChromeOptions()
@@ -39,20 +39,3 @@ def retrieve_urls(account_name, driver):
 
     # return a list of the urls
     return url_list
-
-
-def collect_post_raw(url_list, driver):
-    # save the source of all the posts we want
-
-    # return the saved page sources
-
-    page_sources = []
-    for url in url_list:
-        driver.get("https://instagram.com" + url)
-        page_sources.append(driver.page_source)
-
-        rand = random.randrange(30, 60)
-
-        time.sleep(rand)
-
-    return page_sources
