@@ -2,8 +2,22 @@ from bs4 import BeautifulSoup
 
 
 class InstaPost:
+    ###############################################################
+    # InstaPost - Class                                           #
+    #                                                             #
+    # Description:                                                #
+    #   Instagram post data and methods                           #
+    #   Used for collecting data from a specific instagram post   #
+    #                                                             #
+    # Inputs:                                                     #
+    #   post_url - the url of the post to collect data from       #
+    #   driver   - webdriver from insta_user class                #
+    ###############################################################
 
     def __init__(self, post_url, driver):
+
+        # Class initialization function
+
         self.post_url = post_url
         self.soup_list = []
         self.driver = driver
@@ -17,10 +31,16 @@ class InstaPost:
         self.soup = ''
 
     def create_soup(self):
+
+        # Creates a BeautifulSoup object for parsing the HTML page
+
         self.driver.get("https://www.instagram.com" + self.post_url)
         self.soup = BeautifulSoup(self.driver.page_source, 'lxml')
 
     def scrape_post(self):
+
+        # Parses the soup object and page_source for data
+
         likes = self.soup.find('a', {"class": "zV_Nj"})
         if likes is None:
             likes = self.soup.find('span', {"class": "vcOH2"})
@@ -35,6 +55,9 @@ class InstaPost:
         self.image_url = image_pre_parse[1].get('src')
 
     def print(self):
+
+        # Prints the data collected from the instagram post
+
         print("Brand: ", self.brand)
         print("Description: ", self.description)
         print("Date: ", self.date)
