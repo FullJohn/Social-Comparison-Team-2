@@ -1,5 +1,6 @@
 import time
 import datetime
+import re
 
 from bs4 import BeautifulSoup
 
@@ -22,32 +23,38 @@ class TwitterPost:
         self.post_url = ''
         self.brand = brand_name
         self.description = ''
-        self.likes = 0
-        self.retweets = 0
+        self.likes = -1
+        self.retweets = -1
         self.date = ''
-        self.comments = 0
+        self.comments = -1
         self.image_url = ''
 
     def scrape_post(self):
-        #@TODO(P): Parse Post URL
+        #@NOTE(P): Parse Post URL
         #a
-        #css-4rbku5 css-18t94o4 css-901oao r-9ilb82 r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0
-        
+        #css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0
+        post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
+        self.post_url = "www.twitter.com" + post_url['href']
         
         #@TODO(P): Parse post text if it exists
         #span
         #css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0
+        #post_desc = self.post_html.find("div", { "lang" : "en" }).getText()
+        #self.description = post_desc
         
-        
-        #@TODO(P): Parse likes
+        #@NOTE(P): Parse likes
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
+        likes = self.post_html.find("div", { "data-testid" : "like" }).attrs['aria-label']
+        p = re.search(r"(\d+) Likes. Like", likes)
+        self.likes = int(p.group(1))
         
-        
-        #@TODO(P): Parse retweets
+        #@NOTE(P): Parse retweets
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
-        #self.retweets = self.soup.find('div', {"data-testid": "retweet"})
+        retweets = self.post_html.find("div", { "data-testid" : "retweet" }).attrs['aria-label']
+        p = re.search(r"(\d+) Retweets. Retweet", retweets)
+        self.retweets = int(p.group(1))
         
         #@NOTE(P):Scrape the date
         #time
@@ -55,10 +62,12 @@ class TwitterPost:
         #@NOTE(P): Twitter datetime example: 2021-09-27T18:26:32.000Z 
         self.date = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
         
-        #@TODO(P): Parse comments
+        #@NOTE(P): Parse comments
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
-        #self.comments = self.soup.find('div', {"data-testid": "reply"})
+        comments = self.post_html.find("div", { "data-testid" : "reply" }).attrs['aria-label']
+        p = re.search(r"(\d+) Replies. Reply", comments)
+        self.comments = int(p.group(1))
         
         #TODO(P): Parse the image if it exists
         #div(?)

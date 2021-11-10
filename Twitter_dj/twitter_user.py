@@ -51,6 +51,7 @@ class TwitterUser:
         i = 1
         scrolling = True
         
+        #@TODO(P): Make sure this doesn't enter an infinite loop if the date entered goes back further than the oldest post
         while scrolling:
             #@NOTE(P): Scroll one screens worth of height at a time
             self.driver.execute_script("window.scrollTo(0, {screen_height}*{i});".format(screen_height=screen_height, i=i))  
