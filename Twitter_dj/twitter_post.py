@@ -53,7 +53,7 @@ class TwitterPost:
         #time
         time_posted = self.post_html.find("time")
         #@NOTE(P): Twitter datetime example: 2021-09-27T18:26:32.000Z 
-        temp_datetime = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
+        self.date = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
         
         #@TODO(P): Parse comments
         #div
@@ -69,11 +69,11 @@ class TwitterPost:
 
     def print(self):
         # Prints the data from the post
-        print("Brand:\t", self.brand)
+        print("Brand:\t\t", self.brand)
         print("Post URL:\t", self.post_url)
         print("Description:\t", self.description)
-        print("Date:\t", self.date)
-        print("Likes:\t", self.likes)
+        print("Date:\t\t", self.date)
+        print("Likes:\t\t", self.likes)
         print("Retweets:\t", self.retweets)
         print("Comments:\t", self.comments)
         print("Image URL:\t", self.image_url)
