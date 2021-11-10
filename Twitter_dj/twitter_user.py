@@ -1,5 +1,7 @@
 import random
 import time
+import datetime
+import re
 
 import selenium.webdriver as webdriver
 from bs4 import BeautifulSoup
@@ -20,7 +22,7 @@ class TwitterUser:
     #   date_range - the range of dates to collect posts from       #
     #################################################################
 
-    def __init__(self, brand_name, date_range):
+    def __init__(self, brand_name, days_ago):
         # Class initializing function
 
         # Webdriver Options
@@ -31,35 +33,58 @@ class TwitterUser:
         options.add_experimental_option('mobileEmulation', mobile_emulation)
 
         # Class variables
-
         self.driver = webdriver.Chrome(options=options)
         self.brand_name = brand_name
-        self.date_range = date_range
-        self.url_list = []
-
+        self.brand_img = ''
+        self.date_range = datetime.datetime.now() - datetime.timedelta(days_ago)
+        self.divs = []
         self.posts = []
 
-    def retrieve_urls(self):
-        # Retrieve the URLs of posts that we will collect data for
-
+    def retrieve_posts(self):
         account_url = "https://twitter.com/" + self.brand_name + "/"
 
         self.driver.get(account_url)
-        soup = BeautifulSoup(self.driver.page_source, 'lxml')
+        print("Gathering all posts since: " + self.date_range.strftime("%b %d"))
+
+        scroll_pause_time = 1
+        screen_height = self.driver.execute_script("return window.screen.height;")
+        i = 1
+        scrolling = True
         
-        #@TODO(P): Find which CSS classes need to be scraped
-        divs = soup.findAll('div', {"class": "css-1dbjc4n r-1iusvr4 r-16y2uox r-1777fci r-kzbkwu"})
+        while scrolling:
+            #@NOTE(P): Scroll one screens worth of height at a time
+            self.driver.execute_script("window.scrollTo(0, {screen_height}*{i});".format(screen_height=screen_height, i=i))  
+            i += 1
+            time.sleep(scroll_pause_time)
+            #@NOTE(P): Update scroll height each time after the page is scrolled, as the scroll height can change after doing so
+            scroll_height = self.driver.execute_script("return document.body.scrollHeight;")  
+            
+            soup = BeautifulSoup(self.driver.page_source, 'lxml')
+            
+            temp_divs = soup.find_all("div", class_="css-1dbjc4n r-1iusvr4 r-16y2uox r-1777fci r-1t982j2")
+            
+            #@NOTE(P): Add div of post only if we haven't already done so
+            for temp in temp_divs:
+                if temp not in self.divs:
+                    self.divs.append(temp)
+            
+            print("Number of posts gathered:\t" + str(len(self.divs)))
+            
+            #@NOTE(P): Scrape dates on page, breaking out of the loop if we find a date before the beginning of our date range
+            for d in range(len(self.divs)):
+                time_posted = self.divs[d].find("time")
+                #@NOTE(P): Twitter datetime example: 2021-09-27T18:26:32.000Z 
+                temp_datetime = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
+                
+                #@NOTE(P): Break the loop when we find a post before our date range
+                if temp_datetime < self.date_range:
+                    scrolling = False
 
-        for item in divs:
-            self.url_list.append(item.find('a').get('href'))
-
-    def scrape_user_posts(self):
-        # Collect data from the posts collected
-
-        for url in self.url_list:
-            post = twitter_post.TwitterPost(url, self.driver)
-            post.create_soup()
+    def parse_divs(self):
+        #@NOTE(P): Parse the posts and add them to a list
+        for div in self.divs:
+            post = twitter_post.TwitterPost(div, self.brand_name)
             post.scrape_post()
             post.print()
-            delay = random.randrange(30, 60)
-            time.sleep(delay)
+        
+        #@TODO(P): Ensure there are no duplicates or posts outside of the range

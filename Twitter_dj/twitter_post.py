@@ -1,5 +1,7 @@
-from bs4 import BeautifulSoup
+import time
+import datetime
 
+from bs4 import BeautifulSoup
 
 class TwitterPost:
     ###############################################################
@@ -7,75 +9,72 @@ class TwitterPost:
     #                                                             #
     # Description:                                                #
     #   Twitter post data and methods                             #
-    #   Used for collecting data from a specific Twitter post     #
+    #   Used for parsing the data from a specific Twitter post    #
     #                                                             #
     # Inputs:                                                     #
-    #   post_url - the url of the post to collect data from       #
-    #   driver   - webdriver from insta_user class                #
+    #   div - div scraped from the twitter users page             #
     ###############################################################
 
-    def __init__(self, post_url, driver):
-
+    def __init__(self, div, brand_name):
         # Class initialization function
-
-        self.post_url = post_url
-        self.soup_list = []
-        self.driver = driver
-        #self.description = ''
-        self.brand = ''
+        self.post_html = div
+        
+        self.post_url = ''
+        self.brand = brand_name
         self.description = ''
         self.likes = 0
         self.retweets = 0
         self.date = ''
         self.comments = 0
         self.image_url = ''
-        self.soup = ''
-
-    def create_soup(self):
-
-        # Creates a BeautifulSoup object for parsing the HTML page
-
-        self.driver.get("https://www.twitter.com" + self.post_url)
-        self.soup = BeautifulSoup(self.driver.page_source, 'lxml')
 
     def scrape_post(self):
-
-        # Parses the soup object and page_source for data
+        #@TODO(P): Parse Post URL
+        #a
+        #css-4rbku5 css-18t94o4 css-901oao r-9ilb82 r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0
         
-        #@NOTE(P):Scrape brand name
-        #self.brand = self.soup.find('a', {"class": "sqdOP yWX7d _8A5w5 ZIAjV"}).get('href').replace('/', '')
         
-        #@NOTE(P): Scrape comments
-        self.comments = self.soup.find('div', {"data-testid": "reply"})
+        #@TODO(P): Parse post text if it exists
+        #span
+        #css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0
         
-        #@NOTE(P): Scrape likes
-        likes = self.soup.find('div', {"data-testid": "like"})
-        #self.likes = likes.find('span').text.replace(',', '')
         
-        #@TODO(P): scrape retweets
-        self.retweets = self.soup.find('div', {"data-testid": "retweet"})
+        #@TODO(P): Parse likes
+        #div
+        #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         
+        
+        #@TODO(P): Parse retweets
+        #div
+        #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
+        #self.retweets = self.soup.find('div', {"data-testid": "retweet"})
         
         #@NOTE(P):Scrape the date
-        #date = self.soup.find('a', {"class": "c-Yi7"}).find('time').get('datetime')
-        #self.date = date[0:date.rfind('T')]
+        #time
+        time_posted = self.post_html.find("time")
+        #@NOTE(P): Twitter datetime example: 2021-09-27T18:26:32.000Z 
+        temp_datetime = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
         
-        #@NOTE(P): Scrape the post text if it exists
-        #self.description = self.soup.find('div', {"class": "QzzMF Igw0E IwRSH eGOV_ vwCYk"}).find('span').find('span').text
+        #@TODO(P): Parse comments
+        #div
+        #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
+        #self.comments = self.soup.find('div', {"data-testid": "reply"})
         
-        #NOTE(P): Scrape the image if it exists
+        #TODO(P): Parse the image if it exists
+        #div(?)
+        #css-1dbjc4n r-1p0dtai r-1mlwlqe r-1d2f490 r-11wrixw r-1mnahxq r-1udh08x r-u8s1d r-zchlnj r-ipm5af r-417010
         #image_pre_parse = self.soup.findAll('img')
         #self.image_url = image_pre_parse[1].get('src')
+        
 
     def print(self):
-
-        # Prints the data collected from the instagram post
-
+        # Prints the data from the post
         print("Brand:\t", self.brand)
+        print("Post URL:\t", self.post_url)
         print("Description:\t", self.description)
         print("Date:\t", self.date)
         print("Likes:\t", self.likes)
-        print("Retweets:\t")
+        print("Retweets:\t", self.retweets)
         print("Comments:\t", self.comments)
         print("Image URL:\t", self.image_url)
         print("\n\n")
