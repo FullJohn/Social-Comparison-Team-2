@@ -1,28 +1,114 @@
 from bs4 import BeautifulSoup
+from spacy_langdetect import LanguageDetector
+from spacy.language import Language
+import spacy
+import requests
+import datetime
 
-import youtube_channel
-import random
-import time
+
+def get_lang_detector(nlp, name):
+    return LanguageDetector()
 
 
-class Post:
+class YouTubePost:
+    ###############################################################
+    # YouTubePost - Class                                         #
+    #                                                             #
+    # Description:                                                #
+    #   Youtube post data and methods                             #
+    #   Used for collecting data from a specific youtube post     #
+    #                                                             #
+    # Inputs:                                                     #
+    #   url        - the url of the post to collect data from     #
+    #   date_range - the date range to collect posts in           #
+    #   driver     - webdriver from insta_user class              #
+    ###############################################################
 
-    def __init__(self, url, driver):
-        self.driver = driver
+    def __init__(self, url, date_range, driver):
+
+        # Class initialization function
+
+        self.webdriver = driver
+        self.date_range = date_range
         self.url = url
         self.title = ''
         self.description = ''
         self.thumbnail = ''
+        self.channel = ''
         self.date = ''
         self.views = 0
         self.comments = 0
         self.likes = 0
         self.dislikes = 0
+        self.include_post = False
 
-    def scrape_post(self):
-        self.driver.get(self.url)
-        soup = BeautifulSoup(self.driver.page_source, 'lxml')
-        meta_data = soup.findAll('div')[0]
-        print(meta_data[0])
+    def collect_post(self):
+        # Collects information from the post
+        # Returns true or false if the post is within our date range
 
+        nlp = spacy.load("en_core_web_sm")
+        Language.factory("language_detector", func=get_lang_detector)
+        nlp.add_pipe('language_detector', last=True)
+        content = requests.get("https://www.youtube.com" + self.url).text
+        soup = BeautifulSoup(content, 'lxml')
+        meta_data = soup.findAll("div")[0]
+        title_and_channel = meta_data.findAll(itemprop="name")
+        likes_pre_parse = content[:content.rfind(' likes"')]
+        dislikes_pre_parse = content[:content.rfind(' dislikes"')]
+
+        self.title = title_and_channel[0].get('content')
+        self.channel = title_and_channel[1].get('content')
+        self.description = meta_data.find(itemprop="description").get('content')
+        self.views = meta_data.find(itemprop="interactionCount").get('content')
+        self.url = meta_data.find(itemprop="url").get('href')
+        self.thumbnail = meta_data.find(itemprop="thumbnailUrl").get('href')
+        self.date = meta_data.find(itemprop="datePublished").get('content')
+        self.likes = likes_pre_parse[likes_pre_parse.rfind('"') + 1:].replace(',', "")
+        self.dislikes = dislikes_pre_parse[dislikes_pre_parse.rfind('"') + 1:].replace(',', "")
+
+        self.webdriver.get(self.url)
+        comments = self.webdriver.find_elements_by_tag_name('h2')[1].text
+        if comments != "Comments":
+            comments = comments[comments.rfind(' '):]
+            comments = comments.replace(' ', "")
+            comments = comments.replace(',', "")
+            self.comments = int(comments)
+        else:
+            self.comments = 0
+
+        if not self.dislikes.isnumeric():
+            self.dislikes = 0
+
+        year = int(self.date[:4])
+        month = int(self.date[5:7])
+        day = int(self.date[8:])
+
+        post_datetime = datetime.date(year, month, day)
+        lang = nlp(self.title)
+        if lang._.language['language'] != 'en' or post_datetime < self.date_range:
+            self.include_post = False
+
+        else:
+            self.include_post = True
+        if post_datetime < self.date_range:
+            return False
+        else:
+            return True
+
+    def print_post(self):
+
+        # Prints the post
+        # Used for testing output
+
+        print("Link: ", self.url)
+        print("Title: ", self.title)
+        print("Description: ", self.description)
+        print("Date: ", self.date)
+        print("Channel: ", self.channel)
+        print("Views: ", self.views)
+        print("Likes: ", self.likes)
+        print("Dislikes: ", self.dislikes)
+        print("Comments: ", self.comments)
+        print("Thumbnail: ", self.thumbnail)
+        print("Include: ", self.include_post)
 
