@@ -112,14 +112,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.idea/.name
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/Social-Comparison-Team-2.iml
-*.xml
-*.xml
-*.xml
-YouTube/.idea/misc.xml
-YouTube/.idea/modules.xml
-YouTube/.idea/misc.xml
