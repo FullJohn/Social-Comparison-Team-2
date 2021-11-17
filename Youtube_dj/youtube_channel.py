@@ -95,6 +95,8 @@ class YouTubeChannel:
             if post.collect_post() is False:
                 break
 
+        self.webdriver.quit()
+
     def print_posts(self):
         # Prints the data collected from posts
         # Used for testing

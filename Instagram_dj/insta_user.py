@@ -13,7 +13,7 @@ class InstaUser:
     # Description:                                                #
     #   Class for an instagram user                               #
     #   Used for collecting data from instagram                   #
-    #   posts from a specific class.                              #
+    #   posts from a specific user.                               #
     #                                                             #
     # Inputs:                                                     #
     #   brand_name - the name of the instagram account, ie 'oreo' #
@@ -25,8 +25,10 @@ class InstaUser:
 
         # Webdriver Options
         mobile_emulation = {"deviceName": "Nexus 5"}
+
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
+
         options.add_argument('--incognito')
         options.add_experimental_option('mobileEmulation', mobile_emulation)
 
@@ -51,13 +53,13 @@ class InstaUser:
         for item in divs:
             self.url_list.append(item.find('a').get('href'))
 
-    def scrape_user_posts(self):
+    def collect_user_posts(self):
         # Collect data from the posts collected
 
         for url in self.url_list:
             post = insta_post.InstaPost(url, self.driver)
             post.create_soup()
-            post.scrape_post()
+            post.collect_post()
             post.print()
             delay = random.randrange(30, 60)
             time.sleep(delay)

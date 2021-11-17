@@ -19,16 +19,16 @@ class InstaPost:
         # Class initialization function
 
         self.post_url = post_url
-        self.soup_list = []
         self.driver = driver
+        self.soup_list = []
+        self.soup = ''
+
         self.description = ''
         self.brand = ''
-        self.description = ''
-        self.likes = 0
         self.date = ''
+        self.likes = 0
         self.comments = 0
         self.image_url = ''
-        self.soup = ''
 
     def create_soup(self):
 
@@ -37,7 +37,7 @@ class InstaPost:
         self.driver.get("https://www.instagram.com" + self.post_url)
         self.soup = BeautifulSoup(self.driver.page_source, 'lxml')
 
-    def scrape_post(self):
+    def collect_post(self):
 
         # Parses the soup object and page_source for data
 
@@ -64,4 +64,5 @@ class InstaPost:
         print("Likes: ", self.likes)
         print("Comments: ", self.comments)
         print("Image URL: ", self.image_url)
+        print("Post URL: ", self.post_url)
         print("\n\n")

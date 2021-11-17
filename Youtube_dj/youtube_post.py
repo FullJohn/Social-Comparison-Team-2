@@ -1,3 +1,5 @@
+import time
+
 from bs4 import BeautifulSoup
 from spacy_langdetect import LanguageDetector
 from spacy.language import Language
@@ -67,12 +69,22 @@ class YouTubePost:
         self.dislikes = dislikes_pre_parse[dislikes_pre_parse.rfind('"') + 1:].replace(',', "")
 
         self.webdriver.get(self.url)
-        comments = self.webdriver.find_elements_by_tag_name('h2')[1].text
-        if comments != "Comments":
-            comments = comments[comments.rfind(' '):]
-            comments = comments.replace(' ', "")
-            comments = comments.replace(',', "")
-            self.comments = int(comments)
+        self.webdriver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(3)
+        comments = self.webdriver.find_elements_by_tag_name('h2')
+
+        if len(comments) != 0:
+
+            comments = comments[1].text
+
+            if comments != "Comments":
+                comments = comments[comments.rfind(' '):]
+                comments = comments.replace(' ', "")
+                comments = comments.replace(',', "")
+                self.comments = int(comments)
+
+            else:
+                self.comments = 0
         else:
             self.comments = 0
 
@@ -90,6 +102,8 @@ class YouTubePost:
 
         else:
             self.include_post = True
+
+        #self.webdriver.close()
         if post_datetime < self.date_range:
             return False
         else:
