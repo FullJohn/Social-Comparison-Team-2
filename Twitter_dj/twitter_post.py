@@ -28,6 +28,8 @@ class TwitterPost:
         self.date = ''
         self.comments = -1
         self.image_url = ''
+        
+        self.vid_views = ''
 
     def scrape_post(self):
         #@NOTE(P): Parse Post URL
@@ -36,12 +38,13 @@ class TwitterPost:
         post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
         self.post_url = "www.twitter.com" + post_url['href']
         
-        #@TODO(P): Parse post text if it exists
+        #@NOTE(P): Parse post text if it exists
         #span
         #css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0
-        #post_desc = self.post_html.find("div", { "lang" : "en" }).getText()
-        #self.description = post_desc
+        post_text_element = self.post_html.find("div", { "lang" : "en" })
+        self.description = post_text_element.get_text() if post_text_element else "{No Post Text}"
         
+            
         #@NOTE(P): Parse likes
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
@@ -69,12 +72,19 @@ class TwitterPost:
         p = re.search(r"(\d+) Replies. Reply", comments)
         self.comments = int(p.group(1))
         
-        #TODO(P): Parse the image if it exists
+        #NOTE(P): Parse the image if it exists
         #div(?)
         #css-1dbjc4n r-1p0dtai r-1mlwlqe r-1d2f490 r-11wrixw r-1mnahxq r-1udh08x r-u8s1d r-zchlnj r-ipm5af r-417010
-        #image_pre_parse = self.soup.findAll('img')
-        #self.image_url = image_pre_parse[1].get('src')
+        post_img_element = self.post_html.find("div", { "data-testid" : "tweetPhoto" })
+        if post_img_element == None:
+            self.image_url = "{No Post Image}"
+        else:
+            self.image_url = post_img_element.find("img", { "class" : "css-9pa8cd" }).attrs['src']
         
+        #NOTE(P): Parse the video views if the post contains a video
+        post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
+        self.vid_views = post_vid_element.get_text() if post_vid_element else "{No Post Video}"
+          
 
     def print(self):
         # Prints the data from the post
@@ -86,4 +96,5 @@ class TwitterPost:
         print("Retweets:\t", self.retweets)
         print("Comments:\t", self.comments)
         print("Image URL:\t", self.image_url)
+        print("Video Views:\t", self.vid_views)
         print("\n\n")

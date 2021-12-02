@@ -33,6 +33,8 @@ class TwitterUser:
         options.add_experimental_option('mobileEmulation', mobile_emulation)
 
         # Class variables
+        self.followers = '' #@TODO(P): Need to validate brand name to ensure followers are read
+        
         self.driver = webdriver.Chrome(options=options)
         self.brand_name = brand_name
         self.brand_img = ''
@@ -64,6 +66,11 @@ class TwitterUser:
             
             temp_divs = soup.find_all("div", class_="css-1dbjc4n r-1iusvr4 r-16y2uox r-1777fci r-1t982j2")
             
+            if(len(temp_divs) < 4):
+                #<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">969.3K</span> css-901oao css-16my406 r-1fmj7o5 r-poiln3 r-b88u0q r-bcqeeo r-qvutc0
+                temp_followers = soup.find(href = "/" + self.brand_name + "/followers" )
+                #temp_followers = soup.select("css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0")
+            
             #@NOTE(P): Add div of post only if we haven't already done so
             for temp in temp_divs:
                 if temp not in self.divs:
@@ -80,12 +87,16 @@ class TwitterUser:
                 #@NOTE(P): Break the loop when we find a post before our date range
                 if temp_datetime < self.date_range:
                     scrolling = False
+        self.followers = temp_followers.get_text() if temp_followers else "{Error Retrieving Followers}"
+        self.driver.quit()
 
     def parse_divs(self):
         #@NOTE(P): Parse the posts and add them to a list
+        print(self.followers + "\n")
         for div in self.divs:
             post = twitter_post.TwitterPost(div, self.brand_name)
             post.scrape_post()
+            #@TODO(P): add database collection function
             post.print()
         
         #@TODO(P): Ensure there are no duplicates or posts outside of the range
