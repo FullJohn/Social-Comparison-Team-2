@@ -73,8 +73,7 @@ class YouTubePost:
         time.sleep(3)
         comments = self.webdriver.find_elements_by_tag_name('h2')
 
-        if len(comments) != 0:
-
+        if len(comments) == 2:
             comments = comments[1].text
 
             if comments != "Comments":
@@ -97,19 +96,24 @@ class YouTubePost:
 
         post_datetime = datetime.date(year, month, day)
         lang = nlp(self.title)
-        if lang._.language['language'] != 'en' or post_datetime < self.date_range:
+        out_of_date_range = False
+        if self.date_range[0] > post_datetime or self.date_range[1] < post_datetime:
+            out_of_date_range = True
+
+        if lang._.language['language'] != 'en' or out_of_date_range:
             self.include_post = False
 
         else:
             self.include_post = True
 
         #self.webdriver.close()
-        if post_datetime < self.date_range:
+
+        if post_datetime < self.date_range[0]:
             return False
         else:
             return True
 
-    def print_post(self):
+    def save_post(self):
 
         # Prints the post
         # Used for testing output

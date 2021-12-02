@@ -20,7 +20,7 @@ class YouTubeChannel:
     #   Date         - Date range to collect posts within         #
     ###############################################################
 
-    def __init__(self, channel_name, date):
+    def __init__(self, channel_name, date_range):
 
         # Class Initialization function
 
@@ -28,7 +28,7 @@ class YouTubeChannel:
 
         # Default browser options
         options.add_argument('--incognito')
-        options.add_argument('--headless')
+        #options.add_argument('--headless')
 
         # Mobile Emulation Setup
         mobile_emulation = {"deviceName": "Nexus 5"}
@@ -37,16 +37,22 @@ class YouTubeChannel:
         self.webdriver = webdriver.Chrome(options=options)
 
         self.channel_name = channel_name
-        self.date_range = date
+        self.date_range = date_range
         self.url_list = []
 
         post = youtube_post.YouTubePost
         self.posts = []
 
+        self.retrieve_post_urls()
+        self.create_posts()
+        self.collect_posts()
+
     def retrieve_post_urls(self):
 
         # Retrieves the URLs from every video on the channel
 
+        print("Beginning data retrieval for", self.channel_name)
+        print("Collecting videos since", self.date_range)
         try:
             self.webdriver.get('https://www.youtube.com/c/' + self.channel_name + '/videos')
 
@@ -92,15 +98,10 @@ class YouTubeChannel:
         # Calls the collect_post() method from YouTubePost to collect
         # data from each video
         for post in self.posts:
-            if post.collect_post() is False:
+            if post.collect_post():
+                if post.include_post:
+                    post.save_post()
+            else:
                 break
 
         self.webdriver.quit()
-
-    def print_posts(self):
-        # Prints the data collected from posts
-        # Used for testing
-
-        for post in self.posts:
-            if post.include_post:
-                post.print_post()
