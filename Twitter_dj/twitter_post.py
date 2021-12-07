@@ -14,6 +14,8 @@ class TwitterPost:
     #                                                             #
     # Inputs:                                                     #
     #   div - div scraped from the twitter users page             #
+    #                                                             #
+    # Pierce Hopkins                                              #
     ###############################################################
 
     def __init__(self, div, brand_name):
@@ -49,15 +51,21 @@ class TwitterPost:
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         likes = self.post_html.find("div", { "data-testid" : "like" }).attrs['aria-label']
-        p = re.search(r"(\d+) Likes. Like", likes)
-        self.likes = int(p.group(1))
+        if likes != None:
+            p = re.search(r"(\d+) Likes. Like", likes)
+            self.likes = int(p.group(1))
+        else:
+            self.likes = 0
         
         #@NOTE(P): Parse retweets
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         retweets = self.post_html.find("div", { "data-testid" : "retweet" }).attrs['aria-label']
-        p = re.search(r"(\d+) Retweets. Retweet", retweets)
-        self.retweets = int(p.group(1))
+        if retweets != None:
+            p = re.search(r"(\d+) Retweets. Retweet", retweets)
+            self.retweets = int(p.group(1))
+        else:
+            self.retweets = 0
         
         #@NOTE(P):Scrape the date
         #time
@@ -69,8 +77,11 @@ class TwitterPost:
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         comments = self.post_html.find("div", { "data-testid" : "reply" }).attrs['aria-label']
-        p = re.search(r"(\d+) Replies. Reply", comments)
-        self.comments = int(p.group(1))
+        if comments != None:
+            p = re.search(r"(\d+) Replies. Reply", comments)
+            self.comments = int(p.group(1))
+        else:
+            self.comments = 0
         
         #NOTE(P): Parse the image if it exists
         #div(?)

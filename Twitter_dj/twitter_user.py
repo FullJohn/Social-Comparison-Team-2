@@ -20,9 +20,11 @@ class TwitterUser:
     # Inputs:                                                       #
     #   brand_name - the name of the Twitter account, ie 'oreo'     #
     #   date_range - the range of dates to collect posts from       #
+    #                                                               #
+    # Pierce Hopkins                                                #
     #################################################################
 
-    def __init__(self, brand_name, days_ago):
+    def __init__(self, brand_name, firstDate, lastDate):
         # Class initializing function
 
         # Webdriver Options
@@ -38,7 +40,9 @@ class TwitterUser:
         self.driver = webdriver.Chrome(options=options)
         self.brand_name = brand_name
         self.brand_img = ''
-        self.date_range = datetime.datetime.now() - datetime.timedelta(days_ago)
+        self.firstDate = firstDate
+        self.lastDate = lastDate
+        #self.date_range = firstDate - lastDate
         self.divs = []
         self.posts = []
 
@@ -46,7 +50,7 @@ class TwitterUser:
         account_url = "https://twitter.com/" + self.brand_name + "/"
 
         self.driver.get(account_url)
-        print("Gathering all posts since: " + self.date_range.strftime("%b %d"))
+        print("Gathering all posts between: " + self.firstDate.strftime("%b %d") + " and " + self.lastDate.strftime("%b %d"))
 
         scroll_pause_time = 1
         screen_height = self.driver.execute_script("return window.screen.height;")
@@ -85,7 +89,7 @@ class TwitterUser:
                 temp_datetime = datetime.datetime.strptime(time_posted.attrs['datetime'], "%Y-%m-%dT%H:%M:%S.000Z")
                 
                 #@NOTE(P): Break the loop when we find a post before our date range
-                if temp_datetime < self.date_range:
+                if temp_datetime < self.firstDate:
                     scrolling = False
         self.followers = temp_followers.get_text() if temp_followers else "{Error Retrieving Followers}"
         self.driver.quit()
@@ -96,7 +100,11 @@ class TwitterUser:
         for div in self.divs:
             post = twitter_post.TwitterPost(div, self.brand_name)
             post.scrape_post()
-            #@TODO(P): add database collection function
-            post.print()
+            self.posts.append(post)
         
-        #@TODO(P): Ensure there are no duplicates or posts outside of the range
+        for post in self.posts:
+            if post.date < self.firstDate or post.date > self.lastDate:
+                self.posts.remove(post)
+            else:
+                post.print()
+                #@TODO(P): add database collection function
