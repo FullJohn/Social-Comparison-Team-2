@@ -1,12 +1,13 @@
-from bs4 import BeautifulSoup
-# import time
 import datetime
+
+#from SocialComp.serializers import PostSerializer
+#from ...models import PostModel
 
 
 class FB_Post:
     ###############################################################
     # FB_Post - Class                                             #
-    #                                                             #
+    # Implemented by Ryan Cheng                                   #
     # Description:                                                #
     #   Facebook post data and methods                            #
     #   Used for collecting data from a specific facebook post    #
@@ -16,85 +17,110 @@ class FB_Post:
     #   driver   - webdriver from fb_user class                   #
     ###############################################################
 
-    def __init__(self, post_url, driver):
+    def __init__(self, div, brand_name):
 
         # Class initialization function
+        self.div = div
+        self.brand = brand_name
+        self.url = ''
+        self.title = 'N/A'
+        self.description = ''
+        self.thumbnail = ''
+        self.channel = ''
+        self.date = ''
+        self.views = ''
+        self.comments = ''
+        self.likes = ''
 
-        self.post_url = post_url
-        self.driver = driver
-        self.soup_list = []
-        self.soup = ''
+    def scrape_post(self):
 
-        #self.description = ''
-        self.brand = ''
-        #self.date = ''
-        self.likes = 0
-        self.shares = 0
-        #self.comments = 0
-        #self.image_url = ''
+        # Parse url
+        url = self.div.find('a', {"data-sigil": "feed-ufi-trigger"}).get('href')
+        self.url = "www.facebook.com" + url
 
-    def create_soup(self):
+        # Parse date
+        timeString = self.div.find('article').get('data-store')
+        idx = timeString.find('publish_time')
+        timeString = timeString[idx:]
+        idx = timeString.find("story_name")
+        timeString = timeString[:idx]
+        timeString = timeString.split(":", 1)[1]
+        timeString = timeString.split(",", 1)[0]
+        # convert Unix time string to datetime object
+        self.date = datetime.date.fromtimestamp(int(timeString))
 
-        # Creates a BeautifulSoup object for parsing the HTML page
+        # Parse description
+        desString = str(self.div.find_all('p'))
+        desString = desString.split(">", 1)[1]
+        desString = desString.split("<", 1)[0]
+        self.description = desString
 
-        self.driver.get("https://www.facebook.com" + self.post_url)
-        self.soup = BeautifulSoup(self.driver.page_source, 'lxml')
+        # Parse thumbnail (for FB, image link is same as url)
+        self.thumbnail = "www.facebook.com" + url
 
-    def collect_post(self):
+        # Parse comments
+        comments = self.div.find('span', {"class": "cmt_def _28wy"})
+        comments = str(comments)
 
-        # Parses the soup object and page_source for data
+        if comments:
+            comments = comments.split(">", 1)[1]
+            comments = comments.split(" ", 1)[0]
+            comments = comments.replace(',', '')
+            self.comments = comments
+        else:
+            self.comments = '0'
 
-        likes = self.soup.find('div', {"class": "_1g06"})
-        # String parsing to find reactions number -- may have to change later but works for now
+        # Parse likes
+        likes = self.div.find('span', {"class": "like_def _28wy"})
         likes = str(likes)
-        likes = likes.split(">",1)[1]
-        self.likes = likes.split("<",1)[0]
 
-        #self.likes = likes.find('div').text.replace(',', '')
-        brand = self.soup.find('strong', {"class": "actor"})#.get('href').replace('/', '')
-        brand = str(brand)
-        brand = brand.split(">",1)[1]
-        self.brand = brand.split("<",1)[0]
+        if likes:
+            likes = likes.split(">", 1)[1]
+            likes = likes.split(" ", 1)[0]
+            likes = likes.replace(',', '')
+            self.likes = likes
+        else:
+            self.likes = '0'
 
-        shares = self.soup.find('span', {"data-sigil": "feed-ufi-sharers"})
-
-        shares = str(shares)
-        shares = shares.split(">", 1)[1]
-        self.shares = shares.split("<", 1)[0]
-
-        description = self.soup({"title"})
-        description = str(description)
-        description = description.split("-", 1)[1]
-        description = description.split("|", 1)[0]
-        self.description = description
+        # Parse views (currently just likes + comments, to find exact count need to use 3rd party API)
+        views = int(self.likes) + int(self.comments)
+        self.views = str(views)
 
 
-        #date = self.soup.find('a', {"class": "c-Yi7"}).find('time').get('datetime')
-        #self.date = date[0:date.rfind('T')]
-        #, "short", "forceseconds
-        date = self.soup({"abbr": "data-store"}) #= {"time""}
-        date = str(date)
-        date = date.split(":", 1)[1]
-        date = date.split(",", 1)[0]
-        date = datetime.datetime.fromtimestamp(int(date))
-
-        self.date = date
-
-        #self.comments = self.soup.find('a', {"class": "r8ZrO"}).find('span').text
-        #self.description = self.soup.find('div', {"class": "QzzMF Igw0E IwRSH eGOV_ vwCYk"}).find('span').find('span').text
-        #image_pre_parse = self.soup.findAll('img')
-        #self.image_url = image_pre_parse[1].get('src')
 
     def print(self):
 
         # Prints the data collected from the facebook post
-
-        print("Brand: ", self.brand)
+        print("Post URL: ", self.url)
+        print("Title: ", self.title)
         print("Description: ", self.description)
+        print("Thumbnail: ", self.thumbnail)
+        print("Brand: ", self.brand)
         print("Date: ", self.date)
+        print("Views: ", self.views)
+        print("Comments: ", self.comments)
         print("Likes: ", self.likes)
-        print("Shares: ", self.shares)
-        #print("Comments: ", self.comments)
-        #print("Image URL: ", self.image_url)
-        print("Post URL: facebook.com", self.post_url)
         print("\n\n")
+
+    def save_post(self, query_id):
+        # Sends post data to serializer
+        post_data = {}
+        post_data['QueryId'] = str(query_id)
+        post_data['url'] = self.url
+        post_data['title'] = self.title
+        post_data['description'] = self.description
+        post_data['thumbnail'] = self.thumbnail
+        post_data['channel'] = self.channel
+        post_data['date'] = self.date
+        post_data['views'] = self.views
+        post_data['comments'] = self.comments
+        post_data['likes'] = self.likes
+
+        """
+        post_serializer = PostSerializer(data = post_data)
+
+        if post_serializer.is_valid():
+            post_serializer.save()
+        else:
+            print(post_serializer.errors)
+        """
