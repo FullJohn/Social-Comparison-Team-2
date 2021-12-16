@@ -23,6 +23,9 @@ def pre_collect(date_range):
     date2 = datetime.date(int(date2[0]), int(date2[1]), int(date2[2]))
     return [date1, date2]
 
+"""
+Driver code to test locally
 brands = ["oreounitedstates", "ritzcrackers", "pringlesus"]
 date_range = ["2021-12-1", "2021-12-30"]
 run_facebook_collect(brands, date_range, query_id=1)
+"""

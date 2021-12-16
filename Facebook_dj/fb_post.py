@@ -116,11 +116,10 @@ class FB_Post:
         post_data['comments'] = self.comments
         post_data['likes'] = self.likes
 
-        """
+
         post_serializer = PostSerializer(data = post_data)
 
         if post_serializer.is_valid():
             post_serializer.save()
         else:
             print(post_serializer.errors)
-        """
