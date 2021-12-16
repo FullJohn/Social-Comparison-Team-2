@@ -10,7 +10,7 @@ class Insta_Post:
     # Insta_Post - Class                                          #
     # Implemented by Ryan Cheng                                   #
     # Description:                                                #
-    #   Facebook post data and methods                            #
+    #   Instagram post data and methods                           #
     #   Used for collecting data from a specific instagram post   #
     #                                                             #
     # Inputs:                                                     #

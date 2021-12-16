@@ -14,11 +14,11 @@ class Insta_Page:
     # Implemented by Ryan Cheng                                   #
     # Description:                                                #
     #   Class for an Instagram page                               #
-    #   Used for collecting data from facebook                    #
+    #   Used for collecting data from Instagram                   #
     #   posts from a specific brand.                              #
     #                                                             #
     # Inputs:                                                     #
-    #   brand_name - the name of the facebook account, ie 'oreo'  #
+    #   brand_name - the name of the instagram account, ie 'oreo' #
     #   date_range - the range of dates to collect posts from     #
     ###############################################################
 
