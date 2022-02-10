@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import { Navigate } from 'react-router';
 
+import './LoadingScreen.css';
 
 export class LoadScreen extends Component{
 
