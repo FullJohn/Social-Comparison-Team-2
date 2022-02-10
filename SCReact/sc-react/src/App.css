@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.Nav-bar {
+  color: white;
+  background-color: #3F4B65;
+  
+}
+
+.Date-wrapper{
+  display: flex;
+  margin: auto;
+  width:500px;
+}
+ 
+.Date-field{
+  
+  display:grid;
+  margin: auto;
+  font-size: larger;
+}

@@ -90,15 +90,26 @@ export class Home extends Component{
                             <option value="tiktok">TikTok</option>
                         </select>
                     <br></br>
-                    <label htmlFor="startDate">Start Date:</label>
-                        <DatePicker type="date" name="startDate" value={this.state.startDate}
-                        onChange={this.startDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
-                        clearIcon={null}></DatePicker>
+                    <div className='Date-wrapper'>
+                        <div className='Date-field'>
+                                <label htmlFor="startDate">Start Date:</label>
+                                <DatePicker type="date" name="startDate" value={this.state.startDate}
+                                onChange={this.startDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
+                                clearIcon={null}></DatePicker>
+                        </div>
+                        
+                        <div className='Date-field'>
+                                <label htmlFor="endDate">End Date:</label>
+                                <DatePicker type="date" name="endDate" value={this.state.endDate}
+                                onChange={this.endDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
+                                clearIcon={null}></DatePicker>
+                        </div>
+                        
+
+                    </div>
+                    
                     <t></t>
-                    <label htmlFor="endDate">End Date:</label>
-                        <DatePicker type="date" name="endDate" value={this.state.endDate}
-                        onChange={this.endDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
-                        clearIcon={null}></DatePicker>
+                    
                     
                     <br></br>
                     
