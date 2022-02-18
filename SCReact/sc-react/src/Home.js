@@ -4,6 +4,12 @@ import { Tab } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import { Navigate } from 'react-router';
 import test from './test.png';
+import fblogo from './fblogo.png';
+import instalogo from './instalogo.png';
+import tiktoklogo from './tiktoklogo.png';
+import pinterestlogo from './pinterestlogo.png';
+import youtubelogo from './youtube-circ-modified.png';
+import twitterlogo from './twitterlogo.png';
 
 
 
@@ -84,12 +90,12 @@ export class Home extends Component{
                    
                     <br></br>
                     <div className='Icon-wrapper'>
-                        <img alt='test' src={test}></img>
-                        <img alt='test' src={test}></img>
-                        <img alt='test' src={test}></img>
-                        <img alt='test' src={test}></img>
-                        <img alt='test' src={test}></img>
-                        <img alt='test' src={test}></img>
+                        <img alt='fblogo' src={fblogo}></img>
+                        <img alt='instalogo' src={instalogo}></img>
+                        <img alt='youtubelogo' src={youtubelogo}></img>
+                        <img alt='twitterlogo' src={twitterlogo}></img>
+                        <img alt='pinterestlogo' src={pinterestlogo}></img>
+                        <img alt='tiktoklogo' src={tiktoklogo}></img>
 
                     </div>
                     <br></br>

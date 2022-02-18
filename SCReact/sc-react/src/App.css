@@ -67,6 +67,9 @@
   justify-content: center;
   gap: 50px;
   box-shadow: inset;
+  margin: auto;
+  height: 100px;
+  width: 100px;
 }
 .Submit-button{
   display:flex;
