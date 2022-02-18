@@ -60,7 +60,7 @@ export class LoadScreen extends Component{
         }
         return(
             <div class="Label1">
-                <img class="Img1" src="/logo.gif"></img>
+                <img class="Img1" src="/Logo.gif"></img>
                 <label>Loading your results. Page will redirect upon completion. This may take a few minutes...</label>
                 {this.runQuery}
             </div>
