@@ -3,7 +3,7 @@ import React, {Component, useEffect, useState} from 'react';
 import { Tab } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import { Navigate } from 'react-router';
-import test from './test.png';
+import bluemarblelogo from './bluemarble.png';
 import fblogo from './fblogo.png';
 import instalogo from './instalogo.png';
 import tiktoklogo from './tiktoklogo.png';
@@ -89,58 +89,83 @@ export class Home extends Component{
                 <form onSubmit={this.handleSubmit}>
                    
                     <br></br>
+                    <br></br>
                     <div className='Icon-wrapper'>
-                        <img alt='fblogo' src={fblogo}></img>
-                        <img alt='instalogo' src={instalogo}></img>
-                        <img alt='youtubelogo' src={youtubelogo}></img>
-                        <img alt='twitterlogo' src={twitterlogo}></img>
-                        <img alt='pinterestlogo' src={pinterestlogo}></img>
-                        <img alt='tiktoklogo' src={tiktoklogo}></img>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='fblogo' src={fblogo}/>
 
+                            </div>
+                        </label>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='instalogo' src={instalogo}></img>
+                            </div>
+                        </label>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='youtubelogo' src={youtubelogo}></img>
+                            </div>
+                        </label>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='twitterlogo' src={twitterlogo}></img>
+                            </div>
+                        </label>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='pinterestlogo' src={pinterestlogo}></img>
+                            </div>
+                        </label>
+                        <label>
+                            <div className='Logo-wrapper'>
+                                <input type='radio' name='test' value="big"/>   
+                                <img alt='tiktoklogo' src={tiktoklogo}></img>
+                            </div>
+                        </label>
                     </div>
+                    
+                    <br></br>
                     <br></br>
                     <div className='Date-wrapper'>
                         <div className='Date-field'>
-                        <label htmlFor="startDate">Start Date:</label>
-                        <DatePicker type="date" name="startDate" value={this.state.startDate}
-                        onChange={this.startDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
-                        clearIcon={null}></DatePicker>
+                            <label className='Date-text' htmlFor="startDate">Start Date</label>
+                            <DatePicker type="date" name="startDate" value={this.state.startDate}
+                            onChange={this.startDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
+                            clearIcon={null}></DatePicker>
                         </div>
-    
-                    <div className='Date-field'>
-
-                        <label htmlFor="endDate">End Date:</label>
-                        <DatePicker type="date" name="endDate" value={this.state.endDate}
-                        onChange={this.endDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
-                        clearIcon={null}></DatePicker>
-
+                        <div className='Date-field'>
+                            <label className='Date-text' htmlFor="endDate">End Date</label>
+                            <DatePicker type="date" name="endDate" value={this.state.endDate}
+                            onChange={this.endDateChange} required={true} dayPlaceholder="dd" monthPlaceholder="mm" yearPlaceholder="yyyy"
+                            clearIcon={null}></DatePicker>
+                        </div>
+                        
                     </div>
-                    
                     <br></br>
-                    
-
-
-                    </div>
-                    
-                    
                     <br></br>
                     
                     <div className='Brand-wrapper'>
 
                         <div className='Brand-field'>
-                        <label htmlFor='brand1'>Brand 1:</label>
+                        <label htmlFor='brand1'>Brand 1</label>
                         <input type="text" name="brand1" value={this.state.brand1} onChange={this.handleChange}/>
                    
 
                         </div>
                         <div className='Brand-field'>
-                        <label htmlFor='brand2'>Brand 2:</label>
+                        <label htmlFor='brand2'>Brand 2</label>
                         <input type="text" name="brand2" value={this.state.brand2} onChange={this.handleChange}/>
                     
                             
                         </div>
                         <div className='Brand-field'>
-                        <label htmlFor='brand3'>Brand 3:</label>
+                        <label htmlFor='brand3'>Brand 3</label>
                         <input type="text" name="brand3" value={this.state.brand3} onChange={this.handleChange}/>
                     
                             

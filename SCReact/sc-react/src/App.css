@@ -47,7 +47,13 @@
 
 .Date-field{
   display:flex;
-  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+}
+.Date-text{
+  font-size: larger;
 }
 
 .Brand-wrapper{
@@ -58,7 +64,11 @@
 
 .Brand-field{
   display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin:auto;
+  font-size: larger;
 }
 
 .Icon-wrapper{
@@ -85,5 +95,34 @@
   font-size: large;
   justify-content: center;
   
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+[type=radio]+img {
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+
+[type=radio]:checked + img{
+  filter: grayscale(0%);
+  offset: 5px;
+  height:125px;
+  width:125px;
+}
+
+.Logo-wrapper{
+  height: 125px;
+  width:125px;
+  display:flex;
+  margin: auto;
 }
 
