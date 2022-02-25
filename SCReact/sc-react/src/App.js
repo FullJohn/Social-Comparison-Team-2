@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
     <div className="container">
       <h3 className = "App-header">
-        Brand Comparison
+        Social Media Brand Comparison
       </h3>
 
 
