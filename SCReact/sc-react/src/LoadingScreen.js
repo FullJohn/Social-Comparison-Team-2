@@ -1,6 +1,6 @@
 import React, {Component, useState} from 'react';
 import { Navigate } from 'react-router';
-
+import logogif from './Logo.gif';
 import './LoadingScreen.css';
 
 export class LoadScreen extends Component{
@@ -60,7 +60,7 @@ export class LoadScreen extends Component{
         }
         return(
             <div class="Label1">
-                <img class="Img1" src="/Logo.gif"></img>
+                <img class="Img1" alt='fblogo' src={logogif}/>
                 <label>Loading your results. Page will redirect upon completion. This may take a few minutes...</label>
                 {this.runQuery}
             </div>
