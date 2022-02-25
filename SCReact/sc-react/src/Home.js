@@ -29,12 +29,14 @@ export class Home extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.startDateChange = this.startDateChange.bind(this);
         this.endDateChange = this.endDateChange.bind(this);
-    
+        this.platformChange = this.platformChange.bind(this);
       }
       
       startDateChange(date) {this.setState({startDate:date}); }
+      platformChange(event) {this.setState({platform:event.target.value})}
       endDateChange(date) {this.setState({endDate: date}); }
       handleChange(event) {this.setState({[event.target.name]: event.target.value}); }
+
       handleSubmit(event) {
         const { platform, brand1, brand2, brand3, startDate, endDate} = this.state;
     
@@ -69,11 +71,9 @@ export class Home extends Component{
                 this.state.redirect = true
                 this.setState([this.state.redirect])
             }
-            
             else{
                 alert(result['message']);
             }
-        
         })
     }
 
@@ -85,46 +85,46 @@ export class Home extends Component{
             <Navigate to={url}></Navigate>)
         }
         return(
-            <div>
+            <div className='container'> 
                 <form onSubmit={this.handleSubmit}>
                    
                     <br></br>
                     <br></br>
-                    <div className='Icon-wrapper'>
+                    <div className='Icon-wrapper' onChange={this.platformChange}>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value="Facebook"/>   
                                 <img alt='fblogo' src={fblogo}/>
 
                             </div>
                         </label>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value='Instagram'/>   
                                 <img alt='instalogo' src={instalogo}></img>
                             </div>
                         </label>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value='YouTube'/>   
                                 <img alt='youtubelogo' src={youtubelogo}></img>
                             </div>
                         </label>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value='Twitter'/>   
                                 <img alt='twitterlogo' src={twitterlogo}></img>
                             </div>
                         </label>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value='Pinterest'/>   
                                 <img alt='pinterestlogo' src={pinterestlogo}></img>
                             </div>
                         </label>
                         <label>
                             <div className='Logo-wrapper'>
-                                <input type='radio' name='test' value="big"/>   
+                                <input type='radio' name='platform' value='TikTok'/>   
                                 <img alt='tiktoklogo' src={tiktoklogo}></img>
                             </div>
                         </label>
@@ -132,6 +132,7 @@ export class Home extends Component{
                     
                     <br></br>
                     <br></br>
+                    
                     <div className='Date-wrapper'>
                         <div className='Date-field'>
                             <label className='Date-text' htmlFor="startDate">Start Date</label>
@@ -147,7 +148,7 @@ export class Home extends Component{
                         </div>
                         
                     </div>
-                    <br></br>
+                    
                     <br></br>
                     
                     <div className='Brand-wrapper'>
