@@ -15,16 +15,41 @@
 
 .App-header {
   background-color: #3f4b65;
+  position: relative;
   
-  min-height:50px;
+  max-height: 50px;
+  
+  min-width: max-content;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: auto;
+  
 }
 
+.Marble-logo{
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: 15px;
+}
+.Title-text{
+  align-items: center;
+  justify-content: center;
+  
+  display:flex;
+  margin: auto;
+  color: white;
+  
+  
+}
+
+.Login-link{
+  font-size: large;
+  margin-right: 15px;
+  color:white;
+  
+  
+
+
+}
 .App-link {
   color: #61dafb;
 }
@@ -41,9 +66,10 @@
 .Date-wrapper{
   display:flex;
   margin: auto;
-  gap: 50px;
+
   width: 800px;
 }
+
 
 .Date-field{
   display:flex;
@@ -55,6 +81,8 @@
 .Date-text{
   font-size: larger;
 }
+
+
 
 .Brand-wrapper{
   display:flex;
@@ -76,7 +104,6 @@
   margin: auto;
   justify-content: center;
   gap: 50px;
-  box-shadow: inset;
   margin: auto;
   height: 100px;
   width: 100px;
@@ -111,12 +138,11 @@
   margin: auto;
 }
 
-
 [type=radio]:checked + img{
   filter: grayscale(0%);
   offset: 5px;
-  height:125px;
-  width:125px;
+  height:112px;
+  width:112px;
 }
 
 .Logo-wrapper{
