@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import { Navigate } from 'react-router';
 import logogif from './Logo.gif';
+import qmark from './qmark.png';
 import './LoadingScreen.css';
 
 export class LoadScreen extends Component{
@@ -59,11 +60,24 @@ export class LoadScreen extends Component{
             )
         }
         return(
-            <div class="Label1">
-                <img class="Img1" alt='fblogo' src={logogif}/>
-                <label>Loading your results. Page will redirect upon completion. This may take a few minutes...</label>
+            <div>
+                <div class="Label1">
+                    <img class="Img1" alt='Loading Icon' src={logogif}/>
+                    <label>Loading your results. Page will redirect upon completion. This may take a few minutes...
+                    <pre>&#9;</pre>
+                    </label>
+                </div>
+                <div class="Label2">
+                    <img class="Img2" alt='Question Mark' src={qmark}/>
+                    <div>
+                        <h2>Why is it taking so long?</h2>
+                        <label>In order to comply with various social media platforms terms and services, we've made an effort to ensure that 
+                        our application mimics a real human user while gathering posts from a social media platform.</label>
+                    </div>
+                </div>
                 {this.runQuery}
             </div>
+            
             
         )
         }
