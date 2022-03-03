@@ -50,10 +50,10 @@ export class Post extends Component{
             if (brand1name === "") {
                 brand1name = posts[i].channel;
             }
-            else if (brand2name === "" && posts[i].channel != brand2name){
+            else if (brand2name === "" && posts[i].channel != brand1name){
                 brand2name = posts[i].channel;
             }
-            else if (brand3name === "" && posts[i].channel != brand3name){
+            else if (brand3name === "" && posts[i].channel != brand1name && posts[i].channel != brand2name){
                 brand3name = posts[i].channel;
             }
         }
@@ -70,13 +70,16 @@ export class Post extends Component{
             }
         }
         // loading brand name subheader titles
-        if (brand1name && brand2name && brand3name) {
+        if (brand1name && brand2name && brand3name && (brand1name != brand2name) && (brand2name != brand3name)) {
             document.getElementById("B1").innerHTML=brand1name;
             document.getElementById("B2").innerHTML=brand2name;
             document.getElementById("B3").innerHTML=brand3name;
         }
 
         return(
+            <div className='container'>
+            <br></br>
+            <br></br>
             <div class="row">
                 <div class="table-responsive col-sm">
                 <h2 id="B1"></h2>
@@ -179,6 +182,7 @@ export class Post extends Component{
                             </tr>)}
                     </tbody>
                 </Table>
+            </div>
             </div>
             </div>    
         )
