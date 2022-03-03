@@ -3,13 +3,12 @@ import React, {Component, useEffect, useState} from 'react';
 import { Tab } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import { Navigate } from 'react-router';
-import bluemarblelogo from './bluemarble.png';
-import fblogo from './fblogo.png';
-import instalogo from './instalogo.png';
-import tiktoklogo from './tiktoklogo.png';
-import pinterestlogo from './pinterestlogo.png';
-import youtubelogo from './youtube-circ-modified.png';
-import twitterlogo from './twitterlogo.png';
+import fblogo from './Icons/fblogo.png';
+import instalogo from './Icons/instalogo.png';
+import tiktoklogo from './Icons/tiktoklogo.png';
+import pinterestlogo from './Icons/pinterestlogo.png';
+import youtubelogo from './Icons/youtube-circ-modified.png';
+import twitterlogo from './Icons/twitterlogo.png';
 
 
 
@@ -88,7 +87,10 @@ export class Home extends Component{
             <div className='container'> 
                 <form onSubmit={this.handleSubmit}>
                    
-                    <br></br>
+                   <br></br>
+                   <br></br>
+                   <div className='Instruction-Text'>Select a Platform</div>
+                    
                     <br></br>
                     <div className='Icon-wrapper' onChange={this.platformChange}>
                         <label>
@@ -132,6 +134,7 @@ export class Home extends Component{
                     
                     <br></br>
                     <br></br>
+                   
                     
                     <div className='Date-wrapper'>
                         <div className='Date-field'>
@@ -148,9 +151,8 @@ export class Home extends Component{
                         </div>
                         
                     </div>
-                    
                     <br></br>
-                    
+
                     <div className='Brand-wrapper'>
 
                         <div className='Brand-field'>
@@ -174,7 +176,7 @@ export class Home extends Component{
 
                     </div>
                     <br></br>
-                    
+                    <br></br>
                         
                     <input className='Submit-button' type='submit' value='Submit'></input>
                     

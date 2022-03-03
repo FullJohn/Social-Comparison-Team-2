@@ -33,21 +33,15 @@
 .Title-text{
   align-items: center;
   justify-content: center;
-  
   display:flex;
   margin: auto;
-  color: white;
-  
-  
+  color: white; 
 }
 
 .Login-link{
   font-size: large;
   margin-right: 15px;
   color:white;
-  
-  
-
 
 }
 .App-link {
@@ -77,6 +71,7 @@
   justify-content: center;
   align-items: center;
   margin:auto;
+  color: #3f4b65;
 }
 .Date-text{
   font-size: larger;
@@ -97,6 +92,7 @@
   align-items: center;
   margin:auto;
   font-size: larger;
+  color: #3f4b65
 }
 
 .Icon-wrapper{
@@ -112,15 +108,21 @@
   display:flex;
   margin: auto;
   border: solid #ffb27f;
+  border-width: 5px;
   border-radius: 25px;
-  background-color: #ffb27f;
-
+  background-color: #3f4b65;
+  font-size: 22pt;
+  justify-content: center;
+  color: white;
+  min-height: 50px;
+  min-width: 100px;
 }
 
-.Text{
+.Instruction-Text{
   color:#3f4b65;
-  font-size: large;
+  font-size: x-large;
   justify-content: center;
+  display: flex;
   
 }
 
@@ -141,8 +143,8 @@
 [type=radio]:checked + img{
   filter: grayscale(0%);
   offset: 5px;
-  height:112px;
-  width:112px;
+  height:125px;
+  width:125px;
 }
 
 .Logo-wrapper{

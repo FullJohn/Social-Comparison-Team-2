@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react';
 import { Navigate } from 'react-router';
-import logogif from './Logo.gif';
-import qmark from './qmark.png';
+import logogif from './Icons/Logo.gif';
+import qmark from './Icons/qmark.png';
 import './LoadingScreen.css';
 
 export class LoadScreen extends Component{
