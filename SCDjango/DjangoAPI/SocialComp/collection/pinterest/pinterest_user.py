@@ -132,7 +132,7 @@ class PinterestUser:
                 self.posts.append(post)
                 post.save_post(self.query_id)
                 
-            time.sleep(17)#@TODO(P): may want to make this random
+            #time.sleep(17)#@TODO(P): may want to make this random
             
         self.driver.quit()
 
