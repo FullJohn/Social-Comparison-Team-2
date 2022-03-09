@@ -95,10 +95,9 @@ class YouTubePost:
         lang = nlp(self.title)
         out_of_date_range = False
         
-        if self.date_range[0] >= post_datetime and self.date_range[1] <= post_datetime:
+        if self.date_range[0] >= post_datetime or self.date_range[1] <= post_datetime:
             out_of_date_range = True
 
-       
         if lang._.language['language'] != 'en' or out_of_date_range:
             
             self.include_post = False
@@ -110,8 +109,8 @@ class YouTubePost:
             self.include_post = True
 
         #self.webdriver.close()
-
         if self.date_range[0] > post_datetime:
+            self.include_post = False
             return False
         else:
             return True
