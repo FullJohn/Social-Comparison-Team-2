@@ -107,7 +107,9 @@
 .Submit-button{
   display:flex;
   margin: auto;
-  
+  border-color: #3f4b65;
+  border-width: 0px;
+  border-radius: 25px;
   background-color: #3f4b65;
   font-size: 22pt;
   justify-content: center;
