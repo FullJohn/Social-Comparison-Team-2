@@ -96,7 +96,7 @@ def runQuery(request):
             platform = query.platform
             brands = [query.brand1, query.brand2, query.brand3]
             date_range = [query.startDate, query.endDate]
-            collections.run_collection(platform, brands, date_range, query_id)
             query_executed.query_ran = True
             query_executed.save()
+            collections.run_collection(platform, brands, date_range, query_id)
             return JsonResponse({'message':"Success", 'redirect': True}, safe=False)
