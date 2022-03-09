@@ -1,6 +1,7 @@
 
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from DjangoAPI.SocialComp.models import QueryExecutedModel
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.utils import json
@@ -62,7 +63,7 @@ def queryAPI(request, id=0):
         if query_serializer.is_valid():
             query_serializer.save()
             queryId = query_serializer['QueryId'].value
-            
+
             query_data = {}
             query_data['QueryId'] = str(queryId)
             query_data['query_ran'] = bool(False)
@@ -88,7 +89,7 @@ def runQuery(request):
         
         query_id = int(JSONParser().parse(request).get('queryId'))
         query = QueryModel.objects.get(QueryId = query_id)
-        query_executed = QueryExecutedSerializer.get(QueryId = query_id)
+        query_executed = QueryExecutedModel.objects.get(QueryId = query_id)
         if(query_executed.query_ran):
             return JsonResponse({'message': "Query Already Ran: Redirecting", 'redirect': True}, safe=False)
         else:
