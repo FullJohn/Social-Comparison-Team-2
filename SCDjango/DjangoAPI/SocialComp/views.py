@@ -60,11 +60,12 @@ def queryAPI(request, id=0):
         query_serializer = QuerySerializer(data = query_data)
         query_ran = QueryExecutedSerializer(QueryId = query_serializer.QueryId)
 
-        if query_ran.is_valid():
-            query_ran.save()
+        
         if query_serializer.is_valid():
             query_serializer.save()
             queryId = query_serializer['QueryId'].value
+            if query_ran.is_valid():
+                query_ran.save()
     
             return JsonResponse({'message':"Added Query Successfully", 'redirect': True, 'queryId': queryId}, safe=False)
 
@@ -91,4 +92,7 @@ def runQuery(request):
             brands = [query.brand1, query.brand2, query.brand3]
             date_range = [query.startDate, query.endDate]
             collections.run_collection(platform, brands, date_range, query_id)
+            query_executed.query_ran = True
+            if query_executed.isValid():
+                query_executed.save()
             return JsonResponse({'message':"Success", 'redirect': True}, safe=False)
