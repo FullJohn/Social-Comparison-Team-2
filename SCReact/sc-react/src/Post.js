@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import "./Post.css";
 import { PostFormat } from './PostFormat';
+import renderposts from './CallPosts';
 export class Post extends Component{
     
     constructor(props){
@@ -40,11 +41,6 @@ export class Post extends Component{
     }
 
     
-    renderposts(brand){
-        for (var i = 0; i < 5; i++){
-            PostFormat(brand[i])
-        }
-    }
 
     render(){
         const {posts} = this.state;
@@ -55,10 +51,13 @@ export class Post extends Component{
         var brand1name = '';
         var brand2name = '';
         var brand3name = '';
+        const temp1 = [];
         
         const temp = {views: "413", comments: "3", likes: "143", thumbnail: "https://i.ytimg.com/vi/lwyeoaF9blk/maxresdefault.jpg",
     title: "OREO meets The Batman", date: "2022-03-08", description: "Blah blah blah", url: "https://www.youtube.com/watch?v=lwyeoaF9blk"}
-
+        temp1.push(temp);
+        temp1.push(temp);
+        
         // populate brand names
         for (var i = 0; i < postsLength; i++) {
             if (brand1name === "") {
@@ -102,7 +101,8 @@ export class Post extends Component{
                 <Table className="table-responsive" striped bordered hover size="sm">
                     
                     
-                    {this.renderposts(brand1)}
+                    {renderposts(brand1)}
+                    
                     <thead>
                         <tr>
                             <th>PostId</th>
