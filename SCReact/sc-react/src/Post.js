@@ -87,15 +87,15 @@ export class Post extends Component{
             <div className='container-fluid'>
             <br></br>
             <br></br>
-            <div class="row">
+            <div class="column">
                 <h2 id="B1">{brand1name}</h2>
                 {renderposts(brand1)}
             </div>
-            <div class="row">
+            <div class="column">
                 <h2 id="B2">{brand2name}</h2>
                 {renderposts(brand2)}
 
-            <div class="row">
+            <div class="column">
                 <h2 id="B3">{brand3name}</h2>
                 {renderposts(brand3)}
             </div>
