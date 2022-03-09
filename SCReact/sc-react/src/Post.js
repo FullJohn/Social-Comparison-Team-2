@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
-
+import "./Post.css";
+import { PostFormat } from './PostFormat';
 export class Post extends Component{
     
     constructor(props){
@@ -38,6 +39,13 @@ export class Post extends Component{
         this.refreshList();
     }
 
+    
+    renderposts(brand){
+        for (var i = 0; i < 5; i++){
+            PostFormat(brand[i])
+        }
+    }
+
     render(){
         const {posts} = this.state;
         const postsLength = posts.length;
@@ -47,6 +55,10 @@ export class Post extends Component{
         var brand1name = '';
         var brand2name = '';
         var brand3name = '';
+        
+        const temp = {views: "413", comments: "3", likes: "143", thumbnail: "https://i.ytimg.com/vi/lwyeoaF9blk/maxresdefault.jpg",
+    title: "OREO meets The Batman", date: "2022-03-08", description: "Blah blah blah", url: "https://www.youtube.com/watch?v=lwyeoaF9blk"}
+
         // populate brand names
         for (var i = 0; i < postsLength; i++) {
             if (brand1name === "") {
@@ -77,7 +89,7 @@ export class Post extends Component{
             document.getElementById("B2").innerHTML=brand2name;
             document.getElementById("B3").innerHTML=brand3name;
         }
-
+ 
         return(
             <div className='container-fluid'>
             <br></br>
@@ -85,8 +97,12 @@ export class Post extends Component{
             <div class="row">
                 <div class="table-responsive col-sm">
                 <h2 id="B1">{brand1name}</h2>
+                
+                
                 <Table className="table-responsive" striped bordered hover size="sm">
                     
+                    
+                    {this.renderposts(brand1)}
                     <thead>
                         <tr>
                             <th>PostId</th>
@@ -102,6 +118,7 @@ export class Post extends Component{
                         </tr>
                     </thead>
                     <tbody>
+                        
                         {brand1.map(post=>
                             <tr key={post.PostId}>
                                 <td>{post.PostId}</td>
@@ -114,13 +131,20 @@ export class Post extends Component{
                                 <td>{post.views}</td>
                                 <td>{post.comments}</td>
                                 <td>{post.likes}</td>
-                            </tr>)}
+                            </tr>
+                            
+                            )
+                            
+                            }
                     </tbody>
+                    
                 </Table>
+                
             </div>
             <div class="table-responsive col-sm">
                 <h2 id="B2">{brand2name}</h2>
                 <Table className="table-responsive" striped bordered hover size="sm">
+                    
                     <thead>
                         <tr>
                             <th>PostId</th>
