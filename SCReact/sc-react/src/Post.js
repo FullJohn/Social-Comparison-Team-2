@@ -95,123 +95,17 @@ export class Post extends Component{
             <br></br>
             <div class="row">
                 <div class="table-responsive col-sm">
-                <h2 id="B1">{brand1name}</h2>
-                
-                
-                <Table className="table-responsive" striped bordered hover size="sm">
+                    <h2 id="B1">{brand1name}</h2>
                     
-                    
-                    {renderposts(brand1)}
-                    
-                    <thead>
-                        <tr>
-                            <th>PostId</th>
-                            <th >url</th>
-                            <th>title</th>
-                            <th>description</th>
-                            <th>thumbnail</th>
-                            <th>channel</th>
-                            <th>date</th>
-                            <th>views</th>
-                            <th>comments</th>
-                            <th>likes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        {brand1.map(post=>
-                            <tr key={post.PostId}>
-                                <td>{post.PostId}</td>
-                                <td>{post.url}</td>
-                                <td>{post.title}</td>
-                                <td>{post.description}</td>
-                                <td>{post.thumbnail}</td>
-                                <td>{post.channel}</td>
-                                <td>{post.date}</td>
-                                <td>{post.views}</td>
-                                <td>{post.comments}</td>
-                                <td>{post.likes}</td>
-                            </tr>
-                            
-                            )
-                            
-                            }
-                    </tbody>
-                    
-                </Table>
-                
-            </div>
-            <div class="table-responsive col-sm">
-                <h2 id="B2">{brand2name}</h2>
-                <Table className="table-responsive" striped bordered hover size="sm">
-                    
-                    <thead>
-                        <tr>
-                            <th>PostId</th>
-                            <th>url</th>
-                            <th>title</th>
-                            <th>description</th>
-                            <th>thumbnail</th>
-                            <th>channel</th>
-                            <th>date</th>
-                            <th>views</th>
-                            <th>comments</th>
-                            <th>likes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {brand2.map(post=>
-                            <tr key={post.PostId}>
-                                <td>{post.PostId}</td>
-                                <td>{post.url}</td>
-                                <td>{post.title}</td>
-                                <td>{post.description}</td>
-                                <td>{post.thumbnail}</td>
-                                <td>{post.channel}</td>
-                                <td>{post.date}</td>
-                                <td>{post.views}</td>
-                                <td>{post.comments}</td>
-                                <td>{post.likes}</td>
-                            </tr>)}
-                    </tbody>
-                </Table>
-            </div>
-            <div class="table-responsive col-sm">
-                <h2 id="B3">{brand3name}</h2>
-                <Table className="table-responsive" striped bordered hover size="sm">
-                    <thead>
-                        <tr>
-                            <th>PostId</th>
-                            <th>url</th>
-                            <th>title</th>
-                            <th>description</th>
-                            <th>thumbnail</th>
-                            <th>channel</th>
-                            <th>date</th>
-                            <th>views</th>
-                            <th>comments</th>
-                            <th>likes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {brand3.map(post=>
-                            <tr key={post.PostId}>
-                                <td>{post.PostId}</td>
-                                <td>{post.url}</td>
-                                <td>{post.title}</td>
-                                <td>{post.description}</td>
-                                <td>{post.thumbnail}</td>
-                                <td>{post.channel}</td>
-                                <td>{post.date}</td>
-                                <td>{post.views}</td>
-                                <td>{post.comments}</td>
-                                <td>{post.likes}</td>
-                            </tr>)}
-                    </tbody>
-                </Table>
+                        {renderposts(brand1)}
+                    <h2 id="B2">{brand2name}</h2>
+                        {renderposts(brand2)}
+                    <h2 id="B3">{brand3name}</h2>
+                        {renderposts(brand3)}
+                </div>
+            
             </div>
             </div>
-            </div>    
         )
     }
 }
