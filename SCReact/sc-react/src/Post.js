@@ -26,7 +26,7 @@ export class Post extends Component{
         .then(data=>{
             
             this.setState({posts:data});
-            alert(this.state.posts[0].channel);
+            //alert(this.state.posts[0].channel);
         });
     }
 
