@@ -86,6 +86,7 @@ export class Post extends Component{
                 <div class="table-responsive col-sm">
                 <h2 id="B1"></h2>
                 <Table className="table-responsive" striped bordered hover size="sm">
+                    <h1>{brand1name}</h1>
                     <thead>
                         <tr>
                             <th>PostId</th>
