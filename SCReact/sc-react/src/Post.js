@@ -77,7 +77,7 @@ export class Post extends Component{
         }
 
         return(
-            <div className='container'>
+            <div className='container-fluid'>
             <br></br>
             <br></br>
             <div class="row">
@@ -87,7 +87,7 @@ export class Post extends Component{
                     <thead>
                         <tr>
                             <th>PostId</th>
-                            <th>url</th>
+                            <th >url</th>
                             <th>title</th>
                             <th>description</th>
                             <th>thumbnail</th>
