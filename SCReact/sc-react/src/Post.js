@@ -12,7 +12,7 @@ export class Post extends Component{
     refreshList(){
         const { queryId } = this.state
         fetch('http://54.144.107.206:8000/post/', {
-            method:'POST',
+            method:'GET',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
