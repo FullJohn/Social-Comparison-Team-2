@@ -59,12 +59,9 @@ def queryAPI(request, id=0):
         print(query_data, type(query_data))
         query_serializer = QuerySerializer(data = query_data)
 
-
-
-        query_ran = QueryExecutedSerializer(QueryId = query_serializer['QueryId'].value)
-
         if query_serializer.is_valid():
             query_serializer.save()
+            query_ran = QueryExecutedSerializer(QueryId = query_serializer['QueryId'].value)
             queryId = query_serializer['QueryId'].value
             if query_ran.is_valid():
                 query_ran.save()
