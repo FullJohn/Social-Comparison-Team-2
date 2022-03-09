@@ -51,12 +51,6 @@ export class Post extends Component{
         var brand1name = '';
         var brand2name = '';
         var brand3name = '';
-        const temp1 = [];
-        
-        const temp = {views: "413", comments: "3", likes: "143", thumbnail: "https://i.ytimg.com/vi/lwyeoaF9blk/maxresdefault.jpg",
-    title: "OREO meets The Batman", date: "2022-03-08", description: "Blah blah blah", url: "https://www.youtube.com/watch?v=lwyeoaF9blk"}
-        temp1.push(temp);
-        temp1.push(temp);
         
         // populate brand names
         for (var i = 0; i < postsLength; i++) {
@@ -93,17 +87,18 @@ export class Post extends Component{
             <div className='container-fluid'>
             <br></br>
             <br></br>
-            <div class="row">
-                <div class="table-responsive col-sm">
-                    <h2 id="B1">{brand1name}</h2>
-                    
-                        {renderposts(brand1)}
-                    <h2 id="B2">{brand2name}</h2>
-                        {renderposts(brand2)}
-                    <h2 id="B3">{brand3name}</h2>
-                        {renderposts(brand3)}
-                </div>
-            
+            <div class="column">
+                <h2 id="B1">{brand1name}</h2>
+                {renderposts(brand1)}
+            </div>
+            <div class="column">
+                <h2 id="B2">{brand2name}</h2>
+                {renderposts(brand2)}
+
+            <div class="column">
+                <h2 id="B3">{brand3name}</h2>
+                {renderposts(brand3)}
+            </div>
             </div>
             </div>
         )
