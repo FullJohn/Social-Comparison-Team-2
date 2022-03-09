@@ -85,21 +85,22 @@ export class Post extends Component{
  
         return(
             <div className='container-fluid'>
-            <br></br>
-            <br></br>
-            <div class="column">
-                <h2 id="B1">{brand1name}</h2>
-                {renderposts(brand1)}
-            </div>
-            <div class="column">
-                <h2 id="B2">{brand2name}</h2>
-                {renderposts(brand2)}
-
-            <div class="column">
-                <h2 id="B3">{brand3name}</h2>
-                {renderposts(brand3)}
-            </div>
-            </div>
+                <br></br>
+                <br></br>
+                <div class ="row">
+                    <div class="table-responsive col-sm">
+                        <h2 id="B1">{brand1name}</h2>
+                        {renderposts(brand1)}
+                    </div>
+                    <div class="table-responsive col-sm">
+                        <h2 id="B2">{brand2name}</h2>
+                        {renderposts(brand2)}
+                    </div>
+                    <div class="table-responsive col-sm">
+                        <h2 id="B3">{brand3name}</h2>
+                        {renderposts(brand3)}
+                    </div>
+                </div>
             </div>
         )
     }
