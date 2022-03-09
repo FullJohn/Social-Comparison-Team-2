@@ -119,7 +119,7 @@ export class Post extends Component{
                 </Table>
             </div>
             <div class="table-responsive col-sm">
-                <h2 id="B2"></h2>
+                <h2 id="B2">{brand2name}</h2>
                 <Table className="table-responsive" striped bordered hover size="sm">
                     <thead>
                         <tr>
@@ -153,7 +153,7 @@ export class Post extends Component{
                 </Table>
             </div>
             <div class="table-responsive col-sm">
-                <h2 id="B3"></h2>
+                <h2 id="B3">{brand3name}</h2>
                 <Table className="table-responsive" striped bordered hover size="sm">
                     <thead>
                         <tr>
