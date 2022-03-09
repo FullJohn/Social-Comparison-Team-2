@@ -1,6 +1,5 @@
-from DjangoAPI.SocialComp.models import QueryExecutedModel
 from rest_framework import serializers
-from SocialComp.models import PostModel, QueryModel
+from SocialComp.models import PostModel, QueryModel, QueryExecutedModel
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

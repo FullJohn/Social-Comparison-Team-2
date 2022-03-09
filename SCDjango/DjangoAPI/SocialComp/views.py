@@ -1,13 +1,12 @@
 
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from DjangoAPI.SocialComp.serializers import QueryExecutedSerializer
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.utils import json
 
 from SocialComp.models import PostModel, QueryModel
-from SocialComp.serializers import PostSerializer, QuerySerializer
+from SocialComp.serializers import PostSerializer, QuerySerializer, QueryExecutedSerializer
 
 from .collection import collections
 
