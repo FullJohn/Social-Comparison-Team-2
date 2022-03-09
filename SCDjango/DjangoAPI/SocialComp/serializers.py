@@ -33,4 +33,4 @@ class QuerySerializer(serializers.ModelSerializer):
 class QueryExecutedSerializer(serializers.ModelSerializer):
     class Meta:
         model = QueryExecutedModel
-        fields = ('QueryID', 'query_ran')
+        fields = ('QueryId', 'query_ran')
