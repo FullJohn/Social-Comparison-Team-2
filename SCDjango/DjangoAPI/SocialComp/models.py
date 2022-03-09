@@ -64,3 +64,7 @@ class QueryModel(models.Model):
     startDate = models.CharField(max_length=100)
     endDate = models.CharField(max_length=100)
 
+
+class QueryExecutedModel(models.Model):
+    QueryId = models.CharField(primary_key = True, max_length=100)
+    query_ran = models.BooleanField(default = False)

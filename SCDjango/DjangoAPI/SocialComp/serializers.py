@@ -1,3 +1,4 @@
+from DjangoAPI.SocialComp.models import QueryExecutedModel
 from rest_framework import serializers
 from SocialComp.models import PostModel, QueryModel
 
@@ -29,3 +30,8 @@ class QuerySerializer(serializers.ModelSerializer):
     class Meta:
         model = QueryModel
         fields = ('QueryId', 'platform', 'brand1', 'brand2', 'brand3', 'startDate', 'endDate')
+
+class QueryExecutedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QueryExecutedModel
+        fields = ('QueryID', 'query_ran')

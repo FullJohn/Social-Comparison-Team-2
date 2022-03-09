@@ -1,6 +1,7 @@
 
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from DjangoAPI.SocialComp.serializers import QueryExecutedSerializer
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.utils import json
@@ -58,9 +59,12 @@ def queryAPI(request, id=0):
         query_data = JSONParser().parse(request)
         print(query_data, type(query_data))
         query_serializer = QuerySerializer(data = query_data)
+        query_ran = QueryExecutedSerializer(QueryId = query_serializer.QueryId)
+
+        if query_ran.is_valid():
+            query_ran.save()
         if query_serializer.is_valid():
             query_serializer.save()
-            
             queryId = query_serializer['QueryId'].value
     
             return JsonResponse({'message':"Added Query Successfully", 'redirect': True, 'queryId': queryId}, safe=False)
@@ -77,10 +81,15 @@ def queryAPI(request, id=0):
 def runQuery(request):
 
     if request.method == 'POST':
+        
         query_id = int(JSONParser().parse(request).get('queryId'))
         query = QueryModel.objects.get(QueryId = query_id)
-        platform = query.platform
-        brands = [query.brand1, query.brand2, query.brand3]
-        date_range = [query.startDate, query.endDate]
-        collections.run_collection(platform, brands, date_range, query_id)
-        return JsonResponse({'message':"Success", 'redirect': True}, safe=False)
+        query_executed = QueryExecutedSerializer.get(QueryId = query_id)
+        if(query_executed.query_ran):
+            return JsonResponse({'message': "Query Already Ran: Redirecting", 'redirect': True}, safe=False)
+        else:
+            platform = query.platform
+            brands = [query.brand1, query.brand2, query.brand3]
+            date_range = [query.startDate, query.endDate]
+            collections.run_collection(platform, brands, date_range, query_id)
+            return JsonResponse({'message':"Success", 'redirect': True}, safe=False)
