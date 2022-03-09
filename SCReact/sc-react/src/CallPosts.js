@@ -7,5 +7,4 @@ export function renderposts(props){
     }
     return(posts)
 }
-
 export default renderposts

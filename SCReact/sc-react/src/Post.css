@@ -8,6 +8,7 @@
     column-width: auto;
     margin: auto;
     outline: solid #3f4b65;
+    outline-width: 1px;
 }
 
 .Post-Image-Title-Wrapper{
