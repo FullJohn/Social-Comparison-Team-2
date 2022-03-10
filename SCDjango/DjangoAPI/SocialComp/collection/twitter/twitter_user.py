@@ -102,7 +102,7 @@ class TwitterUser:
             elif(cnt != prev_cnt):
                 change_break == 0
             
-            if(change_break == 500):
+            if(change_break == 1000):
                 scrolling = False
             
             #@NOTE(P): Scrape dates on page, breaking out of the loop if we find a date before the beginning of our date range

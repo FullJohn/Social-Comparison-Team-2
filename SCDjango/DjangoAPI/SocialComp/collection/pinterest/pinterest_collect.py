@@ -3,6 +3,8 @@ from . import pinterest_user
 from . import pinterest_post
 import datetime
 
+#from multiprocessing import Pool
+
 
 def run_pinterest_collect(brands, date_range, query_id):
 
@@ -10,7 +12,11 @@ def run_pinterest_collect(brands, date_range, query_id):
 
     if date_range[0] > date_range[1]:
         date_range.reverse()
-
+    
+    #agents = 3
+    #chunksize = 3
+    #with Pool(processes = agents) as pool:
+    #    pool.map(pinterest_user.PinterestUser, dataset)
     for brand_name in brands:
         pinterest_user.PinterestUser(brand_name, date_range, query_id)
 
