@@ -62,6 +62,13 @@ class TwitterUser:
         i = 1
         scrolling = True
         
+        #NOTE(P): Use a count to determine changes to the # of divs. If there hasn't been a change to the cnt
+        ######### in 1000 iterations it breaks out of the while loop. Used to prevent infinite loops. 
+        ######### there's probably a smarter way to do this
+        change_break = 0
+        cnt = 0
+        prev_cnt = 0
+        
         #@TODO(P): Make sure this doesn't enter an infinite loop if the date entered goes back further than the oldest post
         while scrolling:
             #@NOTE(P): Scroll one screens worth of height at a time
@@ -85,7 +92,16 @@ class TwitterUser:
                 if temp not in self.divs:
                     self.divs.append(temp)
             
-            print("Number of posts gathered:\t" + str(len(self.divs)))
+            prev_cnt = cnt
+            cnt = len(self.divs)
+            print("Number of posts gathered:\t" + str(cnt))
+            if(cnt == prev_cnt):
+                change_break += 1
+            elif(cnt != prev_cnt):
+                change_break == 0
+            
+            if(change_break == 1200)
+                scrolling = False
             
             #@NOTE(P): Scrape dates on page, breaking out of the loop if we find a date before the beginning of our date range
             for d in range(len(self.divs)):
@@ -95,7 +111,7 @@ class TwitterUser:
                 
                 #@NOTE(P): Break the loop when we find a post before our date range
                 if temp_datetime.date() < self.firstDate:
-                    scrolling = False
+                    scrolling = False 
         self.followers = temp_followers.get_text() if temp_followers else "{Error Retrieving Followers}"
         self.driver.quit()
 
