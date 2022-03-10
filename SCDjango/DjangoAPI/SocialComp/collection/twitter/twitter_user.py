@@ -56,7 +56,8 @@ class TwitterUser:
 
         self.driver.get(account_url)
         print("Gathering all posts between: " + self.firstDate.strftime("%b %d") + " and " + self.lastDate.strftime("%b %d"))
-
+        print(self.firstDate)
+        print(self.lastDate)
         scroll_pause_time = 1
         screen_height = self.driver.execute_script("return window.screen.height;")
         i = 1
@@ -95,12 +96,13 @@ class TwitterUser:
             prev_cnt = cnt
             cnt = len(self.divs)
             print("Number of posts gathered:\t" + str(cnt))
+            #there's probably a smarter way to do this
             if(cnt == prev_cnt):
                 change_break += 1
             elif(cnt != prev_cnt):
                 change_break == 0
             
-            if(change_break == 1200):
+            if(change_break == 500):
                 scrolling = False
             
             #@NOTE(P): Scrape dates on page, breaking out of the loop if we find a date before the beginning of our date range
