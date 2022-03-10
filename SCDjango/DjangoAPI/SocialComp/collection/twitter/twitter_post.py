@@ -61,7 +61,10 @@ class TwitterPost:
         likes = self.post_html.find("div", { "data-testid" : "like" }).attrs['aria-label']
         if likes is not None:
             p = re.search(r"(\d+) Likes. Like", likes)
-            self.likes = int(p.group(1))
+            if p is not None:
+                self.likes = int(p.group(1))
+            else:
+                self.likes = 0
         else:
             self.likes = 0
         
@@ -71,7 +74,10 @@ class TwitterPost:
         retweets = self.post_html.find("div", { "data-testid" : "retweet" }).attrs['aria-label']
         if retweets is not None:
             p = re.search(r"(\d+) Retweets. Retweet", retweets)
-            self.retweets = int(p.group(1))
+            if p is not None:
+                self.retweets = int(p.group(1))
+            else:
+                self.retweets = 0
         else:
             self.retweets = 0
         
@@ -87,7 +93,10 @@ class TwitterPost:
         comments = self.post_html.find("div", { "data-testid" : "reply" }).attrs['aria-label']
         if comments is not None:
             p = re.search(r"(\d+) Replies. Reply", comments)
-            self.comments = int(p.group(1))
+            if p is not None:
+                self.comments = int(p.group(1))
+            else:
+                self.comments = 0
         else:
             self.comments = 0
         
@@ -103,7 +112,6 @@ class TwitterPost:
         #NOTE(P): Parse the video views if the post contains a video
         post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
         self.vid_views = post_vid_element.get_text() if post_vid_element else "{No Post Video}"
-          
 
     def print(self):
         # Prints the data from the post
