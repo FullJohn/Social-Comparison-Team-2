@@ -43,7 +43,7 @@ class TwitterPost:
         #a
         #css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0
         post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
-        if post_url != None:
+        if post_url is not None:
             self.post_url = "www.twitter.com" + post_url['href']
         else:
             self.post_url = "www.twitter.com" + "/error"
@@ -59,9 +59,12 @@ class TwitterPost:
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         likes = self.post_html.find("div", { "data-testid" : "like" }).attrs['aria-label']
-        if likes != None:
+        if likes is not None:
             p = re.search(r"(\d+) Likes. Like", likes)
-            self.likes = int(p.group(1))
+            if p is not None:
+                self.likes = int(p.group(1))
+            else:
+                self.likes = 0
         else:
             self.likes = 0
         
@@ -69,9 +72,12 @@ class TwitterPost:
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         retweets = self.post_html.find("div", { "data-testid" : "retweet" }).attrs['aria-label']
-        if retweets != None:
+        if retweets is not None:
             p = re.search(r"(\d+) Retweets. Retweet", retweets)
-            self.retweets = int(p.group(1))
+            if p is not None:
+                self.retweets = int(p.group(1))
+            else:
+                self.retweets = 0
         else:
             self.retweets = 0
         
@@ -85,9 +91,12 @@ class TwitterPost:
         #div
         #css-18t94o4 css-1dbjc4n r-1777fci r-3vrnjh r-1ny4l3l r-bztko3 r-lrvibr
         comments = self.post_html.find("div", { "data-testid" : "reply" }).attrs['aria-label']
-        if comments != None:
+        if comments is not None:
             p = re.search(r"(\d+) Replies. Reply", comments)
-            self.comments = int(p.group(1))
+            if p is not None:
+                self.comments = int(p.group(1))
+            else:
+                self.comments = 0
         else:
             self.comments = 0
         
@@ -103,7 +112,6 @@ class TwitterPost:
         #NOTE(P): Parse the video views if the post contains a video
         post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
         self.vid_views = post_vid_element.get_text() if post_vid_element else "{No Post Video}"
-          
 
     def print(self):
         # Prints the data from the post
