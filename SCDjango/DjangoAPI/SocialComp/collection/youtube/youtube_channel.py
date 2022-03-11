@@ -12,7 +12,12 @@ def total_sub_count(content):
     if 'K' in subscribers:
         subscribers = subscribers.split('K')
         subscribers = float(subscribers[0]) * 1000
-    
+    if 'M' in subscribers:
+        subscribers = subscribers.split('M')
+        subscribers = float(subscribers[0]) * 1000000
+    if 'B' in subscribers:
+        subscribers = subscribers.split('B')
+        subscribers = float(subscribers[0]) * 1000000000
     return subscribers
 
 class YouTubeChannel:
@@ -71,7 +76,7 @@ class YouTubeChannel:
 
         self.webdriver.get('https://www.youtube.com/c/' + self.channel_name + '/videos')
 
-        multipliers = {'K':1000, 'M':1000000, 'B':1000000000, 'k':1000, 'm':1000000, 'b':1000000000}
+       
 
         if(self.webdriver.title != '404 Not Found'):
             # Meaning the channel exists at that url but we need to verify that it's the correct one
@@ -79,9 +84,8 @@ class YouTubeChannel:
 
         if slash_c:
             content = requests.get("https://www.youtube.com/c/" + self.channel_name + '/videos').text
-            mult = multipliers[total_sub_count(content)[-1]]
-
-            subs_c = int(float(total_sub_count(content)[:-1]*mult))
+            
+            subs_c = int(total_sub_count(content))
             
         self.webdriver.get('https://www.youtube.com/user/' + self.channel_name + '/videos')
 
@@ -90,9 +94,9 @@ class YouTubeChannel:
 
         if slash_user:
             content = requests.get("https://www.youtube.com/user/" + self.channel_name + '/videos').text
-            mult = multipliers[total_sub_count(content)[-1]]
+            
 
-            subs_user = int(float(total_sub_count(content)[:-1]*mult))
+            subs_user = int(total_sub_count(content))
     
         if subs_c > subs_user:
             self.webdriver.get('https://www.youtube.com/c/' + self.channel_name + '/videos')
