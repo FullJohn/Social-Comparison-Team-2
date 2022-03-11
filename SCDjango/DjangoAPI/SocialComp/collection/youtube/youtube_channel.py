@@ -12,12 +12,15 @@ def total_sub_count(content):
     if 'K' in subscribers:
         subscribers = subscribers.split('K')
         subscribers = float(subscribers[0]) * 1000
+        return subscribers
     if 'M' in subscribers:
         subscribers = subscribers.split('M')
         subscribers = float(subscribers[0]) * 1000000
+        return subscribers
     if 'B' in subscribers:
         subscribers = subscribers.split('B')
         subscribers = float(subscribers[0]) * 1000000000
+        return subscribers
     return subscribers
 
 class YouTubeChannel:
