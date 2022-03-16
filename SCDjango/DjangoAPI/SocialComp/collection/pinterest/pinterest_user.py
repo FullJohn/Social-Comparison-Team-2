@@ -129,10 +129,18 @@ class PinterestUser:
         post_cnt = 0
         
         for post_url in post_urls:
-            try:
+            try:#@NOTE(P):Try navigating to page
                 #get_with_retry(self.driver, "https://www.pinterest.com" + post_url)
                 self.driver.get("https://www.pinterest.com" + post_url)
                 time.sleep(random.randint(3, 6))
+                
+            except TimeoutException as ex:#@NOTE(P): If there is a timeout error continue to next item
+                print("Exception has been thrown. " + str(ex))
+                print("... moving to next item ...")
+                self.driver.back()
+                continue
+                
+            else:#@NOTE(P):If there is no exception, we scrape the page
                 soup = BeautifulSoup(self.driver.page_source, 'lxml')
                 post = pinterest_post.PinterestPost(post_url, self.brand_name, soup)
                 post.followers = self.followers
@@ -159,12 +167,6 @@ class PinterestUser:
                     break
                 
                 time.sleep(random.randint(3, 6))
-                
-            except TimeoutException as ex:
-                print("Exception has been thrown. " + str(ex))
-                print("... moving to next item ...")
-                self.driver.back()
-                continue
             
             
         self.driver.quit()
