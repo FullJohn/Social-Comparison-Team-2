@@ -71,8 +71,7 @@ export class LoadScreen extends Component{
                     <img class="Img2" alt='Question Mark' src={qmark}/>
                     <div>
                         <h2>Why is it taking so long?</h2>
-                        <label>In order to comply with various social media platforms terms and services, we've made an effort to ensure that 
-                        our application mimics a real human user while gathering posts from a social media platform.</label>
+                        <label>We only collect publicly available information from social media platforms. To gather a result takes time to crawl through the information. Patience, please. This could take up to 5 minutes per brand.</label>
                     </div>
                 </div>
                 {this.runQuery}
