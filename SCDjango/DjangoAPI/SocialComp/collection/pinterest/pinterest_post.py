@@ -70,7 +70,7 @@ class PinterestPost:
         
         #NOTE(P): Parse the image 
         post_img_elements = self.post_html.find("img", { "class" : "hCL kVc L4E MIw" }).attrs['src']
-        self.image_url = post_img_elements[1]
+        self.image_url = post_img_elements
         
 
     def print(self):
