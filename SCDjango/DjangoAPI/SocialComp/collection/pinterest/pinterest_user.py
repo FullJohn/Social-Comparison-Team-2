@@ -46,7 +46,7 @@ class PinterestUser:
         
         # Class variables
         self.driver = webdriver.Chrome(options=options)
-        self.driver.set_page_load_timeout(30)
+        #self.driver.set_page_load_timeout(30)
         self.brand_name = brand_name
         self.firstDate = date_range[0]
         self.lastDate = date_range[1]
