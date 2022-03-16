@@ -6,10 +6,11 @@ import re
 import selenium.webdriver as webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 
 from bs4 import BeautifulSoup
 from . import pinterest_post
-
+#import pinterest_post
 
 class PinterestUser:
     #################################################################
@@ -33,12 +34,13 @@ class PinterestUser:
         # Webdriver Options
         mobile_emulation = {"deviceName": "Nexus 5"}
         options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
+        #options.add_argument('--headless')
         options.add_argument('--incognito')
         options.add_experimental_option('mobileEmulation', mobile_emulation)
-
+        
         # Class variables
         self.driver = webdriver.Chrome(options=options)
+        self.driver.set_page_load_timeout(30)
         self.brand_name = brand_name
         self.firstDate = date_range[0]
         self.lastDate = date_range[1]
@@ -54,9 +56,13 @@ class PinterestUser:
     def retrieve_posts(self):
         account_url = "https://www.pinterest.com/" + self.brand_name + "/_created"
         
-        self.driver.get("https://www.pinterest.com/login/")
+        try:
+            self.driver.get("https://www.pinterest.com/login/")
+        except:
+            print("Exception has been thrown.")
         
-        time.sleep(5)
+        
+        time.sleep(random.randint(5, 10))
         
         email = self.driver.find_element_by_id("email")
         password = self.driver.find_element_by_id("password")
@@ -72,9 +78,13 @@ class PinterestUser:
         
         time.sleep(5)
         
-        self.driver.get(account_url)
+        try:
+            self.driver.get(account_url)
+        except:
+            print("Exception has been thrown.")
         
-        time.sleep(5)
+        
+        time.sleep(random.randint(5, 10))
         
         #@NOTE(P): get followers
         #data-test-id="profile-followers-link"
@@ -116,23 +126,38 @@ class PinterestUser:
                 break
             last_height = new_height
         
+        post_cnt = 0
+        
         for post_url in post_urls:
-            self.driver.get("https://www.pinterest.com" + post_url)
-            time.sleep(3)
-            soup = BeautifulSoup(self.driver.page_source, 'lxml')
-            post = pinterest_post.PinterestPost(post_url, self.brand_name, soup)
-            post.followers = self.followers
-            post.scrape_post()
-            
-            if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
-                if post in self.posts:
-                    self.posts.remove(post)
-            else:
+            try:
+                #get_with_retry(self.driver, "https://www.pinterest.com" + post_url)
+                self.driver.get("https://www.pinterest.com" + post_url)
+                time.sleep(random.randint(3, 6))
+                soup = BeautifulSoup(self.driver.page_source, 'lxml')
+                post = pinterest_post.PinterestPost(post_url, self.brand_name, soup)
+                post.followers = self.followers
+                post.scrape_post()
                 post.print()
-                self.posts.append(post)
-                post.save_post(self.query_id)
                 
-            #time.sleep(17)#@TODO(P): may want to make this random
+                if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
+                    if post in self.posts:
+                        self.posts.remove(post)  
+                        post_cnt += 1
+                else:
+                    self.posts.append(post)
+                    post.save_post(self.query_id)
+                    post_cnt = 0
+                
+                if post_cnt == 30:
+                    break
+                
+                time.sleep(random.randint(3, 6))
+                
+            except TimeoutException as ex:
+                print("Exception has been thrown. " + str(ex))
+                print("... moving to next item ...")
+                self.driver.back()
+                continue
+            
             
         self.driver.quit()
-

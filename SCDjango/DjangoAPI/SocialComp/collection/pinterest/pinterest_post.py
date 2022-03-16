@@ -28,28 +28,26 @@ class PinterestPost:
         self.post_url = "https://www.pinterest.com" + url
         self.brand = brand_name
         self.post_html = post_html
-        self.description = ''
+        self.title = ''
         self.emojis = -1
         self.comments = -1
         self.date = ''
         self.image_url = ''
-        self.followers = ''
 
     def scrape_post(self):
         #@TODO(P): Parse post text if it exists
         #data-test-id="CloseupDescriptionContainer"
-        post_desc = self.post_html.find("img", { "data-test-id" : "CloseupDescriptionContainer" })
-        if post_desc != None:
-            self.description = post_desc.get_text()
+        post_title = self.post_html.find("div", { "class" : "sLG zI7 iyn Hsu" })
+        if post_title != None:
+            self.title = post_title.get_text()
         else:
-            self.description = "{None}"
+            self.title = "{None}"
         
         #@NOTE(P): Parse emojis if they exist
-        #data-test-id="Reaction"
-        post_emojis = self.post_html.find("img", { "data-test-id" : "Reaction" })
+        #class="tBJ dyH iFc dR0 pBj zDA IZT swG"
+        post_emojis = self.post_html.find("div", { "class" : "tBJ dyH iFc dR0 pBj zDA IZT swG" })
         if post_emojis != None:
-            print(post_emojis)
-            self.emojis = int(post_emojis.get_text())
+            self.emojis = post_emojis.get_text()
         else:
             self.emojis = 0
         
@@ -78,13 +76,13 @@ class PinterestPost:
     def print(self):
         # Prints the data from the post
         print("Brand:\t\t", self.brand)
+        print("Followers:\t", self.followers)
         print("Post URL:\t", self.post_url)
-        print("Description:\t", self.description)
+        print("Title:\t\t", self.title)
         print("Date:\t\t", self.date)
         print("Emojis:\t\t", self.emojis)
         print("Comments:\t", self.comments)
         print("Image URL:\t", self.image_url)
-        print("Followers:\t", self.followers)
         print("\n\n")
         
     def save_post(self, query_id):
@@ -103,8 +101,8 @@ class PinterestPost:
         
         post_data['QueryId'] = str(query_id)
         post_data['url'] = str(self.post_url)
-        post_data['title'] = str("{Not Found}")
-        post_data['description'] = str(self.description)
+        post_data['title'] = str(self.title)
+        #post_data['description'] = str(self.description)
         post_data['thumbnail'] = str(self.image_url)
         post_data['channel'] = str(self.brand)
         post_data['date'] = str(self.date)
