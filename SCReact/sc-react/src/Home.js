@@ -22,7 +22,7 @@ export class Home extends Component{
     constructor(props) {
         super(props);
 
-        this.state = {queryId: '', platform: 'YouTube', brand1: '', brand2: '', brand3: '', startDate: new Date(), endDate: new Date(), redirect: false, queryId: ''};
+        this.state = {queryId: '', platform: '', brand1: '', brand2: '', brand3: '', startDate: new Date(), endDate: new Date(), redirect: false, queryId: ''};
   
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,9 +60,10 @@ export class Home extends Component{
         .then(response=>response.json())
 
         .then((result)=>{
-            
-        
-            if(result['redirect'] == true){
+            if(platform == "Facebook" || platform == "Instagram" || platform == "TikTok"){
+                alert("Due to anti-data collection measures in place by this platform, we are unable to gather data from this site at this time. Please try again later.")
+            }
+            else if(result['redirect'] == true){
                 
                 this.state.queryId = result['queryId']
                 this.setState([this.state.queryId])
