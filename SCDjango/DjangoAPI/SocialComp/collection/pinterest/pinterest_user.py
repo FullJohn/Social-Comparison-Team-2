@@ -138,15 +138,22 @@ class PinterestUser:
                 post.followers = self.followers
                 post.scrape_post()
                 post.print()
+                #@NOTE(P): Temporary measure
+                #@TODO(P): Refactor code to be faster using multithreading. Initial version didn't work on live site.
+                #--------- Will require more work to do appropriately. Just grab some posts for now.
+                post_cnt += 1
+                self.posts.append(post)
+                post.save_post(self.query_id)
                 
                 if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
                     if post in self.posts:
-                        self.posts.remove(post)  
-                        post_cnt += 1
-                else:
-                    self.posts.append(post)
-                    post.save_post(self.query_id)
-                    post_cnt = 0
+                        print("Post not in date_range")
+                        #self.posts.remove(post)  
+                        #post_cnt += 1
+                #else:
+                    #self.posts.append(post)
+                    #post.save_post(self.query_id)
+                    #post_cnt = 0
                 
                 if post_cnt == 30:
                     break

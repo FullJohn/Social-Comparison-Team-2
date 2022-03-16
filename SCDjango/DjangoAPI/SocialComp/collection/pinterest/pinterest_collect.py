@@ -1,12 +1,12 @@
-#import pinterest_user
 import time
 import threading
 import random
-
+import datetime
 import sys
 from . import pinterest_user
 from . import pinterest_post
-import datetime
+#import pinterest_user
+#import pinterest_post
 
 
 def init_brand(brand_name, date_range, query_id):
@@ -22,10 +22,13 @@ def run_pinterest_collect(brands, date_range, query_id):
         date_range.reverse()
     
     for brand_name in brands:
-        t = threading.Thread(target=init_brand, args=(brand_name, date_range, query_id,))
-        t.start()
+        pinterest_user.PinterestUser(brand_name, date_range, query_id)
     
-    #print("--- %s seconds ---" % (time.time() - start_time))
+    #for brand_name in brands:
+    #    t = threading.Thread(target=init_brand, args=(brand_name, date_range, query_id,))
+    #    t.start()
+    
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 def pre_collect(date_range):
     date1 = [date_range[0].split('T')[0]][0]
