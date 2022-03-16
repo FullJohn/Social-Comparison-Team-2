@@ -102,7 +102,7 @@ class PinterestPost:
         post_data['QueryId'] = str(query_id)
         post_data['url'] = str(self.post_url)
         post_data['title'] = str(self.title)
-        #post_data['description'] = str(self.description)
+        post_data['description'] = "{No Description}"
         post_data['thumbnail'] = str(self.image_url)
         post_data['channel'] = str(self.brand)
         post_data['date'] = str(self.date)
