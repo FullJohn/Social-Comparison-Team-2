@@ -34,7 +34,7 @@ class PinterestUser:
         # Webdriver Options
         mobile_emulation = {"deviceName": "Nexus 5"}
         options = webdriver.ChromeOptions()
-        #options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--incognito')
         options.add_experimental_option('mobileEmulation', mobile_emulation)
         
