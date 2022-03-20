@@ -60,7 +60,7 @@ export class Home extends Component{
         .then(response=>response.json())
 
         .then((result)=>{
-            if(platform == "Facebook" || platform == "Instagram" || platform == "TikTok"){
+            if(platform == "Facebook" || platform == "Instagram" || platform == "Pinterest" || platform == "TikTok"){
                 alert("Due to anti-data collection measures in place by this platform, we are unable to gather data from this site at this time. Please try again later.")
             }
             else if(result['redirect'] == true){
