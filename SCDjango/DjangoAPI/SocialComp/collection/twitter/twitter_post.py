@@ -42,13 +42,12 @@ class TwitterPost:
         #@NOTE(P): Parse Post URL
         #a
         #css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0
-        #post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-14j79pv r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
-        #@NOTE(P): These classes seem to change periodically, breaking the code. May be a better way to find this info.
-        post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-1bwzh9t r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
+        pattern = re.compile("/" + self.brand + "/status/\d*")
+        post_url = self.post_html.findAll('a', attrs={'href': pattern})
         if post_url is not None:
-            self.post_url = "https://www.twitter.com" + post_url['href']
-        else:
-            self.post_url = "https://www.twitter.com" + "/error"
+            self.post_url = "https://www.twitter.com" + post_url[0].attrs['href']
+        #post_url = self.post_html.find("a", class_="css-4rbku5 css-18t94o4 css-901oao r-1bwzh9t r-1loqt21 r-1q142lx r-1qd0xha r-1b43r93 r-16dba41 r-hjklzo r-bcqeeo r-3s2u2q r-qvutc0")
+        #self.post_url = "www.twitter.com" + post_url['href']
 
         #@NOTE(P): Parse post text if it exists
         #span
