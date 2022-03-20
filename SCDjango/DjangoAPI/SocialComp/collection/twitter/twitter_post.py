@@ -105,10 +105,11 @@ class TwitterPost:
         #div(?)
         #css-1dbjc4n r-1p0dtai r-1mlwlqe r-1d2f490 r-11wrixw r-1mnahxq r-1udh08x r-u8s1d r-zchlnj r-ipm5af r-417010
         post_img_element = self.post_html.find("div", { "data-testid" : "tweetPhoto" })
-        if post_img_element == None:
-            self.image_url = "{No Post Image}"
-        else:
+        if post_img_element is not None:
+            print(post_img_element)
             self.image_url = post_img_element.find("img", { "class" : "css-9pa8cd" }).attrs['src']
+        else:
+            self.image_url = "{No Post Image}"
         
         #NOTE(P): Parse the video views if the post contains a video
         post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
