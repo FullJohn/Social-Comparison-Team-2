@@ -137,8 +137,11 @@ export class Post extends Component{
                         <br></br>
                         <h2 id="B1">{brand1name}</h2>
                         impressions: {brand1Metrics.totalImpressions}
+                        <br></br>
                         avgImpressions: {brand1Metrics.avgImpressions}
+                        <br></br>
                         avgEngagements: {brand1Metrics.avgEngagements}
+                        <br></br>
                         {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div className='Row-Wrapper-Center'>
@@ -146,8 +149,11 @@ export class Post extends Component{
                         <br></br>
                         <h2 id="B2">{brand2name}</h2>
                         impressions: {brand2Metrics.totalImpressions}
+                        <br></br>
                         avgImpressions: {brand2Metrics.avgImpressions}
+                        <br></br>
                         avgEngagements: {brand2Metrics.avgEngagements}
+                        <br></br>
                         {renderposts({brand: brand2, platform: platform})}
                     </div>
                     <div className='Row-Wrapper'>
@@ -155,8 +161,11 @@ export class Post extends Component{
                         <br></br>
                         <h2 id="B3">{brand3name}</h2>
                         impressions: {brand3Metrics.totalImpressions}
+                        <br></br>
                         avgImpressions: {brand3Metrics.avgImpressions}
+                        <br></br>
                         avgEngagements: {brand3Metrics.avgEngagements}
+                        <br></br>
                         {renderposts({brand: brand3, platform: platform})}
                     </div>
                 </div>
