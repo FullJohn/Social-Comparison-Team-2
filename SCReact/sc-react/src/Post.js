@@ -110,7 +110,7 @@ export class Post extends Component{
             <div className='Table-Wrapper'>
                 <br></br>
                 <br></br>
-                <div class ="row">
+                <div>
                     <div className='Row-Wrapper'>
                         <h2 id="B1">{brand1name}</h2>
                         {renderposts({brand: brand1, platform: platform})}
