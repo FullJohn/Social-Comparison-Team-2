@@ -95,7 +95,7 @@
     justify-content: center;
     align-items: center;
 }
-[Table]{
+.Table-Display{
     border: 2px solid black;
     border-width: 2px black;
     outline: 2px black;
