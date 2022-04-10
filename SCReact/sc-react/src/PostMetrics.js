@@ -1,3 +1,4 @@
+import "./ResultsFormat/Post.css";
 export function YouTubeMetrics(brandMetrics, post){
     brandMetrics.totalPosts++;
     brandMetrics.totalImpressions += parseInt(post.views);
@@ -5,3 +6,27 @@ export function YouTubeMetrics(brandMetrics, post){
     brandMetrics.totalEngagements += parseInt(post.likes);
     return brandMetrics;
 }
+
+export function RenderMetrics(metrics){
+
+    return(
+        <Table>
+            <div className='Total-Metrics'>
+            <thead>
+                <tr>
+                    <th>Total Impressions</th>
+                    <th>Average Impressions</th>
+                    <th>Average Engagements</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>{metrics.totalImpressions}</td>
+                <td>{metrics.avgImpressions}</td>
+                <td>{metrics.avgEngagements}</td>       
+            </tbody>
+            </div>
+        </Table>
+    )
+}
+
+export default RenderMetrics
