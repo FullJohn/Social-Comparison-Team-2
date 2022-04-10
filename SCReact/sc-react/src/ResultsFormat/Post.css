@@ -29,14 +29,11 @@
 
 .Post-Title{
     font-size: larger;
-    
     display: flex;
     margin-left: 3px;
 }
 .Post-Date{
     font-size: large;
-    
-    
     display: flex;
     margin-left: 3px;
 }
@@ -45,8 +42,7 @@
     font-size: large;
     display: flex;
     flex-direction: row;
-    
-
+    min-width: auto;
 }
 
 .Post-Details{
