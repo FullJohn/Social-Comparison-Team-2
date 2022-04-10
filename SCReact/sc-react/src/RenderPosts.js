@@ -12,7 +12,7 @@ export function renderposts(props){
 
     const posts = []
 
-    alert(platform)
+    
     if(platform == 'Facebook'){
         for(var i = 0; i < props[1].length; i++){
             posts.push(FacebookFormat(props[1][i]))
