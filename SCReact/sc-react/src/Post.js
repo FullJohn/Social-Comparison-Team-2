@@ -91,7 +91,7 @@ export class Post extends Component{
                 <div class ="row">
                     <div class="table-responsive col-sm">
                         <h2 id="B1">{brand1name}</h2>
-                        {renderposts(brand1, platform)}
+                        {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B2">{brand2name}</h2>
