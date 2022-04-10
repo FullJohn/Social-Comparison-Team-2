@@ -87,17 +87,36 @@ export class Post extends Component{
             }
         }
         // push posts to corresponding brand table
+        var brand1TotalImpressions = 0;
+        var brand1TotalEngagements = 0;
+        var brand1TotalPosts = 0;
+        var brand2TotalImpressions = 0;
+        var brand2TotalEngagements = 0;
+        var brand2TotalPosts = 0;
+        var brand3TotalImpressions = 0;
+        var brand3TotalEngagements = 0;
+        var brand3TotalPosts = 0;
+
         for (var i = 0; i < postsLength; i++) {
             if (posts[i].channel == brand1name) {
+                brand1TotalPosts++;
+                brand1TotalImpressions += posts[i].views;
+                brand1TotalEngagements += posts[i].comments;
+                brand1TotalEngagements += posts[i].likes;
                 brand1.push(posts[i]);
+
             }
+            
             else if (posts[i].channel == brand2name) {
+                brand2TotalPosts++;
                 brand2.push(posts[i]);
             }
             else {
+                brand3TotalPosts++;
                 brand3.push(posts[i]);
             }
         }
+        alert(brand1TotalEngagements)
         const platform1 = []
         // loading brand name subheader titles
         if (brand1name && brand2name && brand3name && (brand1name != brand2name) && (brand2name != brand3name)) {
