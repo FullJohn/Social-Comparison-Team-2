@@ -51,6 +51,7 @@ export class Post extends Component{
     }
 
     componentDidMount(){
+        this.initial();
         this.refreshList();
     }
 
