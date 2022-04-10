@@ -90,6 +90,8 @@
 
 .Table-Wrapper{
     min-width: fit-content;
-    display: table-row;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: calc();
    
 }
