@@ -8,18 +8,15 @@ import YouTubeFormat from "./ResultsFormat/YouTubeFormat";
 
 export function renderposts(props){
 
-    const platform = props.platform
-
+    alert(props.platform)
     const posts = []
 
-    
     alert(props.brand[0])
     if(platform == 'Facebook'){
         for(var i = 0; i < props[1].length; i++){
             posts.push(FacebookFormat(props[1][i]))
         }
     }
-
     else if(platform == 'Instagram'){
         for(var i = 0; i < props[1].length; i++){
             posts.push(InstagramFormat(props[1][i]))
@@ -45,8 +42,8 @@ export function renderposts(props){
     }
 
     else if(platform == 'YouTube'){
-        for(var i = 0; i < props.brand.length; i++){
-            posts.push(YouTubeFormat(props.brand[i]))
+        for(var i = 0; i < props.length; i++){
+            posts.push(YouTubeFormat(props[i]))
         }
     }
     

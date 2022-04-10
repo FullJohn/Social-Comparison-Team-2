@@ -42,7 +42,8 @@ export class Post extends Component{
     
 
     render(){
-        const {posts} = this.state;
+        const {posts} = this.state.posts;
+        const {platform} = this.state.platform;
         const postsLength = posts.length;
         const brand1 = [];
         const brand2 = [];
@@ -75,6 +76,7 @@ export class Post extends Component{
                 brand3.push(posts[i]);
             }
         }
+        const platform1 = []
         // loading brand name subheader titles
         if (brand1name && brand2name && brand3name && (brand1name != brand2name) && (brand2name != brand3name)) {
             document.getElementById("B1").innerHTML=brand1name;
@@ -89,7 +91,7 @@ export class Post extends Component{
                 <div class ="row">
                     <div class="table-responsive col-sm">
                         <h2 id="B1">{brand1name}</h2>
-                        {renderposts({platform:this.state.platform, brand: brand1})}
+                        {renderposts(brand1, platform)}
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B2">{brand2name}</h2>
