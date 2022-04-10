@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
-import "./Post.css";
-import { PostFormat } from './PostFormat';
+import "./ResultsFormat/Post.css";
 import renderposts from './RenderPosts';
 export class Post extends Component{
     

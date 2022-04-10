@@ -1,9 +1,7 @@
-import PostFormat from "./PostFormat";
-
 import FacebookFormat from "./ResultsFormat/FacebookFormat";
 import InstagramFormat from "./ResultsFormat/InstagramFormat";
 import PinterestFormat from "./ResultsFormat/PinterestFormat";
-import TiktokFormat from "./ResultsFormat/TikTokFormat";
+import TiktokFormat from "./ResultsFormat/TiktokFormat";
 import TwitterFormat from "./ResultsFormat/TwitterFormat";
 import YouTubeFormat from "./ResultsFormat/YouTubeFormat";
 
