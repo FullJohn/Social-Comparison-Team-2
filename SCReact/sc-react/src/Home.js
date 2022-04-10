@@ -68,7 +68,7 @@ export class Home extends Component{
                 
                 this.state.redirect = true
                 this.setState([this.state.redirect])
-                alert(this.state.platform)
+                
             }
             else{
                 alert(result['message']);
