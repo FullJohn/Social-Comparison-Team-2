@@ -8,7 +8,7 @@ import YouTubeFormat from "./ResultsFormat/YouTubeFormat";
 
 export function renderposts(props){
 
-    const platform = props[0]
+    const platform = "YouTube"
 
     const posts = []
 
@@ -44,8 +44,8 @@ export function renderposts(props){
     }
 
     else if(platform == 'YouTube'){
-        for(var i = 0; i < props[1].length; i++){
-            posts.push(YouTubeFormat(props[1][i]))
+        for(var i = 0; i < props.length; i++){
+            posts.push(YouTubeFormat(props[i]))
         }
     }
     
