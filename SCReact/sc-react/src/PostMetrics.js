@@ -1,4 +1,8 @@
 import "./ResultsFormat/Post.css";
+import {Table} from 'react-bootstrap';
+import React, {Component} from 'react';
+
+
 export function YouTubeMetrics(brandMetrics, post){
     brandMetrics.totalPosts++;
     brandMetrics.totalImpressions += parseInt(post.views);
