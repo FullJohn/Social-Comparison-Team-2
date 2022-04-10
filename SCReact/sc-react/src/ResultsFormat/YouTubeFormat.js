@@ -28,7 +28,7 @@ export function YouTubeFormat(props){
                                 
                                 </div>
                                 <div className='Post-Metrics'>
-                                    <Table className="table-responsive" striped bordered hover size="sm">
+                                    <Table>
                                         <thead>
                                             <tr>
                                                 <th>Views</th>
