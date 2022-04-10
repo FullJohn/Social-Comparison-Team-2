@@ -92,4 +92,5 @@
     display: table;
     flex-direction: row;
     font-size: large;
+    justify-content: center;
 }
