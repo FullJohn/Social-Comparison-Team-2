@@ -108,15 +108,15 @@ export class Post extends Component{
             }
         }
         
-        alert("impressions" + totalImpressions)
-        brand1Metrics.avgImpressions = Math.floor(brand1Metrics.totalImpressions/brand1.totalPosts);
-        brand1Metrics.avgEngagements = brand1Metrics.totalEngagements/brand1.totalPosts;
+        
+        brand1Metrics.avgImpressions =brand1Metrics.totalImpressions/brand1Metrics.totalPosts;
+        brand1Metrics.avgEngagements = brand1Metrics.totalEngagements/brand1Metrics.totalPosts;
 
-        brand2Metrics.avgImpressions = brand2Metrics.totalImpressions/brand2.totalPosts;
-        brand2Metrics.avgEngagements = brand2Metrics.totalEngagements/brand2.totalPosts;
+        brand2Metrics.avgImpressions = brand2Metrics.totalImpressions/brand2Metrics.totalPosts;
+        brand2Metrics.avgEngagements = brand2Metrics.totalEngagements/brand2Metrics.totalPosts;
 
-        brand3Metrics.avgImpressions = brand3Metrics.totalImpressions/brand3.totalPosts;
-        brand3Metrics.avgEngagements = brand3Metrics.totalEngagements/brand3.totalPosts;
+        brand3Metrics.avgImpressions = brand3Metrics.totalImpressions/brand3Metrics.totalPosts;
+        brand3Metrics.avgEngagements = brand3Metrics.totalEngagements/brand3Metrics.totalPosts;
 
         // metrics = impressions, average impressions, average engagements
         
