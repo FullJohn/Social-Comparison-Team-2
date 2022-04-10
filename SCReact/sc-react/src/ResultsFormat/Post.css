@@ -1,6 +1,6 @@
 .Post-Wrapper{
     min-height: auto;
-    min-width: auto;
+    min-width: 600px;
     
     display: flex;
     column-count: 2;
@@ -8,13 +8,12 @@
     column-width: auto;
     margin: auto;
     outline: solid #3f4b65;
-    outline-width: 1px;
+    outline-width: 2px;
 }
 
 .Post-Image-Title-Wrapper{
     display: flex;
 
-    
     max-width: 300px;
     max-height: auto;
 }
