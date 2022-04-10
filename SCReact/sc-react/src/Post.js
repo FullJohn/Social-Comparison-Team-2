@@ -108,6 +108,7 @@ export class Post extends Component{
             }
         }
         
+        alert("impressions" + totalImpressions)
         brand1Metrics.avgImpressions = Math.floor(brand1Metrics.totalImpressions/brand1.totalPosts);
         brand1Metrics.avgEngagements = brand1Metrics.totalEngagements/brand1.totalPosts;
 
