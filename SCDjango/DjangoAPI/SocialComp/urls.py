@@ -13,4 +13,8 @@ urlpatterns = [
 
     url(r'run/$', views.runQuery),
     url(r'^run/$([0-9]+)$', views.runQuery),
+
+    url(r'^getQuery/$', views.getQuery),
+    url(r'^getQuery/$([0-9]+)$', views.getQuery),
+
 ]

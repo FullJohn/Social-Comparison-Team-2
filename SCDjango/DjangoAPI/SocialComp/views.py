@@ -27,6 +27,7 @@ def postAPI(request,id=0):
         else:
             posts = PostModel.objects.filter(QueryId=queryId)
             
+
         post_serializer = PostSerializer(posts, many=True)
         return JsonResponse(post_serializer.data, safe=False)
     
@@ -50,9 +51,10 @@ def postAPI(request,id=0):
     """
 
 @csrf_exempt
-def queryAPI(request, queryId):
+def queryAPI(request, id=0):
     jsonData = JSONParser().parse(request)
     if request.method == 'GET':
+        queryId = 0
         query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query, many=True)
         return JsonResponse(query_serializer.data, safe=False)
@@ -102,3 +104,15 @@ def runQuery(request):
             query_executed.save()
             collections.run_collection(platform, brands, date_range, query_id)
             return JsonResponse({'message':"Success", 'redirect': True}, safe=False)
+
+
+@csrf_exempt
+def getQuery(request):
+    jsonData = JSONParser().parse(request)
+    if request.method == 'POST':
+        queryId = jsonData.get('queryId')
+        query = QueryModel.objects.get(QueryId=queryId)
+        query_serializer = QuerySerializer(query, many=True)
+        return JsonResponse(query_serializer.data, safe=False)
+
+
