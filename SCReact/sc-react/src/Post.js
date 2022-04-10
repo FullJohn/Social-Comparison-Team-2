@@ -118,10 +118,14 @@ export class Post extends Component{
                         {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div className='Row-Wrapper'>
+                        <br></br>
+                        <br></br>
                         <h2 id="B2">{brand2name}</h2>
                         {renderposts({brand: brand2, platform: platform})}
                     </div>
                     <div className='Row-Wrapper'>
+                        <br></br>
+                        <br></br>
                         <h2 id="B3">{brand3name}</h2>
                         {renderposts({brand: brand3, platform: platform})}
                     </div>
