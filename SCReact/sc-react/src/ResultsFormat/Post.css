@@ -77,4 +77,5 @@
     flex-direction: row;
     flex-shrink: auto;
     flex-grow: auto;
+    row-gap: auto;
 }
