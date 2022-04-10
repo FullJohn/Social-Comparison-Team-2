@@ -7,7 +7,7 @@ export class Post extends Component{
     constructor(props){
         super(props);
         let search= window.location.search.substring(9)
-        this.state={queryId: search, posts:[], platform: 'YouTube'}
+        this.state={queryId: search, posts:[], platform: ''}
     }
 
     refreshList(){
@@ -27,8 +27,12 @@ export class Post extends Component{
         .then(data=>{
             
             this.setState({posts:data});
-            
+          
+        })
+        .then(platform =>{
+            this.setState({platform:platform})
         });
+        
     }
 
     componentDidMount(){
