@@ -87,3 +87,9 @@
     flex-grow: auto;
     row-gap: auto;
 }
+
+.Total-Metrics{
+    display: flex;
+    flex-direction: row;
+    font-size: large;
+}
