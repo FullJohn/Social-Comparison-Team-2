@@ -7,9 +7,27 @@ export class Post extends Component{
     constructor(props){
         super(props);
         let search= window.location.search.substring(9)
-        this.state={queryId: search, posts:[], platform: ''}
+        this.state={queryId: search, posts:[], platform:''}
     }
 
+    initial(){
+        const {queryId } = this.state
+        
+        fetch('http://54.144.107.206:8000/query/', {
+            method:'GET',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                queryId:queryId
+            })
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            this.setState({platform:data.platform})
+        })
+    }
     refreshList(){
         const { queryId } = this.state
         fetch('http://54.144.107.206:8000/post/', {
@@ -28,10 +46,6 @@ export class Post extends Component{
             
             this.setState({posts:data});
           
-        })
-        .then(platform =>{
-            this.setState({platform:platform})
-            alert(this.state.platform)
         });
         
     }
