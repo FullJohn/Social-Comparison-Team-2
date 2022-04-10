@@ -96,9 +96,7 @@
     align-items: center;
 }
 .Table-Display{
-    outline-width: 2px solid black;
-    border-width: 2px solid black;
-    border-style: 5px solid black;
+    outline-style: solid black;
     font-size:larger;
     background-color: #3f4b65;
     
