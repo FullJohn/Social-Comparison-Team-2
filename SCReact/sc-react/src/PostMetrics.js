@@ -23,7 +23,7 @@ export function RenderMetrics(metrics){
                     <th>Average Engagements</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="Table-Display">
                 <td>{metrics.totalImpressions}</td>
                 <td>{metrics.avgImpressions}</td>
                 <td>{metrics.avgEngagements}</td>       
