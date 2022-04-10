@@ -71,6 +71,7 @@
     min-width: auto;
     max-width: auto;
     justify-content: top;
+    align-items: flex-start;
 
 }
 .Post-Description{
