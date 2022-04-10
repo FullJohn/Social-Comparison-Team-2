@@ -78,5 +78,8 @@
 .Row-Wrapper{
     max-width: fit-content;
     min-width: fit-content;
+}
 
+.Table-Wrapper{
+    min-width: fit-content;
 }
