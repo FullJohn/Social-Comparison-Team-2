@@ -8,11 +8,11 @@ import YouTubeFormat from "./ResultsFormat/YouTubeFormat";
 
 export function renderposts(props){
 
-    alert(props.platform)
+    
     const posts = []
 
     const platform = props.platform
-    alert(props.brand[0])
+    
     if(platform == 'Facebook'){
         for(var i = 0; i < props[1].length; i++){
             posts.push(FacebookFormat(props[1][i]))
