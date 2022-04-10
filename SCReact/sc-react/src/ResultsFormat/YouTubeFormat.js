@@ -21,7 +21,7 @@ export function YouTubeFormat(props){
                             </p>    
                         </div>
     
-                        <div>
+                        
                             <div className='Post-Metrics'>
                                 <Table>
                                     <thead>
@@ -42,7 +42,7 @@ export function YouTubeFormat(props){
                                 </div>    
                             </div>                          
                                 
-                    </div>    
+                       
                    
                     </div>
             )
