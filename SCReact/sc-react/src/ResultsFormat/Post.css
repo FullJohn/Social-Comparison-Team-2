@@ -69,7 +69,7 @@
     min-height: auto;
     min-width: auto;
     max-width: auto;
-    justify-self: left;
+    justify-self: start;
 }
 .Post-Description{
     margin-left: 15px;
