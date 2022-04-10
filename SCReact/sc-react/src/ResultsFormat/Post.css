@@ -83,5 +83,8 @@
 .Table-Wrapper{
     min-width: fit-content;
    
-   
+}
+
+[row]{
+    justify-content: center;
 }
