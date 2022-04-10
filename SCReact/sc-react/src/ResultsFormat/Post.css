@@ -82,4 +82,7 @@
 
 .Table-Wrapper{
     min-width: fit-content;
+    overflow: scroll;
+    justify-content: center;
+    display: flex;
 }
