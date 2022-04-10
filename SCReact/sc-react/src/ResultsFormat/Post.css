@@ -74,7 +74,7 @@
     min-width: 300px;
     max-width: 500px;
 }
-[table-responsive]{
+[col-sm]{
     color:black;
     outline: black;
 }
