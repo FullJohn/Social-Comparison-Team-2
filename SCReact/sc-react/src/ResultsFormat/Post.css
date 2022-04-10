@@ -70,8 +70,8 @@
     
     max-height: auto;
     min-height: auto;
-    min-width: 300px;
-    max-width: 500px;
+    min-width: auto;
+    max-width: auto;
     text-overflow: wrap;
 }
 
