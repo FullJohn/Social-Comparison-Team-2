@@ -98,5 +98,7 @@
 .Table-Display{
     font-size:larger;
     padding:8px black;
+    border-bottom: black;
+    border-right: black;
 }
    
