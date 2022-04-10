@@ -26,7 +26,7 @@ export class Post extends Component{
         .then(response=>response.json())
         .then(data=>{
             this.setState({platform:data.platform})
-            alert(this.state.platform)
+            
         });
     }
     
