@@ -24,9 +24,7 @@ export function YouTubeFormat(props){
                         <div className='Post-Details-Wrapper'>
     
                             <div className='Post-Details'>
-                            <div className='Post-Description'>
-                                
-                                </div>
+                            
                                 <div className='Post-Metrics'>
                                     <Table>
                                         <thead>
@@ -42,7 +40,11 @@ export function YouTubeFormat(props){
                                             <td>{props.likes}</td>       
                                         </tbody>
                                     </Table>
+                                    <div className='Post-Description'>
                                     {props.description}
+                                
+                                </div>
+                                    
                                 </div>                          
                             </div>     
                     </div>    
