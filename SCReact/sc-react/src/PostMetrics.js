@@ -24,7 +24,7 @@ export function RenderMetrics(metrics){
                 </tr>
             </thead>
             <tbody className="Table-Display">
-                <td color="black">{metrics.totalImpressions}</td>
+                <td color="red">{metrics.totalImpressions}</td>
                 <td>{metrics.avgImpressions}</td>
                 <td>{metrics.avgEngagements}</td>       
             </tbody>
