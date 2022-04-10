@@ -40,23 +40,10 @@
     margin-left: 3px;
 }
 
-.Post-Details-Wrapper{
-    font-size: large;
-    display: flex;
-    flex-direction: row;
-    min-width: auto;
-    margin: auto;
-    margin-left: 15px;
-    
-    max-height: auto;
-    min-height: auto;
-    min-width: auto;
-    max-width: auto;
-}
-
 .Post-Details{
     margin: auto;
     margin-left: 15px;
+    margin-top:0px;
     justify-content: left;
     max-height: auto;
     min-height: auto;
