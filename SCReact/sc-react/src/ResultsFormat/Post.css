@@ -101,4 +101,7 @@
     border-bottom: black;
     border-right: black;
 }
+.Table-Grid{
+    outline-width: 8px solid black;
+}
    
