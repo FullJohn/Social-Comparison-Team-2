@@ -96,7 +96,6 @@
     align-items: center;
 }
 .Table-Display{
-    border: 2px solid black;
-    border-width: 2px black;
-    outline: 2px black;
+    grid: 2px solid black;
+    
 }
