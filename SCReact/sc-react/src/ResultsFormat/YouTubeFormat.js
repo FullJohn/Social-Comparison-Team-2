@@ -3,10 +3,7 @@ import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import "./Post.css";
 
-
-
-export function PostFormat(props){
-    
+export function YouTubeFormat(props){
     return(
             <div className = "Post-Wrapper">
                         <div className='Post-Image-Title-Wrapper'> 
@@ -47,14 +44,10 @@ export function PostFormat(props){
                                     </Table>
                                     {props.description}
                                 </div>                          
-                            </div>
-                        
-                        
+                            </div>     
                     </div>    
                    
                     </div>
             )
     }
-    
-    
-export default PostFormat;
+export default YouTubeFormat;

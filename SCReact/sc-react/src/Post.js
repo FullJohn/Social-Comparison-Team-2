@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import "./Post.css";
 import { PostFormat } from './PostFormat';
-import renderposts from './CallPosts';
+import renderposts from './RenderPosts';
 export class Post extends Component{
     
     constructor(props){
         super(props);
         let search= window.location.search.substring(9)
-        this.state={queryId: search, posts:[]}
+        this.state={queryId: search, posts:[], platform: ''}
     }
 
     refreshList(){
@@ -29,6 +29,9 @@ export class Post extends Component{
             
             this.setState({posts:data});
             //alert(this.state.posts[0].channel);
+        })
+        .then(platform=>{
+            this.setState({platform:platform})
         });
     }
 
@@ -90,15 +93,15 @@ export class Post extends Component{
                 <div class ="row">
                     <div class="table-responsive col-sm">
                         <h2 id="B1">{brand1name}</h2>
-                        {renderposts(brand1)}
+                        {renderposts(brand1, this.state.platform)}
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B2">{brand2name}</h2>
-                        {renderposts(brand2)}
+                        {renderposts(brand2, this.state.platform)}
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B3">{brand3name}</h2>
-                        {renderposts(brand3)}
+                        {renderposts(brand3, this.state.platform)}
                     </div>
                 </div>
             </div>
