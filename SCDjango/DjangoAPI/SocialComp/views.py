@@ -30,7 +30,7 @@ def postAPI(request,id=0):
             platform = queryInfo.platform
 
         post_serializer = PostSerializer(posts, many=True)
-        return JsonResponse(post_serializer.data, platform, safe=False)
+        return JsonResponse(post_serializer.data, platform=platform, safe=False)
     
     elif request.method == 'POST':
         post_data = JSONParser().parse(request)
@@ -53,8 +53,10 @@ def postAPI(request,id=0):
 
 @csrf_exempt
 def queryAPI(request, id=0):
+    jsonData = JSONParser().parse(request)
     if request.method == 'GET':
-        query = QueryModel.objects.all()
+        queryId = jsonData.get('queryId')
+        query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query, many=True)
         return JsonResponse(query_serializer.data, safe=False)
 
@@ -89,7 +91,7 @@ def queryAPI(request, id=0):
 def runQuery(request):
 
     if request.method == 'POST':
-        
+
         query_id = int(JSONParser().parse(request).get('queryId'))
         query = QueryModel.objects.get(QueryId = query_id)
         query_executed = QueryExecutedModel.objects.get(QueryId = query_id)
