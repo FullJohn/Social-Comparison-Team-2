@@ -89,7 +89,7 @@
 }
 
 .Total-Metrics{
-    display: flex;
+    display: table;
     flex-direction: row;
     font-size: large;
 }
