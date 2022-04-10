@@ -22,31 +22,26 @@ export function YouTubeFormat(props){
                         </div>
     
                         <div className='Post-Details-Wrapper'>
-    
-                            <div className='Post-Details'>
-                            
-                                <div className='Post-Metrics'>
-                                    <Table>
-                                        <thead>
-                                            <tr>
-                                                <th>Views</th>
-                                                <th>Comments</th>
-                                                <th>Likes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td>{props.views}</td>
-                                            <td>{props.comments}</td>
-                                            <td>{props.likes}</td>       
-                                        </tbody>
-                                    </Table>
-                                    <div className='Post-Description'>
+                            <div className='Post-Metrics'>
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>Views</th>
+                                            <th>Comments</th>
+                                            <th>Likes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>{props.views}</td>
+                                        <td>{props.comments}</td>
+                                        <td>{props.likes}</td>       
+                                    </tbody>
+                                </Table>
+                                <div className='Post-Description'>
                                     {props.description}
+                                </div>    
+                            </div>                          
                                 
-                                </div>
-                                    
-                                </div>                          
-                            </div>     
                     </div>    
                    
                     </div>
