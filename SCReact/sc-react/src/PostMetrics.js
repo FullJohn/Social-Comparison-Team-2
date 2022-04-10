@@ -18,9 +18,9 @@ export function RenderMetrics(metrics){
             
             <thead>
                 <tr>
-                    <th>Total Impressions</th>
-                    <th>Average Impressions</th>
-                    <th>Average Engagements</th>
+                    <th bold>Total Impressions</th>
+                    <th bold>Average Impressions</th>
+                    <th bold>Average Engagements</th>
                 </tr>
             </thead>
             <tbody>
