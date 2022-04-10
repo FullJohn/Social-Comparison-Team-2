@@ -9,12 +9,8 @@ import tiktoklogo from './Icons/tiktoklogo.png';
 import pinterestlogo from './Icons/pinterestlogo.png';
 import youtubelogo from './Icons/youtube-circ-modified.png';
 import twitterlogo from './Icons/twitterlogo.png';
-
-
-
-
-
-
+import './Home.css';
+import RadioFormat from './RadioButtonIcons';
 
 
 export class Home extends Component{
@@ -22,7 +18,8 @@ export class Home extends Component{
     constructor(props) {
         super(props);
 
-        this.state = {queryId: '', platform: '', brand1: '', brand2: '', brand3: '', startDate: new Date(), endDate: new Date(), redirect: false, queryId: ''};
+        this.state = {queryId: '', platform: '', brand1: '', brand2: '', brand3: '', startDate: new Date(), endDate: new Date(), 
+        redirect: false, queryId: '', buttonChecked: false};
   
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,15 +29,17 @@ export class Home extends Component{
       }
       
       startDateChange(date) {this.setState({startDate:date}); }
-      platformChange(event) {this.setState({platform:event.target.value})}
+      platformChange(event) {
+          this.setState({platform:event.target.value})
+          this.setState({buttonChecked:true});
+        }
       endDateChange(date) {this.setState({endDate: date}); }
       handleChange(event) {this.setState({[event.target.name]: event.target.value}); }
 
       handleSubmit(event) {
         const { platform, brand1, brand2, brand3, startDate, endDate} = this.state;
-    
 
-        
+
         event.preventDefault();
         fetch('http://54.144.107.206:8000/query/', {
             method:'POST',
@@ -60,24 +59,23 @@ export class Home extends Component{
         .then(response=>response.json())
 
         .then((result)=>{
-            if(platform == "Facebook" || platform == "Instagram" || platform == "Pinterest" || platform == "TikTok"){
-                alert("Due to anti-data collection measures in place by this platform, we are unable to gather data from this site at this time. Please try again later.")
-            }
-            else if(result['redirect'] == true){
+            
+        
+            if(result['redirect'] == true){
                 
                 this.state.queryId = result['queryId']
                 this.setState([this.state.queryId])
                 
                 this.state.redirect = true
                 this.setState([this.state.redirect])
+                alert(this.state.platform)
             }
             else{
                 alert(result['message']);
-            }
-        })
-    }
-
-
+                }
+            })
+        }
+    
     render(){
         if(this.state.redirect){
             const url = "/loading?queryId=" + this.state.queryId
@@ -87,49 +85,33 @@ export class Home extends Component{
         return(
             <div className='container'> 
                 <form onSubmit={this.handleSubmit}>
-                   
                    <br></br>
                    <br></br>
-                   <div className='Instruction-Text'>Select a Platform</div>
-                    
+                   <div className='Instruction-Text'>Select a Platform</div>       
                     <br></br>
                     <div className='Icon-wrapper' onChange={this.platformChange}>
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value="Facebook"/>   
-                                <img alt='fblogo' src={fblogo}/>
+                            {RadioFormat([this.state.buttonChecked, 'Facebook', 'fblogo', fblogo])}
+                        </label>
 
-                            </div>
-                        </label>
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value='Instagram'/>   
-                                <img alt='instalogo' src={instalogo}></img>
-                            </div>
+                            {RadioFormat([this.state.buttonChecked, 'Instagram', 'instalogo', instalogo])}
                         </label>
+
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value='YouTube'/>   
-                                <img alt='youtubelogo' src={youtubelogo}></img>
-                            </div>
+                            {RadioFormat([this.state.buttonChecked, 'YouTube', 'youtubelogo', youtubelogo])}
                         </label>
+
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value='Twitter'/>   
-                                <img alt='twitterlogo' src={twitterlogo}></img>
-                            </div>
+                            {RadioFormat([this.state.buttonChecked, 'Twitter', 'twitterlogo', twitterlogo])}
                         </label>
+
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value='Pinterest'/>   
-                                <img alt='pinterestlogo' src={pinterestlogo}></img>
-                            </div>
+                            {RadioFormat([this.state.buttonChecked, 'Pinterest', 'pinterestlogo', pinterestlogo])}                   
                         </label>
+
                         <label>
-                            <div className='Logo-wrapper'>
-                                <input type='radio' name='platform' value='TikTok'/>   
-                                <img alt='tiktoklogo' src={tiktoklogo}></img>
-                            </div>
+                            {RadioFormat([this.state.buttonChecked, 'TikTok', 'tiktoklogo', tiktoklogo])}
                         </label>
                     </div>
                     

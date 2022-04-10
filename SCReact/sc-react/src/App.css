@@ -41,7 +41,7 @@
 .Login-link{
   font-size: large;
   margin-right: 15px;
-  color:white;
+  color:#3f4b65;
 
 }
 .App-link {
@@ -56,101 +56,3 @@
     transform: rotate(360deg);
   }
 }
-
-.Date-wrapper{
-  display:flex;
-  margin: auto;
-
-  width: 800px;
-}
-
-
-.Date-field{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
-  color: #3f4b65;
-}
-.Date-text{
-  font-size: larger;
-}
-
-
-
-.Brand-wrapper{
-  display:flex;
-  column-count: 3;
-  margin:auto;
-}
-
-.Brand-field{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
-  font-size: larger;
-  color: #3f4b65
-}
-
-.Icon-wrapper{
-  display:flex;
-  margin: auto;
-  justify-content: center;
-  gap: 50px;
-  margin: auto;
-  height: 100px;
-  width: 100px;
-}
-.Submit-button{
-  display:flex;
-  margin: auto;
-  border-color: #3f4b65;
-  border-width: 0px;
-  border-radius: 25px;
-  background-color: #3f4b65;
-  font-size: 22pt;
-  justify-content: center;
-  color: white;
-  min-height: 50px;
-  min-width: 100px;
-}
-
-.Instruction-Text{
-  color:#3f4b65;
-  font-size: x-large;
-  justify-content: center;
-  display: flex;
-  
-}
-
-[type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-[type=radio]+img {
-  cursor: pointer;
-  height: 100px;
-  width: 100px;
-  margin: auto;
-}
-
-[type=radio]:checked + img{
-  filter: grayscale(0%);
-  offset: 5px;
-  height:125px;
-  width:125px;
-}
-
-.Logo-wrapper{
-  height: 125px;
-  width:125px;
-  display:flex;
-  margin: auto;
-}
-
