@@ -97,14 +97,6 @@
 }
 .Table-Display{
     font-size:larger;
-}
-
-Table{
-    border-collapse: collapse;
-    width: 100%;
-}
-th, td{
     padding:3px solid black;
-
 }
    
