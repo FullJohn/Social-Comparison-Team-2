@@ -92,6 +92,7 @@
     min-width: fit-content;
     display: flex;
     flex-direction: row;
-    flex-shrink: calc();
+    flex-shrink: auto;
+    flex-grow: auto;
    
 }
