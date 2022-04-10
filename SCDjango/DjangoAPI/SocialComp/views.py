@@ -50,10 +50,9 @@ def postAPI(request,id=0):
     """
 
 @csrf_exempt
-def queryAPI(request, id=0):
+def queryAPI(request, queryId):
     jsonData = JSONParser().parse(request)
     if request.method == 'GET':
-        queryId = jsonData.get('queryId')
         query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query, many=True)
         return JsonResponse(query_serializer.data, safe=False)
