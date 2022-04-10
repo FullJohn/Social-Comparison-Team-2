@@ -96,10 +96,8 @@
     align-items: center;
 }
 .Table-Display{
-   
-    grid-template-rows: 2px black;
-    
-    
+    color: red;
+
 }
 [type=Table]{
     color: black;
