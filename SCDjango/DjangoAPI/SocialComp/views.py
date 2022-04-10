@@ -26,11 +26,9 @@ def postAPI(request,id=0):
             posts = PostModel.objects.all()
         else:
             posts = PostModel.objects.filter(QueryId=queryId)
-            queryInfo = QueryModel.objects.get(QueryId=queryId)
-            platform = queryInfo.platform
-
+            
         post_serializer = PostSerializer(posts, many=True)
-        return JsonResponse(post_serializer.data, platform=platform, safe=False)
+        return JsonResponse(post_serializer.data, safe=False)
     
     elif request.method == 'POST':
         post_data = JSONParser().parse(request)
