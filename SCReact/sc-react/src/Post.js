@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Table} from 'react-bootstrap';
 import "./ResultsFormat/Post.css";
 import renderposts from './RenderPosts';
+import { YouTubeMetrics } from './PostMetrics';
 export class Post extends Component{
     
     constructor(props){
@@ -87,41 +88,27 @@ export class Post extends Component{
             }
         }
         // push posts to corresponding brand table
-        var brand1TotalImpressions = 0;
-        var brand1TotalEngagements = 0;
-        var brand1TotalPosts = 0;
-        var brand2TotalImpressions = 0;
-        var brand2TotalEngagements = 0;
-        var brand2TotalPosts = 0;
-        var brand3TotalImpressions = 0;
-        var brand3TotalEngagements = 0;
-        var brand3TotalPosts = 0;
-
+        
+        var brand1Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
+        var brand2Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
+        var brand3Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
         for (var i = 0; i < postsLength; i++) {
             if (posts[i].channel == brand1name) {
-                brand1TotalPosts++;
-                brand1TotalImpressions += parseInt(posts[i].views);
-                brand1TotalEngagements += parseInt(posts[i].comments);
-                brand1TotalEngagements += parseInt(posts[i].likes);
+                brand1Metrics = YouTubeMetrics(brand1Metrics, posts[i]);
                 brand1.push(posts[i]);
-
             }
             
             else if (posts[i].channel == brand2name) {
-                brand2TotalPosts++;
-                brand2TotalImpressions += parseInt(posts[i].views);
-                brand2TotalEngagements += parseInt(posts[i].comments);
-                brand2TotalEngagements += parseInt(posts[i].likes);
+                brand2Metrics = YouTubeMetrics(brand2Metrics, posts[i]);
                 brand2.push(posts[i]);
             }
             else {
-                brand3TotalPosts++;
-                brand3TotalImpressions += parseInt(posts[i].views);
-                brand3TotalEngagements += parseInt(posts[i].comments);
-                brand3TotalEngagements += parseInt(posts[i].likes);
+                brand3Metrics = YouTubeMetrics(brand3Metrics, posts[i]);
                 brand3.push(posts[i]);
             }
         }
+        
+        // metrics = impressions, average impressions, average engagements
         
         const platform1 = []
         // loading brand name subheader titles
@@ -140,19 +127,19 @@ export class Post extends Component{
                         <br></br>
                         <br></br>
                         <h2 id="B1">{brand1name}</h2>
-                        {renderposts({brand: brand1, platform: platform})}
+                        {renderposts({brand: brand1, platform: platform, metrics:brand1Metrics})}
                     </div>
                     <div className='Row-Wrapper-Center'>
                         <br></br>
                         <br></br>
                         <h2 id="B2">{brand2name}</h2>
-                        {renderposts({brand: brand2, platform: platform})}
+                        {renderposts({brand: brand2, platform: platform, metrics:brand2Metrics})}
                     </div>
                     <div className='Row-Wrapper'>
                         <br></br>
                         <br></br>
                         <h2 id="B3">{brand3name}</h2>
-                        {renderposts({brand: brand3, platform: platform})}
+                        {renderposts({brand: brand3, platform: platform, metrics:brand3Metrics})}
                     </div>
                 </div>
             </div>
