@@ -59,9 +59,9 @@
     margin-left: 15px;
     justify-content: left;
     max-height: auto;
-    min-height: 300px;
-    min-width: 300px;
-    max-width: 500px;
+    min-height: auto;
+    min-width: auto;
+    max-width: auto;
 }
 
 .Post-Metrics{
@@ -69,13 +69,11 @@
     
     min-height: 165px;
     min-width: 300px;
-    max-width: 200;
+    max-width: auto;
 
 }
 .Post-Description{
-   
     margin-left: 15px;
-    
     max-height: auto;
     min-height: auto;
     min-width: auto;
