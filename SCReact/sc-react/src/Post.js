@@ -137,25 +137,8 @@ export class Post extends Component{
                         <br></br>
                         <br></br>
                         <h2 id="B1">{brand1name}</h2>
-                        <Table>
-                            <div className='Total-Metrics'>
-                            <thead>
-                                <tr>
-                                    <th>Total Impressions</th>
-                                    <th>Average Impressions</th>
-                                    <th>Average Engagements</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <td>{brand1Metrics.totalImpressions}</td>
-                                <td>{brand1Metrics.avgImpressions}</td>
-                                <td>{brand1Metrics.avgEngagements}</td>       
-                            </tbody>
-                            </div>
-                        </Table>
-                         
-
-            
+                        {RenderMetrics(brand1Metrics)}
+                       
                         
                         {renderposts({brand: brand1, platform: platform})}
                     </div>
@@ -163,24 +146,16 @@ export class Post extends Component{
                         <br></br>
                         <br></br>
                         <h2 id="B2">{brand2name}</h2>
-                        impressions: {brand2Metrics.totalImpressions}
-                        <br></br>
-                        avgImpressions: {brand2Metrics.avgImpressions}
-                        <br></br>
-                        avgEngagements: {brand2Metrics.avgEngagements}
-                        <br></br>
+                        {RenderMetrics(brand2Metrics)}
+                        
                         {renderposts({brand: brand2, platform: platform})}
                     </div>
                     <div className='Row-Wrapper'>
                         <br></br>
                         <br></br>
                         <h2 id="B3">{brand3name}</h2>
-                        impressions: {brand3Metrics.totalImpressions}
-                        <br></br>
-                        avgImpressions: {brand3Metrics.avgImpressions}
-                        <br></br>
-                        avgEngagements: {brand3Metrics.avgEngagements}
-                        <br></br>
+                        {RenderMetrics(brand3Metrics)}
+                        
                         {renderposts({brand: brand3, platform: platform})}
                     </div>
                 </div>
