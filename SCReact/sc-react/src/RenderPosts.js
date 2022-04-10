@@ -10,7 +10,6 @@ export function renderposts(props){
 
     
     const posts = []
-
     const platform = props.platform
     
     if(platform == 'Facebook'){
@@ -43,8 +42,8 @@ export function renderposts(props){
     }
 
     else if(platform == 'YouTube'){
-        for(var i = 0; i < props.length; i++){
-            posts.push(YouTubeFormat(props[i]))
+        for(var i = 0; i < props.brand.length; i++){
+            posts.push(YouTubeFormat(props.brand[i]))
         }
     }
     
