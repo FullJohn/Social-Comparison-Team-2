@@ -29,7 +29,7 @@ def postAPI(request,id=0):
             
 
         post_serializer = PostSerializer(posts, many=True)
-        for post in posts:
+        for post in post_serializer:
             print(post)
         return JsonResponse(post_serializer.data, safe=False)
     
