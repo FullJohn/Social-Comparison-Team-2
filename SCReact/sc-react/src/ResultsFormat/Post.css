@@ -87,8 +87,8 @@
 }
 
 .Table-Wrapper{
-    min-width: fit-content;
-    display: flex;
+    
+    
     flex-direction: row;
     flex-shrink: auto;
     flex-grow: auto;
