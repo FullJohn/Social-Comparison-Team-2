@@ -16,7 +16,7 @@ export function RenderMetrics(metrics){
     return(
         <Table>
             
-            <thead className="Table-Display">
+            <thead className="Table-Grid">
                 <tr>
                     <th className="Table-Grid">Total Impressions</th>
                     <th className="Table-Grid">Average Impressions</th>
