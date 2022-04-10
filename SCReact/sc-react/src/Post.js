@@ -117,11 +117,11 @@ export class Post extends Component{
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B2">{brand2name}</h2>
-                        {renderposts([this.state.platform, brand2])}
+                        {renderposts({brand: brand2, platform: platform})}
                     </div>
                     <div class="table-responsive col-sm">
                         <h2 id="B3">{brand3name}</h2>
-                        {renderposts([this.state.platform, brand3])}
+                        {renderposts({brand: brand3, platform: platform})}
                     </div>
                 </div>
             </div>
