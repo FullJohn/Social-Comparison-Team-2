@@ -98,6 +98,6 @@
 .Table-Display{
     outline-style: solid black;
     font-size:larger;
-    border-width: 5px red;
+    outline: 5px solid black;
 
 }
