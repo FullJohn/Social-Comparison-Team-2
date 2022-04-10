@@ -16,7 +16,7 @@ export function RenderMetrics(metrics){
     return(
         <Table>
             
-            <thead className="Table-Grid">
+            <thead className="Table-Display">
                 <tr>
                     <th className="Table-Grid">Total Impressions</th>
                     <th className="Table-Grid">Average Impressions</th>
@@ -24,9 +24,9 @@ export function RenderMetrics(metrics){
                 </tr>
             </thead>
             <tbody className="Table-Display">
-                <td className="Table-Grid">{metrics.totalImpressions}</td>
-                <td className="Table-Grid">{metrics.avgImpressions}</td>
-                <td className="Table-Grid">{metrics.avgEngagements}</td>       
+                <td color="black">{metrics.totalImpressions}</td>
+                <td>{metrics.avgImpressions}</td>
+                <td>{metrics.avgEngagements}</td>       
             </tbody>
             
         </Table>
