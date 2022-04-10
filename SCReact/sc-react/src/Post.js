@@ -100,9 +100,9 @@ export class Post extends Component{
         for (var i = 0; i < postsLength; i++) {
             if (posts[i].channel == brand1name) {
                 brand1TotalPosts++;
-                brand1TotalImpressions += posts[i].views;
-                brand1TotalEngagements += posts[i].comments;
-                brand1TotalEngagements += posts[i].likes;
+                brand1TotalImpressions += parseInt(posts[i].views);
+                brand1TotalEngagements += parseInt(posts[i].comments);
+                brand1TotalEngagements += parseInt(posts[i].likes);
                 brand1.push(posts[i]);
 
             }
