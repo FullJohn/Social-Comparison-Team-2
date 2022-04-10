@@ -18,15 +18,15 @@ export function RenderMetrics(metrics){
             
             <thead className="Table-Display">
                 <tr>
-                    <th>Total Impressions</th>
-                    <th>Average Impressions</th>
-                    <th>Average Engagements</th>
+                    <th className="Table-Grid">Total Impressions</th>
+                    <th className="Table-Grid">Average Impressions</th>
+                    <th className="Table-Grid">Average Engagements</th>
                 </tr>
             </thead>
             <tbody className="Table-Display">
-                <td>{metrics.totalImpressions}</td>
-                <td>{metrics.avgImpressions}</td>
-                <td>{metrics.avgEngagements}</td>       
+                <td className="Table-Grid">{metrics.totalImpressions}</td>
+                <td className="Table-Grid">{metrics.avgImpressions}</td>
+                <td className="Table-Grid">{metrics.avgEngagements}</td>       
             </tbody>
             
         </Table>
