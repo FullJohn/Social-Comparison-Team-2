@@ -3,6 +3,7 @@ import {Table} from 'react-bootstrap';
 import "./ResultsFormat/Post.css";
 import renderposts from './RenderPosts';
 import { YouTubeMetrics } from './PostMetrics';
+import { RenderMetrics } from './PostMetrics';
 export class Post extends Component{
     
     constructor(props){
