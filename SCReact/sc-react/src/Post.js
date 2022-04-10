@@ -109,14 +109,20 @@ export class Post extends Component{
             
             else if (posts[i].channel == brand2name) {
                 brand2TotalPosts++;
+                brand2TotalImpressions += parseInt(posts[i].views);
+                brand2TotalEngagements += parseInt(posts[i].comments);
+                brand2TotalEngagements += parseInt(posts[i].likes);
                 brand2.push(posts[i]);
             }
             else {
                 brand3TotalPosts++;
+                brand3TotalImpressions += parseInt(posts[i].views);
+                brand3TotalEngagements += parseInt(posts[i].comments);
+                brand3TotalEngagements += parseInt(posts[i].likes);
                 brand3.push(posts[i]);
             }
         }
-        alert(brand1TotalEngagements)
+        
         const platform1 = []
         // loading brand name subheader titles
         if (brand1name && brand2name && brand3name && (brand1name != brand2name) && (brand2name != brand3name)) {
