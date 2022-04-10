@@ -137,12 +137,14 @@ export class Post extends Component{
                         <br></br>
                         <br></br>
                         <h2 id="B1">{brand1name}</h2>
-                        impressions: {brand1Metrics.totalImpressions}
-                        <br></br>
-                        avgImpressions: {brand1Metrics.avgImpressions}
-                        <br></br>
-                        avgEngagements: {brand1Metrics.avgEngagements}
-                        <br></br>
+                        <div className='Total-Metrics'>
+                        Total Impressions: {brand1Metrics.totalImpressions}
+                        Average Impressions: {brand1Metrics.avgImpressions}
+                        Average Engagements: {brand1Metrics.avgEngagements}
+
+                        </div>
+                        
+                        
                         {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div className='Row-Wrapper-Center'>
