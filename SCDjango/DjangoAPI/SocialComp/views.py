@@ -29,6 +29,8 @@ def postAPI(request,id=0):
             
 
         post_serializer = PostSerializer(posts, many=True)
+        for post in posts:
+            print(post)
         return JsonResponse(post_serializer.data, safe=False)
     
     elif request.method == 'POST':
