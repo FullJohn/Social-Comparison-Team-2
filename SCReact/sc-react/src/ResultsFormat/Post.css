@@ -66,13 +66,10 @@
 
 .Post-Metrics{
     max-height: auto;
-    
     min-height: auto;
     min-width: auto;
     max-width: auto;
-    justify-content: top;
-    align-items: flex-start;
-
+    justify-self: left;
 }
 .Post-Description{
     margin-left: 15px;
