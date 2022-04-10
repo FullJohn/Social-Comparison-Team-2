@@ -15,7 +15,7 @@ export function RenderMetrics(metrics){
 
     return(
         <Table className="Table-Display">
-            <div className='Total-Metrics'>
+            
             <thead>
                 <tr>
                     <th>Total Impressions</th>
@@ -28,7 +28,7 @@ export function RenderMetrics(metrics){
                 <td>{metrics.avgImpressions}</td>
                 <td>{metrics.avgEngagements}</td>       
             </tbody>
-            </div>
+            
         </Table>
     )
 }
