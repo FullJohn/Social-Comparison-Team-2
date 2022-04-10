@@ -85,7 +85,7 @@
 
 .Row-Wrapper{
     max-width: auto;
-    min-width: 300px;
+    min-width: auto;
 }
 
 .Table-Wrapper{
