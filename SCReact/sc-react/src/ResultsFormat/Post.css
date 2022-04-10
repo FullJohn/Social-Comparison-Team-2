@@ -96,9 +96,5 @@
     align-items: center;
 }
 .Table-Display{
-    outline-style: solid black;
     font-size:larger;
-    outline: 2px solid black;
-    grid-template: 2px solid black;
-
 }
