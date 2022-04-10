@@ -13,21 +13,20 @@ export class Post extends Component{
     initial(){
         const {queryId } = this.state
         
-        fetch('http://54.144.107.206:8000/query/', {
+        fetch('http://54.144.107.206:8000/query/?queryId=' + queryId, {
             method:'GET',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({
-                queryId:queryId
-            })
         })
         .then(response=>response.json())
         .then(data=>{
             this.setState({platform:data.platform})
-        })
+            alert(this.state.platform)
+        });
     }
+    
     refreshList(){
         const { queryId } = this.state
         fetch('http://54.144.107.206:8000/post/', {
