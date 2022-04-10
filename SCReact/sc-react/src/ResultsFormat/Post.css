@@ -45,6 +45,13 @@
     display: flex;
     flex-direction: row;
     min-width: auto;
+    margin: auto;
+    margin-left: 15px;
+    justify-content: left;
+    max-height: auto;
+    min-height: 300px;
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .Post-Details{
@@ -62,7 +69,7 @@
     
     min-height: 165px;
     min-width: 300px;
-    max-width: auto;
+    max-width: 200;
 
 }
 .Post-Description{
