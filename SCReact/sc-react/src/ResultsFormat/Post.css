@@ -49,8 +49,8 @@
     margin-left: 15px;
     justify-content: left;
     max-height: auto;
-    min-height: 300px;
-    min-width: 300px;
+    min-height: auto;
+    min-width: auto;
     max-width: 500px;
 }
 
