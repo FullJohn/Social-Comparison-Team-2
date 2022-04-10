@@ -107,7 +107,7 @@ export class Post extends Component{
         }
  
         return(
-            <div className='container-fluid'>
+            <div className='Table-Wrapper'>
                 <br></br>
                 <br></br>
                 <div class ="row">
