@@ -1,6 +1,8 @@
 .Post-Wrapper{
     min-height: auto;
     min-width: auto;
+    max-width: auto;
+    max-height: auto;
     
     
     display: flex;
