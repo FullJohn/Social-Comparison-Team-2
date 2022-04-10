@@ -47,11 +47,11 @@
     min-width: auto;
     margin: auto;
     margin-left: 15px;
-    justify-content: left;
+    justify-content: flex-start;
     max-height: auto;
     min-height: auto;
     min-width: auto;
-    max-width: 500px;
+    max-width: auto;
 }
 
 .Post-Details{
