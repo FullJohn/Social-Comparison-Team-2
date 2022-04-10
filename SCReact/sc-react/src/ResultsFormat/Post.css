@@ -70,6 +70,7 @@
     min-height: auto;
     min-width: auto;
     max-width: auto;
+    justify-content: top;
 
 }
 .Post-Description{
@@ -87,7 +88,6 @@
 }
 
 .Table-Wrapper{
-    
     display: flex;
     flex-direction: row;
     flex-shrink: auto;
