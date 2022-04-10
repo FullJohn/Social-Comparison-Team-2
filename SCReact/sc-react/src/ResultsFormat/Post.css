@@ -97,8 +97,6 @@
 }
 .Table-Display{
     border-width: 2px solid black;
+    border-style: 5px solid black;
 
-}
-.ReactTable{
-    border: 1px solid black;
 }
