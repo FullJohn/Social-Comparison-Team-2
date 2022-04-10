@@ -108,7 +108,7 @@ export class Post extends Component{
             }
         }
         
-        brand1Metrics.avgImpressions = brand1Metrics.totalImpressions/brand1.totalPosts
+        brand1Metrics.avgImpressions = brand1Metrics.totalImpressions/1; //brand1.totalPosts
         brand1Metrics.avgEngagements = brand1Metrics.totalEngagements/brand1.totalPosts
 
         brand2Metrics.avgImpressions = brand2Metrics.totalImpressions/brand2.totalPosts
