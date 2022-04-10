@@ -14,13 +14,13 @@ export function YouTubeMetrics(brandMetrics, post){
 export function RenderMetrics(metrics){
 
     return(
-        <Table className="Table-Display" variant="dark">
+        <Table className="Table-Display">
             
-            <thead>
+            <thead variant="dark">
                 <tr>
-                    <th bold>Total Impressions</th>
-                    <th bold>Average Impressions</th>
-                    <th bold>Average Engagements</th>
+                    <th>Total Impressions</th>
+                    <th>Average Impressions</th>
+                    <th>Average Engagements</th>
                 </tr>
             </thead>
             <tbody>
