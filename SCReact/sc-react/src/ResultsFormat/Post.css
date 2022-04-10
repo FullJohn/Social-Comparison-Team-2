@@ -90,5 +90,6 @@
 
 .Table-Wrapper{
     min-width: fit-content;
+    display: table-row;
    
 }
