@@ -73,4 +73,5 @@
     min-height: auto;
     min-width: 300px;
     max-width: 500px;
+    text-overflow: wrap;
 }
