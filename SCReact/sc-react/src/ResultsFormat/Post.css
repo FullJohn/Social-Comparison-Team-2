@@ -17,6 +17,8 @@
 
     max-width: 300px;
     max-height: auto;
+    min-width: auto;
+
 }
 .Post-Image{
     max-width: 300px;
