@@ -42,8 +42,8 @@ export class Post extends Component{
     
 
     render(){
-        const {posts} = this.state.posts;
-        const {platform} = this.state.platform;
+        const {posts} = this.state;
+        const {platform} = this.state;
         const postsLength = posts.length;
         const brand1 = [];
         const brand2 = [];
