@@ -43,7 +43,7 @@ export function renderposts(props){
 
     else if(platform == 'YouTube'){
         for(var i = 0; i < props.brand.length; i++){
-            posts.push(YouTubeFormat(props.brand[i]))
+            posts.push(YouTubeFormat(props.brand[i], props.metrics))
         }
     }
     
