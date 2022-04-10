@@ -89,9 +89,9 @@ export class Post extends Component{
         }
         // push posts to corresponding brand table
         
-        var brand1Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
-        var brand2Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
-        var brand3Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0}
+        var brand1Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
+        var brand2Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
+        var brand3Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
         for (var i = 0; i < postsLength; i++) {
             if (posts[i].channel == brand1name) {
                 brand1Metrics = YouTubeMetrics(brand1Metrics, posts[i]);
@@ -108,6 +108,15 @@ export class Post extends Component{
             }
         }
         
+        brand1Metrics.avgImpressions = brand1Metrics.totalImpressions/brand1.totalPosts
+        brand1Metrics.avgEngagements = brand1Metrics.totalEngagements/brand1.totalPosts
+
+        brand2Metrics.avgImpressions = brand2Metrics.totalImpressions/brand2.totalPosts
+        brand2Metrics.avgEngagements = brand2Metrics.totalEngagements/brand2.totalPosts
+
+        brand3Metrics.avgImpressions = brand3Metrics.totalImpressions/brand3.totalPosts
+        brand3Metrics.avgEngagements = brand3Metrics.totalEngagements/brand3.totalPosts
+
         // metrics = impressions, average impressions, average engagements
         
         const platform1 = []
@@ -127,19 +136,28 @@ export class Post extends Component{
                         <br></br>
                         <br></br>
                         <h2 id="B1">{brand1name}</h2>
-                        {renderposts({brand: brand1, platform: platform, metrics:brand1Metrics})}
+                        impressions: {brand1Metrics.totalImpressions}
+                        avgImpressions: {brand1Metrics.avgImpressions}
+                        avgEngagements: {brand1Metrics.avgEngagements}
+                        {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div className='Row-Wrapper-Center'>
                         <br></br>
                         <br></br>
                         <h2 id="B2">{brand2name}</h2>
-                        {renderposts({brand: brand2, platform: platform, metrics:brand2Metrics})}
+                        impressions: {brand2Metrics.totalImpressions}
+                        avgImpressions: {brand2Metrics.avgImpressions}
+                        avgEngagements: {brand2Metrics.avgEngagements}
+                        {renderposts({brand: brand2, platform: platform})}
                     </div>
                     <div className='Row-Wrapper'>
                         <br></br>
                         <br></br>
                         <h2 id="B3">{brand3name}</h2>
-                        {renderposts({brand: brand3, platform: platform, metrics:brand3Metrics})}
+                        impressions: {brand3Metrics.totalImpressions}
+                        avgImpressions: {brand3Metrics.avgImpressions}
+                        avgEngagements: {brand3Metrics.avgEngagements}
+                        {renderposts({brand: brand3, platform: platform})}
                     </div>
                 </div>
             </div>

@@ -4,16 +4,11 @@ import {Table} from 'react-bootstrap';
 import "./Post.css";
 
 export function YouTubeFormat(props){
-    var numPosts = props.metrics.totalPosts;
-    var numImpressions = props.metrics.totalImpressions;
-    var avgImpressions = numImpressions/numPosts;
-    var avgEngagements = props.metrics.totalEngagements/numPosts;
+    
 
     return(
             <div className = "Post-Wrapper">
-                impressions = {numImpressions}
-                avgImpressions = {avgImpressions}
-                avgEngagements = {avgEngagements}
+                
                         <div className='Post-Image-Title-Wrapper'> 
                             <p>
                                 <a href = {props.url}>
