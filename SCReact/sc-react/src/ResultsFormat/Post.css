@@ -96,7 +96,7 @@
     align-items: center;
 }
 .Table-Display{
-    border-inline-width: 2px black;
+    border-width: 2px black;
 
 }
 [type=Table]{
