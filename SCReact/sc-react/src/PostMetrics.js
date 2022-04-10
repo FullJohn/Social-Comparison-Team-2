@@ -14,7 +14,7 @@ export function YouTubeMetrics(brandMetrics, post){
 export function RenderMetrics(metrics){
 
     return(
-        <Table className="Table-Display" striped>
+        <Table className="Table-Display">
             
             <thead>
                 <tr>
