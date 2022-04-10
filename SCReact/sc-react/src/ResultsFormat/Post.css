@@ -1,5 +1,6 @@
 .Post-Wrapper{
     min-height: auto;
+    min-width: auto;
     
     
     display: flex;
@@ -42,6 +43,7 @@
     font-size: large;
     display: flex;
     flex-direction: row;
+    text-overflow: wrap;
 
 }
 
