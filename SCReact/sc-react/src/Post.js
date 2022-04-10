@@ -31,7 +31,7 @@ export class Post extends Component{
         })
         .then(platform=>{
             this.setState({platform:platform})
-            alert(this.state.platform)
+            alert("Test alert" + this.state.platform)
         });
     }
 
