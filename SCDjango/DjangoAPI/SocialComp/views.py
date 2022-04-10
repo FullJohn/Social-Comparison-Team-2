@@ -112,7 +112,7 @@ def getQuery(request):
     if request.method == 'POST':
         queryId = jsonData.get('queryId')
         query = QueryModel.objects.get(QueryId=queryId)
-        query_serializer = QuerySerializer(query, many=True)
+        query_serializer = QuerySerializer(query)
         return JsonResponse(query_serializer.data, safe=False)
 
 
