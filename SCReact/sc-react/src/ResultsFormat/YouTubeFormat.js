@@ -21,7 +21,7 @@ export function YouTubeFormat(props){
                             </p>    
                         </div>
     
-                        <div className='Post-Details-Wrapper'>
+                        <div>
                             <div className='Post-Metrics'>
                                 <Table>
                                     <thead>
