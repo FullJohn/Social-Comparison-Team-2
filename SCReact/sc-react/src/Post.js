@@ -14,7 +14,7 @@ export class Post extends Component{
     }
 
     initial(){
-        const {queryId} = this.state
+        const { queryId } = this.state
         
         fetch('http://54.144.107.206:8000/getQuery/', {
             method:'POST',
@@ -35,6 +35,7 @@ export class Post extends Component{
     
     refreshList(){
         const { queryId } = this.state
+		const { platform } = this.state
         fetch('http://54.144.107.206:8000/post/', {
             method:'POST',
             headers:{
@@ -43,7 +44,8 @@ export class Post extends Component{
             },
             body:JSON.stringify({
                 getPosts:true,
-                queryId:queryId
+                queryId:queryId,
+				platform:platform
             })
         })
         .then(response=>response.json())
