@@ -120,6 +120,7 @@ class YouTubePost:
 
         #self.webdriver.close()
         if self.date_range[0] > post_datetime:
+            print("Video not added: ", self.title)
             self.include_post = False
             return False
         else:
