@@ -11,6 +11,15 @@ export function YouTubeMetrics(brandMetrics, post){
     return brandMetrics;
 }
 
+export function TwitterMetrics(brandMetrics, post){
+    brandMetrics.totalPosts++;
+    brandMetrics.totalImpressions += parseInt(post.views);
+    brandMetrics.totalEngagements += parseInt(post.comments);
+    brandMetrics.totalEngagements += parseInt(post.likes);
+	brandMetrics.totalEngagements += parseInt(post.retweets);
+    return brandMetrics;
+}
+
 export function RenderMetrics(metrics){
 
     return(

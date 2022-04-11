@@ -3,6 +3,7 @@ import {Table} from 'react-bootstrap';
 import "./ResultsFormat/Post.css";
 import renderposts from './RenderPosts';
 import { YouTubeMetrics } from './PostMetrics';
+import { TwitterMetrics } from './PostMetrics';
 import { RenderMetrics } from './PostMetrics';
 export class Post extends Component{
     
@@ -93,22 +94,43 @@ export class Post extends Component{
         var brand1Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
         var brand2Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
         var brand3Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
-        for (var i = 0; i < postsLength; i++) {
-            if (posts[i].channel == brand1name) {
-                brand1Metrics = YouTubeMetrics(brand1Metrics, posts[i]);
-                brand1.push(posts[i]);
-            }
-            
-            else if (posts[i].channel == brand2name) {
-                brand2Metrics = YouTubeMetrics(brand2Metrics, posts[i]);
-                brand2.push(posts[i]);
-            }
-            else {
-                brand3Metrics = YouTubeMetrics(brand3Metrics, posts[i]);
-                brand3.push(posts[i]);
-            }
-        }
         
+		if(platform == 'YouTube')
+		{
+			for (var i = 0; i < postsLength; i++) {
+				if (posts[i].channel == brand1name) {
+					brand1Metrics = YouTubeMetrics(brand1Metrics, posts[i]);
+					brand1.push(posts[i]);
+				}
+				
+				else if (posts[i].channel == brand2name) {
+					brand2Metrics = YouTubeMetrics(brand2Metrics, posts[i]);
+					brand2.push(posts[i]);
+				}
+				else {
+					brand3Metrics = YouTubeMetrics(brand3Metrics, posts[i]);
+					brand3.push(posts[i]);
+				}
+			}
+        }
+		else if(platform == 'Twitter')
+		{
+			for (var i = 0; i < postsLength; i++) {
+				if (posts[i].channel == brand1name) {
+					brand1Metrics = TwitterMetrics(brand1Metrics, posts[i]);
+					brand1.push(posts[i]);
+				}
+				
+				else if (posts[i].channel == brand2name) {
+					brand2Metrics = TwitterMetrics(brand2Metrics, posts[i]);
+					brand2.push(posts[i]);
+				}
+				else {
+					brand3Metrics = TwitterMetrics(brand3Metrics, posts[i]);
+					brand3.push(posts[i]);
+				}
+			}
+		}
         
         brand1Metrics.avgImpressions = Math.floor(brand1Metrics.totalImpressions/brand1Metrics.totalPosts);
         brand1Metrics.avgEngagements = Math.floor(brand1Metrics.totalEngagements/brand1Metrics.totalPosts);
