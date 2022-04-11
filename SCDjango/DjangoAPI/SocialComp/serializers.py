@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from SocialComp.models import PostModel, QueryModel, QueryExecutedModel
+from SocialComp.models import PostModel, PostModel_Twitter, PostModel_Pinterest, QueryModel, QueryExecutedModel
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,14 +9,14 @@ class PostSerializer(serializers.ModelSerializer):
 
 class PostSerializer_Twitter(serializers.ModelSerializer):
     class Meta:
-        model = PostModel
-        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'likes', 'retweets', 'comments', 'image_url', 'views', 'followers')
+        model = PostModel_Twitter
+        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'likes', 'retweets', 'comments', 'thumbnail', 'views', 'followers')
 
 
-class PostSerializer_Twitter(serializers.ModelSerializer):
+class PostSerializer_Pinterest(serializers.ModelSerializer):
     class Meta:
-        model = PostModel
-        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'emojis', 'comments', 'image_url', 'followers')
+        model = PostModel_Pinterest
+        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'emojis', 'comments', 'thumbnail', 'followers')
 
 
 class PostSerializer_TikTok(serializers.ModelSerializer):

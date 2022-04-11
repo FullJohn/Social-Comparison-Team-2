@@ -25,7 +25,7 @@ class PostModel_Twitter(models.Model):
     likes = models.CharField(max_length=300)
     retweets = models.CharField(max_length=100)
     comments = models.CharField(max_length=100)
-    img_url = models.CharField(max_length=300)
+    thumbnail = models.CharField(max_length=300)
     views = models.CharField(max_length=100)
     followers = models.CharField(max_length=100)
 
@@ -39,7 +39,7 @@ class PostModel_Pinterest(models.Model):
     date = models.CharField(max_length=100)
     emojis = models.CharField(max_length=300)
     comments = models.CharField(max_length=100)
-    img_url = models.CharField(max_length=300)
+    thumbnail = models.CharField(max_length=300)
     followers = models.CharField(max_length=100)
 
 class PostModel_TikTok(models.Model):
