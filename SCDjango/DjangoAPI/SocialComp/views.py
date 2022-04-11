@@ -108,11 +108,13 @@ def runQuery(request):
 
 @csrf_exempt
 def getQuery(request):
-    jsonData = JSONParser().parse(request)
     if request.method == 'POST':
+        jsonData = JSONParser().parse(request)
         queryId = jsonData.get('queryId')
         query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query)
+        print("QueryID: ", queryId)
+        print("Query_Serializer: ", query_serializer)
         return JsonResponse(query_serializer.data, safe=False)
 
 
