@@ -1,18 +1,13 @@
 import time
 
 from bs4 import BeautifulSoup
-from spacy_langdetect import LanguageDetector
-from spacy.language import Language
-import spacy
 import requests
 import datetime
+import re
 
 from SocialComp.serializers import PostSerializer
 from ...models import PostModel
 
-
-def get_lang_detector(nlp, name):
-    return LanguageDetector()
 
 
 class YouTubePost:
@@ -50,15 +45,13 @@ class YouTubePost:
         # Collects information from the post
         # Returns true or false if the post is within our date range
 
-        nlp = spacy.load("en_core_web_sm")
-        Language.factory("language_detector", func=get_lang_detector)
-        nlp.add_pipe('language_detector', last=True)
         content = requests.get("https://www.youtube.com" + self.url).text
         soup = BeautifulSoup(content, 'lxml')
         meta_data = soup.findAll("div")[0]
         title_and_channel = meta_data.findAll(itemprop="name")
         likes_pre_parse = content[:content.rfind(' likes"')]
-        
+        print("url: ", self.url)
+        print("Title and channel: ", title_and_channel)
         self.title = title_and_channel[0].get('content')
         self.channel = title_and_channel[1].get('content')
         self.description = meta_data.find(itemprop="description").get('content')
@@ -71,35 +64,42 @@ class YouTubePost:
         self.webdriver.get(self.url)
         self.webdriver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(3)
-        comments = self.webdriver.find_elements_by_tag_name('h2')
-
-        if len(comments) == 2:
-            comments = comments[1].text
-
-            if comments != "Comments":
-                comments = comments[comments.rfind(' '):]
-                comments = comments.replace(' ', "")
-                comments = comments.replace(',', "")
-                self.comments = int(comments)
-
-            else:
+        
+        # Set comments to 0 at the start and only update if there are more
+        self.comments = 0
+        if '/shorts/' in self.url:
+            recomment = re.compile(r'View [0-9]+ comments"')
+            pre_comments = recomment.search(content)
+            if pre_comments == None:
                 self.comments = 0
+            else:
+                pre_comments = pre_comments.group(0)
+                self.comments = int(pre_comments[4:pre_comments.rfind(" ")].replace(' ', ''))
         else:
-            self.comments = 0
+            recomment = re.compile(r'Comments • [0-9]+')
+            content = self.webdriver.find_elements_by_tag_name('h2')
+            pre_comments = None
+            for i in content:
+                if(recomment.match(i.text)):
+                    pre_comments = recomment.match(i.text).group(0)
+                    self.comments = int(pre_comments.replace('Comments • ', ''))
+
+            if pre_comments == None:
+                self.comments = 0
+
+
 
         year = int(self.date[:4])
         month = int(self.date[5:7])
         day = int(self.date[8:])
 
         post_datetime = datetime.date(year, month, day)
-        lang = nlp(self.title)
         out_of_date_range = False
         
         if self.date_range[0] >= post_datetime or self.date_range[1] <= post_datetime:
             out_of_date_range = True
 
-        if lang._.language['language'] != 'en' or out_of_date_range:
-            
+        if out_of_date_range:
             self.include_post = False
 
         if out_of_date_range:
@@ -110,6 +110,7 @@ class YouTubePost:
 
         #self.webdriver.close()
         if self.date_range[0] > post_datetime:
+            print("Video not added: ", self.title)
             self.include_post = False
             return False
         else:
@@ -131,7 +132,10 @@ class YouTubePost:
 
         post_serializer = PostSerializer(data = post_data)
 
+        
         if post_serializer.is_valid():
+            print(self.url)
+            print("Video saved: ", post_data['title'])
             post_serializer.save()
 
         else:

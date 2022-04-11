@@ -24,16 +24,15 @@ def postAPI(request,id=0):
     
     if queryPlatform == 'YouTube':
         if request.method=='GET' or get_posts==True:
+            queryId = jsonData.get('queryId')
             if queryId == "all":
                 posts = PostModel.objects.all()
             else:
                 posts = PostModel.objects.filter(QueryId=queryId)
-                
-
+       
             post_serializer = PostSerializer(posts, many=True)
             
             return JsonResponse(post_serializer.data, safe=False)
-        
         elif request.method == 'POST':
             post_data = JSONParser().parse(request)
             
@@ -135,8 +134,8 @@ def runQuery(request):
 
 @csrf_exempt
 def getQuery(request):
-    jsonData = JSONParser().parse(request)
     if request.method == 'POST':
+        jsonData = JSONParser().parse(request)
         queryId = jsonData.get('queryId')
         query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query)
