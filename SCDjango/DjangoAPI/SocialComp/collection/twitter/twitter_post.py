@@ -155,7 +155,7 @@ class TwitterPost:
         post_data['comments'] = str(self.comments)
         post_data['likes'] = str(self.likes)
         """
-        post_serializer = PostSerializer(data = post_data)
+        post_serializer = PostSerializer_Twitter(data = post_data)
 
         if post_serializer.is_valid():
             post_serializer.save()
