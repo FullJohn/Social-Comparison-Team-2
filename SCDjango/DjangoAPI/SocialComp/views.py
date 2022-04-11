@@ -28,6 +28,8 @@ def postAPI(request,id=0):
             posts = PostModel.objects.filter(QueryId=queryId)
             
 
+        for post in posts:
+            print(post.url)
         post_serializer = PostSerializer(posts, many=True)
         
         return JsonResponse(post_serializer.data, safe=False)
