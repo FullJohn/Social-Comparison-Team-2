@@ -4,8 +4,8 @@ import re
 
 from bs4 import BeautifulSoup
 
-from SocialComp.serializers import PostSerializer
-from ...models import PostModel
+from SocialComp.serializers import PostSerializer_Twitter
+from ...models import PostModel_Twitter
 
 class TwitterPost:
     ###############################################################
@@ -131,7 +131,7 @@ class TwitterPost:
         
     def save_post(self, query_id):
         post_data = {}
-        """
+        
         post_data['QueryId'] = str(query_id)
         post_data['brand'] = str(self.brand)
         post_data['url'] = str(self.post_url)
@@ -154,7 +154,7 @@ class TwitterPost:
         post_data['views'] = str(self.vid_views)
         post_data['comments'] = str(self.comments)
         post_data['likes'] = str(self.likes)
-        
+        """
         post_serializer = PostSerializer(data = post_data)
 
         if post_serializer.is_valid():
