@@ -1,19 +1,13 @@
 import time
 
 from bs4 import BeautifulSoup
-from spacy_langdetect import LanguageDetector
-from spacy.language import Language
-import spacy
 import requests
 import datetime
 import re
 
-from SocialComp.serializers import PostSerializer
-from ...models import PostModel
+#from SocialComp.serializers import PostSerializer
+#from ...models import PostModel
 
-
-def get_lang_detector(nlp, name):
-    return LanguageDetector()
 
 
 class YouTubePost:
@@ -51,9 +45,6 @@ class YouTubePost:
         # Collects information from the post
         # Returns true or false if the post is within our date range
 
-        nlp = spacy.load("en_core_web_sm")
-        Language.factory("language_detector", func=get_lang_detector)
-        nlp.add_pipe('language_detector', last=True)
         content = requests.get("https://www.youtube.com" + self.url).text
         soup = BeautifulSoup(content, 'lxml')
         meta_data = soup.findAll("div")[0]
@@ -102,13 +93,11 @@ class YouTubePost:
         day = int(self.date[8:])
 
         post_datetime = datetime.date(year, month, day)
-        lang = nlp(self.title)
         out_of_date_range = False
         
         if self.date_range[0] >= post_datetime or self.date_range[1] <= post_datetime:
             out_of_date_range = True
 
-        #if lang._.language['language'] != 'en' or out_of_date_range:
         if out_of_date_range:
             self.include_post = False
 

@@ -1,7 +1,9 @@
+from datetime import datetime
 import selenium.webdriver as webdriver
 from bs4 import BeautifulSoup
 
 from . import youtube_post
+
 import time
 import csv
 import requests
@@ -46,7 +48,7 @@ class YouTubeChannel:
 
         # Default browser options
         options.add_argument('--incognito')
-        options.add_argument('--headless')
+        #options.add_argument('--headless')
 
         # Mobile Emulation Setup
         mobile_emulation = {"deviceName": "Nexus 5"}
@@ -128,9 +130,6 @@ class YouTubeChannel:
                 pass
             else:
                 self.url_list.append(url)
-
-        for i in self.url_list:
-            print(i)
 
     def create_posts(self):
 
