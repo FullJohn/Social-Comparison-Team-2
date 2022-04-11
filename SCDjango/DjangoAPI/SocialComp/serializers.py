@@ -10,13 +10,13 @@ class PostSerializer(serializers.ModelSerializer):
 class PostSerializer_Twitter(serializers.ModelSerializer):
     class Meta:
         model = PostModel_Twitter
-        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'likes', 'retweets', 'comments', 'image_url', 'views', 'followers')
+        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'likes', 'retweets', 'comments', 'thumbnail', 'views', 'followers')
 
 
 class PostSerializer_Pinterest(serializers.ModelSerializer):
     class Meta:
         model = PostModel_Pinterest
-        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'emojis', 'comments', 'image_url', 'followers')
+        fields = ('PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'emojis', 'comments', 'thumbnail', 'followers')
 
 
 class PostSerializer_TikTok(serializers.ModelSerializer):
