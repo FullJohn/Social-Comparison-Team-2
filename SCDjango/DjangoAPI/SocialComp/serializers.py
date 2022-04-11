@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from SocialComp.models import PostModel, QueryModel, QueryExecutedModel
+from SocialComp.models import PostModel, PostModel_Twitter, PostModel_Pinterest, QueryModel, QueryExecutedModel
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
