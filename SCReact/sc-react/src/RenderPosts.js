@@ -13,30 +13,30 @@ export function renderposts(props){
     const platform = props.platform
     
     if(platform == 'Facebook'){
-        for(var i = 0; i < props[1].length; i++){
-            posts.push(FacebookFormat(props[1][i]))
+        for(var i = 0; i < props.brand.length; i++){
+            posts.push(FacebookFormat(props.brand[i]))
         }
     }
     else if(platform == 'Instagram'){
-        for(var i = 0; i < props[1].length; i++){
-            posts.push(InstagramFormat(props[1][i]))
+        for(var i = 0; i < props.brand.length; i++){
+            posts.push(InstagramFormat(props.brand[i]))
         }
     }
 
     else if(platform == 'Pinterest'){
-        for(var i = 0; i < props[1].length; i++){
-            posts.push(PinterestFormat(props[1][i]))
+        for(var i = 0; i < props.brand.length; i++){
+            posts.push(PinterestFormat(props.brand[i]))
         }
     }
 
     else if(platform == 'TikTok'){
-        for(var i = 0; i < props[1].length; i++){
-            posts.push(TiktokFormat(props[1][i]))
+        for(var i = 0; i < props.brand.length; i++){
+            posts.push(TiktokFormat(props.brand[i]))
         }
     }
 
     else if(platform == 'Twitter'){
-        for(var i = 0; i < props[1].length; i++){
+        for(var i = 0; i < props.brand.length; i++){
             posts.push(TwitterFormat(props.brand[i]))
         }
     }
