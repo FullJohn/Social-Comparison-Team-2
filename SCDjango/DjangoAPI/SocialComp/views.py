@@ -6,8 +6,8 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.utils import json
 
-from SocialComp.models import PostModel, QueryModel, QueryExecutedModel
-from SocialComp.serializers import PostSerializer, QuerySerializer, QueryExecutedSerializer
+from SocialComp.models import PostModel, PostModel_Twitter, QueryModel, QueryExecutedModel
+from SocialComp.serializers import PostSerializer, PostSerializer_Twitter, QuerySerializer, QueryExecutedSerializer
 
 from .collection import collections
 
@@ -19,32 +19,59 @@ def postAPI(request,id=0):
     
     jsonData = JSONParser().parse(request)
     get_posts = jsonData.get('getPosts')
+    queryPlatform = jsonData.get('platform')
+    queryId = jsonData.get('queryId')
     
-    if request.method=='GET' or get_posts==True:
-        queryId = jsonData.get('queryId')
-        if queryId == "all":
-            posts = PostModel.objects.all()
-        else:
-            posts = PostModel.objects.filter(QueryId=queryId)
+    if queryPlatform == 'YouTube':
+        if request.method=='GET' or get_posts==True:
+            if queryId == "all":
+                posts = PostModel.objects.all()
+            else:
+                posts = PostModel.objects.filter(QueryId=queryId)
+                
+
+            post_serializer = PostSerializer(posts, many=True)
             
-
-        post_serializer = PostSerializer(posts, many=True)
+            return JsonResponse(post_serializer.data, safe=False)
         
-        return JsonResponse(post_serializer.data, safe=False)
-    
-    elif request.method == 'POST':
-        post_data = JSONParser().parse(request)
-        
-        post_serializer = PostSerializer(data = post_data)
-        if post_serializer.is_valid():
-            post_serializer.save()
-            return JsonResponse("Added Post Successfully", safe=False)
-        return JsonResponse("Failed to Add Post", safe=False)
+        elif request.method == 'POST':
+            post_data = JSONParser().parse(request)
+            
+            post_serializer = PostSerializer(data = post_data)
+            if post_serializer.is_valid():
+                post_serializer.save()
+                return JsonResponse("Added Post Successfully", safe=False)
+            return JsonResponse("Failed to Add Post", safe=False)
 
-    elif request.method == 'DELETE':
-        post = PostModel.objects.get(PostId = id)
-        post.delete()
-        return JsonResponse("Deleted Post Successfully", safe=False)
+        elif request.method == 'DELETE':
+            post = PostModel.objects.get(PostId = id)
+            post.delete()
+            return JsonResponse("Deleted Post Successfully", safe=False)
+    elif queryPlatform == 'Twitter':
+        if request.method=='GET' or get_posts==True:
+            if queryId == "all":
+                posts = PostModel_Twitter.objects.all()
+            else:
+                posts = PostModel_Twitter.objects.filter(QueryId=queryId)
+                
+
+            post_serializer = PostSerializer_Twitter(posts, many=True)
+            
+            return JsonResponse(post_serializer.data, safe=False)
+        
+        elif request.method == 'POST':
+            post_data = JSONParser().parse(request)
+            
+            post_serializer = PostSerializer_Twitter(data = post_data)
+            if post_serializer.is_valid():
+                post_serializer.save()
+                return JsonResponse("Added Post Successfully", safe=False)
+            return JsonResponse("Failed to Add Post", safe=False)
+
+        elif request.method == 'DELETE':
+            post = PostModel_Twitter.objects.get(PostId = id)
+            post.delete()
+            return JsonResponse("Deleted Post Successfully", safe=False)
 
     """
     May implement later, for now don't need to update values
