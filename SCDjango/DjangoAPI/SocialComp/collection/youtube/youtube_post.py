@@ -50,7 +50,7 @@ class YouTubePost:
         meta_data = soup.findAll("div")[0]
         title_and_channel = meta_data.findAll(itemprop="name")
         likes_pre_parse = content[:content.rfind(' likes"')]
-        
+        print("Title and channel: ", title_and_channel)
         self.title = title_and_channel[0].get('content')
         self.channel = title_and_channel[1].get('content')
         self.description = meta_data.find(itemprop="description").get('content')
