@@ -6,6 +6,7 @@ from spacy.language import Language
 import spacy
 import requests
 import datetime
+import re
 
 from SocialComp.serializers import PostSerializer
 from ...models import PostModel
@@ -71,21 +72,30 @@ class YouTubePost:
         self.webdriver.get(self.url)
         self.webdriver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(3)
-        comments = self.webdriver.find_elements_by_tag_name('h2')
-
-        if len(comments) == 2:
-            comments = comments[1].text
-
-            if comments != "Comments":
-                comments = comments[comments.rfind(' '):]
-                comments = comments.replace(' ', "")
-                comments = comments.replace(',', "")
-                self.comments = int(comments)
-
-            else:
+        
+        # Set comments to 0 at the start and only update if there are more
+        self.comments = 0
+        if '/shorts/' in self.url:
+            recomment = re.compile(r'View [0-9]+ comments"')
+            pre_comments = recomment.search(content)
+            if pre_comments == None:
                 self.comments = 0
+            else:
+                pre_comments = pre_comments.group(0)
+                self.comments = int(pre_comments[4:pre_comments.rfind(" ")].replace(' ', ''))
         else:
-            self.comments = 0
+            recomment = re.compile(r'Comments • [0-9]+')
+            content = self.webdriver.find_elements_by_tag_name('h2')
+            pre_comments = None
+            for i in content:
+                if(recomment.match(i.text)):
+                    pre_comments = recomment.match(i.text).group(0)
+                    self.comments = int(pre_comments.replace('Comments • ', ''))
+
+            if pre_comments == None:
+                self.comments = 0
+
+
 
         year = int(self.date[:4])
         month = int(self.date[5:7])
