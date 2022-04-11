@@ -114,7 +114,7 @@ def getQuery(request):
         query = QueryModel.objects.get(QueryId=queryId)
         query_serializer = QuerySerializer(query)
         print("QueryID: ", queryId)
-        print("Query_Serializer: ", query_serializer)
+        print("Query_Serializer: ", query.platform)
         return JsonResponse(query_serializer.data, safe=False)
 
 
