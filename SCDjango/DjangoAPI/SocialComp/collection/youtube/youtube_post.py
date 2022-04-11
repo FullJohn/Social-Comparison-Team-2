@@ -143,7 +143,7 @@ class YouTubePost:
         post_serializer = PostSerializer(data = post_data)
 
         if post_serializer.is_valid():
-            print("Video saved: ", self.title)
+            print("Video saved: ", post_data['title'])
             post_serializer.save()
 
         else:
