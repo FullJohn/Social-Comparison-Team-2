@@ -5,8 +5,8 @@ import requests
 import datetime
 import re
 
-#from SocialComp.serializers import PostSerializer
-#from ...models import PostModel
+from SocialComp.serializers import PostSerializer
+from ...models import PostModel
 
 
 
