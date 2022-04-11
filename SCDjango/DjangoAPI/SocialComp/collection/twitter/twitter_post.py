@@ -132,6 +132,7 @@ class TwitterPost:
     def save_post(self, query_id):
         post_data = {}
         
+        #'PostId', 'QueryId', 'brand', 'url', 'description', 'date', 'likes', 'retweets', 'comments', 'image_url', 'views', 'followers')
         post_data['QueryId'] = str(query_id)
         post_data['brand'] = str(self.brand)
         post_data['url'] = str(self.post_url)
@@ -140,7 +141,7 @@ class TwitterPost:
         post_data['likes'] = str(self.likes)
         post_data['retweets'] = str(self.retweets)
         post_data['comments'] = str(self.comments)
-        post_data['image_url'] = str(self.image_url)
+        post_data['thumbnail'] = str(self.image_url)
         post_data['views'] = str(self.vid_views)
         post_data['followers'] = str(self.followers)
         """
