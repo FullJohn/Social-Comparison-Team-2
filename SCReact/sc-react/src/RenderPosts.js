@@ -37,7 +37,7 @@ export function renderposts(props){
 
     else if(platform == 'Twitter'){
         for(var i = 0; i < props[1].length; i++){
-            posts.push(TwitterFormat(props[1][i]))
+            posts.push(TwitterFormat(props.brand[i]))
         }
     }
 
