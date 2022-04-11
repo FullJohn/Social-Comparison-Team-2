@@ -53,7 +53,6 @@ def postAPI(request,id=0):
 
 @csrf_exempt
 def queryAPI(request, id=0):
-    jsonData = JSONParser().parse(request)
     if request.method == 'GET':
         queryId = 0
         query = QueryModel.objects.get(QueryId=queryId)
