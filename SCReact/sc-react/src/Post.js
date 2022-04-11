@@ -14,7 +14,7 @@ export class Post extends Component{
     }
 
     initial(){
-        const {queryId } = this.state
+        const {queryId} = this.state
         
         fetch('http://54.144.107.206:8000/getQuery/', {
             method:'POST',
