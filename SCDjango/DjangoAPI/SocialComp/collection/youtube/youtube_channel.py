@@ -129,6 +129,9 @@ class YouTubeChannel:
             else:
                 self.url_list.append(url)
 
+        for i in self.url_list:
+            print(i)
+
     def create_posts(self):
 
         # Creates a YouTubePost class for each video from the channel
