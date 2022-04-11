@@ -108,8 +108,8 @@ class YouTubePost:
         if self.date_range[0] >= post_datetime or self.date_range[1] <= post_datetime:
             out_of_date_range = True
 
-        if lang._.language['language'] != 'en' or out_of_date_range:
-            
+        #if lang._.language['language'] != 'en' or out_of_date_range:
+        if out_of_date_range:
             self.include_post = False
 
         if out_of_date_range:
