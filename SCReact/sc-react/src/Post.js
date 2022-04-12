@@ -119,12 +119,12 @@ export class Post extends Component{
 		else if(platform == 'Twitter')
 		{
 			for (var i = 0; i < postsLength; i++) {
-				if (posts[i].channel == brand1name) {
+				if (posts[i].brand == brand1name) {
 					brand1Metrics = TwitterMetrics(brand1Metrics, posts[i]);
 					brand1.push(posts[i]);
 				}
 				
-				else if (posts[i].channel == brand2name) {
+				else if (posts[i].brand == brand2name) {
 					brand2Metrics = TwitterMetrics(brand2Metrics, posts[i]);
 					brand2.push(posts[i]);
 				}
