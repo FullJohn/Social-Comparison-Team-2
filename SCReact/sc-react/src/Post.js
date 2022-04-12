@@ -80,18 +80,35 @@ export class Post extends Component{
         var brand2name = '';
         var brand3name = '';
         
-        // populate brand names
-        for (var i = 0; i < postsLength; i++) {
-            if (brand1name === "") {
-                brand1name = posts[i].channel;
-            }
-            else if (brand2name === "" && posts[i].channel != brand1name){
-                brand2name = posts[i].channel;
-            }
-            else if (brand3name === "" && posts[i].channel != brand1name && posts[i].channel != brand2name){
-                brand3name = posts[i].channel;
-            }
-        }
+        // populate brand names(youtube)
+		if(platform == 'YouTube')
+		{
+			for (var i = 0; i < postsLength; i++) {
+				if (brand1name === "") {
+					brand1name = posts[i].channel;
+				}
+				else if (brand2name === "" && posts[i].channel != brand1name){
+					brand2name = posts[i].channel;
+				}
+				else if (brand3name === "" && posts[i].channel != brand1name && posts[i].channel != brand2name){
+					brand3name = posts[i].channel;
+				}
+			}
+		}
+		else if(platform == 'Twitter')
+		{
+			for (var i = 0; i < postsLength; i++) {
+				if (brand1name === "") {
+					brand1name = posts[i].brand;
+				}
+				else if (brand2name === "" && posts[i].brand != brand1name){
+					brand2name = posts[i].brand;
+				}
+				else if (brand3name === "" && posts[i].brand != brand1name && posts[i].brand != brand2name){
+					brand3name = posts[i].brand;
+				}
+			}
+		}
         // push posts to corresponding brand table
         
         var brand1Metrics = {totalPosts: 0, totalImpressions: 0, totalEngagements: 0, avgImpressions: 0, avgEngagements: 0}
