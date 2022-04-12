@@ -36,7 +36,7 @@ export class Post extends Component{
     refreshList(){
         const { queryId } = this.state
         const { platform } = this.state
-		console.log(this.state)
+		console.log(platform)
         fetch('http://54.144.107.206:8000/post/', {
             method:'POST',
             headers:{

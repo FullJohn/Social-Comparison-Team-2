@@ -21,7 +21,7 @@ def postAPI(request,id=0):
     get_posts = jsonData.get('getPosts')
     queryPlatform = jsonData.get('platform')
     queryId = jsonData.get('queryId')
-    print(jsonData)
+    print(queryPlatform)
     if queryPlatform == 'YouTube':
         if request.method=='GET' or get_posts==True:
             queryId = jsonData.get('queryId')
