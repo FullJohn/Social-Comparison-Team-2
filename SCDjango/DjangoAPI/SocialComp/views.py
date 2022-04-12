@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -15,16 +14,13 @@ from .collection import collections
 # Create your views here.
 @csrf_exempt
 def postAPI(request,id=0):
-    
-    
     jsonData = JSONParser().parse(request)
     get_posts = jsonData.get('getPosts')
-    queryPlatform = jsonData.get('platform')
+    platform = jsonData.get('platform')
     queryId = jsonData.get('queryId')
-    print(queryPlatform)
-    if queryPlatform == 'YouTube':
+    
+    if platform == "YouTube":
         if request.method=='GET' or get_posts==True:
-            queryId = jsonData.get('queryId')
             if queryId == "all":
                 posts = PostModel.objects.all()
             else:
@@ -46,13 +42,12 @@ def postAPI(request,id=0):
             post = PostModel.objects.get(PostId = id)
             post.delete()
             return JsonResponse("Deleted Post Successfully", safe=False)
-    elif queryPlatform == 'Twitter':
+    elif platform == "Twitter":
         if request.method=='GET' or get_posts==True:
             if queryId == "all":
                 posts = PostModel_Twitter.objects.all()
             else:
                 posts = PostModel_Twitter.objects.filter(QueryId=queryId)
-                
 
             post_serializer = PostSerializer_Twitter(posts, many=True)
             
