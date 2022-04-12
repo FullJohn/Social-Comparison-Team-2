@@ -66,6 +66,8 @@ def postAPI(request,id=0):
             post = PostModel_Twitter.objects.get(PostId = id)
             post.delete()
             return JsonResponse("Deleted Post Successfully", safe=False)
+    else:
+        return JsonResponse("Failed to ascertain platform", safe=False)
 
     """
     May implement later, for now don't need to update values
