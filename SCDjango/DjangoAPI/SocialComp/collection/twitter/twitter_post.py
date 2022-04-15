@@ -120,15 +120,15 @@ class TwitterPost:
         number = ''
         if result is not None:
             for item in result.group:
-                if item == 'M' || item == 'K' || item == 'm' || item == 'k':
-                    if result.group(1) == 'M' || result.group(1) == 'm':
+                if item == 'M' or item == 'K' or item == 'm' or item == 'k':
+                    if result.group(1) == 'M' or result.group(1) == 'm':
                         number = number + str("000000")
-                    else if result.group(1) == 'K' || result.group(1) == 'k':
+                    else if result.group(1) == 'K' or result.group(1) == 'k':
                         number = number + str ("000")
                     else:
-                        if item == 'M' || item == 'm':
+                        if item == 'M' or item == 'm':
                             number = number + str("00000")
-                        else if item == 'K' || item == 'k':
+                        else if item == 'K' or item == 'k':
                             number = number + str ("00")
                 else:
                     number = number + str(item)
