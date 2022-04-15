@@ -10,6 +10,9 @@ from ...models import PostModel_Twitter
 def convert_string_num(str):
         result = re.search("(\d*)\.?(\d*)([MKmk])", str)
         number = ''
+        print('0\t' + result.group(0))
+        print('1\t' + result.group(1))
+        print('2\t' + result.group(2))
         if result is not None:
             number = number + result.group(0)
             if result.group(1) == 'M' or result.group(1) == 'm':
