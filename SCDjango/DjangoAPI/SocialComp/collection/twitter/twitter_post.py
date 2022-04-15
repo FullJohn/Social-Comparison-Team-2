@@ -7,6 +7,25 @@ from bs4 import BeautifulSoup
 from SocialComp.serializers import PostSerializer_Twitter
 from ...models import PostModel_Twitter
 
+def convert_string_num(str):
+        result = re.search("(\d*)\.?(\d*)([MKmk])", str)
+        number = ''
+        if result is not None:
+            for item in result.group:
+                if item == 'M' or item == 'K' or item == 'm' or item == 'k':
+                    if result.group(1) == 'M' or result.group(1) == 'm':
+                        number = number + str("000000")
+                    elif result.group(1) == 'K' or result.group(1) == 'k':
+                        number = number + str ("000")
+                    else:
+                        if item == 'M' or item == 'm':
+                            number = number + str("00000")
+                        elif item == 'K' or item == 'k':
+                            number = number + str ("00")
+                else:
+                    number = number + str(item)
+        return int(number)
+
 class TwitterPost:
     ###############################################################
     # TwitterPost - Class                                         #
@@ -115,24 +134,7 @@ class TwitterPost:
         post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
         self.vid_views = convert_string_num(post_vid_element.get_text()) if post_vid_element else 0
     
-    def convert_string_num(self, str):
-        result = re.search("(\d*)\.?(\d*)([MKmk])", str)
-        number = ''
-        if result is not None:
-            for item in result.group:
-                if item == 'M' or item == 'K' or item == 'm' or item == 'k':
-                    if result.group(1) == 'M' or result.group(1) == 'm':
-                        number = number + str("000000")
-                    elif result.group(1) == 'K' or result.group(1) == 'k':
-                        number = number + str ("000")
-                    else:
-                        if item == 'M' or item == 'm':
-                            number = number + str("00000")
-                        elif item == 'K' or item == 'k':
-                            number = number + str ("00")
-                else:
-                    number = number + str(item)
-        return int(number)
+    
     
     def print(self):
         # Prints the data from the post
