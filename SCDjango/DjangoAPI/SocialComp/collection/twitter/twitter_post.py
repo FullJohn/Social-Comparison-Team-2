@@ -14,16 +14,16 @@ def convert_string_num(str):
         print('1\t' + result.group(1))
         print('2\t' + result.group(2))
         if result is not None:
-            number = number + result.group(0)
-            if result.group(1) == 'M' or result.group(1) == 'm':
+            number = number + result.group(1)
+            if result.group(2) == 'M' or result.group(2) == 'm':
                 number = number + "000000"
-            elif result.group(1) == 'K' or result.group(1) == 'k':
+            elif result.group(2) == 'K' or result.group(2) == 'k':
                 number = number + "000"
             else:
-                number = number + result.group(1)
-                if result.group(2) == 'M' or result.group(2) == 'm':
+                number = number + result.group(2)
+                if result.group(3) == 'M' or result.group(3) == 'm':
                     number = number + "00000"
-                elif result.group(2) == 'K' or result.group(2) == 'k':
+                elif result.group(3) == 'K' or result.group(3) == 'k':
                     number = number + "00"
         
         return int(number)
