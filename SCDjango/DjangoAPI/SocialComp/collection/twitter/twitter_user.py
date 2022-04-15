@@ -116,6 +116,9 @@ class TwitterUser:
                     scrolling = False 
         self.followers = temp_followers.get_text() if temp_followers else "{Error Retrieving Followers}"
         self.driver.quit()
+        
+        #Remove dupes
+        
 
     def parse_divs(self):
         #@NOTE(P): Parse the posts and add them to a list

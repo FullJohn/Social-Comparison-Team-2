@@ -47,7 +47,7 @@ class TwitterPost:
         if post_url is not None:
             self.post_url = "https://www.twitter.com" + post_url.attrs['href']
         else:
-            self.post_url = "https://www.twitter.com/error"
+            self.post_url = "https://www.twitter.com/" + self.brand
 
         #@NOTE(P): Parse post text if it exists
         #span
@@ -109,12 +109,31 @@ class TwitterPost:
             print(post_img_element)
             self.image_url = post_img_element.find("img", { "class" : "css-9pa8cd" }).attrs['src']
         else:
-            self.image_url = "{No Post Image}"
+            self.image_url = "/static/media/qmark.f85b871b.png"
         
         #NOTE(P): Parse the video views if the post contains a video
         post_vid_element = self.post_html.find("div", { "class" : "css-1dbjc4n r-1awozwy r-k200y r-loe9s5 r-pm2fo r-1dpl46z r-z2wwpe r-ou6ah9 r-notknq r-1yevf0r r-1777fci r-s1qlax r-633pao" })
-        self.vid_views = post_vid_element.get_text() if post_vid_element else "{No Post Video}"
-
+        self.vid_views = convert_string_num(post_vid_element.get_text()) if post_vid_element else 0
+    
+    def convert_string_num(self, str):
+        result = re.search("(\d*)\.?(\d*)([MKmk])", str)
+        number = ''
+        if result is not None:
+            for item in result.group:
+                if item == 'M' || item == 'K' || item == 'm' || item == 'k':
+                    if result.group(1) == 'M' || result.group(1) == 'm':
+                        number = number + str("000000")
+                    else if result.group(1) == 'K' || result.group(1) == 'k':
+                        number = number + str ("000")
+                    else:
+                        if item == 'M' || item == 'm':
+                            number = number + str("00000")
+                        else if item == 'K' || item == 'k':
+                            number = number + str ("00")
+                else:
+                    number = number + str(item)
+        return int(number)
+    
     def print(self):
         # Prints the data from the post
         print("Brand:\t\t", self.brand)
