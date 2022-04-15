@@ -11,19 +11,18 @@ def convert_string_num(str):
         result = re.search("(\d*)\.?(\d*)([MKmk])", str)
         number = ''
         if result is not None:
-            for item in result.group:
-                if item == 'M' or item == 'K' or item == 'm' or item == 'k':
-                    if result.group(1) == 'M' or result.group(1) == 'm':
-                        number = number + str("000000")
-                    elif result.group(1) == 'K' or result.group(1) == 'k':
-                        number = number + str ("000")
-                    else:
-                        if item == 'M' or item == 'm':
-                            number = number + str("00000")
-                        elif item == 'K' or item == 'k':
-                            number = number + str ("00")
-                else:
-                    number = number + str(item)
+            number = number + result.group(0)
+            if result.group(1) == 'M' or result.group(1) == 'm':
+                number = number + str("000000")
+            elif result.group(1) == 'K' or result.group(1) == 'k':
+                number = number + str ("000")
+            else:
+                number = number + result.group(1)
+                if result.group(2) == 'M' or result.group(2) == 'm':
+                    number = number + str("00000")
+                elif result.group(2) == 'K' or result.group(2) == 'k':
+                    number = number + str ("00")
+        
         return int(number)
 
 class TwitterPost:
