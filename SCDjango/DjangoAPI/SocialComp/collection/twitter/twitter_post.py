@@ -13,15 +13,15 @@ def convert_string_num(str):
         if result is not None:
             number = number + result.group(0)
             if result.group(1) == 'M' or result.group(1) == 'm':
-                number = number + str("000000")
+                number = number + "000000"
             elif result.group(1) == 'K' or result.group(1) == 'k':
-                number = number + str ("000")
+                number = number + "000"
             else:
                 number = number + result.group(1)
                 if result.group(2) == 'M' or result.group(2) == 'm':
-                    number = number + str("00000")
+                    number = number + "00000"
                 elif result.group(2) == 'K' or result.group(2) == 'k':
-                    number = number + str ("00")
+                    number = number + "00"
         
         return int(number)
 
