@@ -10,7 +10,7 @@ export function TwitterFormat(props){
                         <div className='Post-Image-Title-Wrapper'> 
                             <p>
                                 <a href = {props.url}>
-                                    <img className ="Post-Image" src={props.thumbnail} alt = "View Post on Twitter.com">
+                                    <img className ="Post-Image-Twitter" src={props.thumbnail} alt = "View Post on Twitter.com">
                                     </img>
                                     <div className='Post-Title'> 
                                         {props.title}
