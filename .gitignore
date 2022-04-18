@@ -180,3 +180,4 @@ typings/
 .env.test.local
 .env.production.local
 SCDjango/myenv/pyvenv.cfg
+SCDjango/DjangoAPI/SocialComp/collection/youtube/youtube_testing.py
