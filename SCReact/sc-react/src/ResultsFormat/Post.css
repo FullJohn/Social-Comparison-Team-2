@@ -39,12 +39,12 @@
 }
 
 .Post-Title{
-    font-size: large;
+    font-size: 16pt;
     display: flex;
     margin-left: 3px;
 }
 .Post-Date{
-    font-size: large;
+    font-size: 16pt;
     display: flex;
     margin-left: 3px;
 }
@@ -54,7 +54,7 @@
     margin-left: 15px;
     margin-top:0px;
     justify-content: left;
-    font-size: large;
+    font-size: 16pt;
     max-height: auto;
     min-height: auto;
     min-width: auto;
@@ -67,7 +67,7 @@
     min-width: auto;
     max-width: auto;
     justify-self: start;
-    font-size: large;
+    font-size: 16pt;
 }
 .Post-Description{
     margin-left: 15px;
