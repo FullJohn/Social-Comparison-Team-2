@@ -128,13 +128,16 @@ class TwitterUser:
             if post not in self.posts:
                 self.posts.append(post)
         
+        temp_list = []
         for post in self.posts:
-            unique = 0
+            num_of_occurences = 0
             for i in range(len(self.posts)):
                 if post.post_url == self.posts[i].post_url:
-                    unique = unique + 1
-                    if unique > 1:
-                        self.posts.remove(post)
+                    num_of_occurences = num_of_occurences + 1
+                    if num_of_occurences > 1:#not unique
+                        temp_list.append(post)
+        for post in temp_list:
+            self.posts.remove(post)
         
         for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
