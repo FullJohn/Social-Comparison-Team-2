@@ -88,12 +88,12 @@ def queryAPI(request, id=0):
         query_serializer = QuerySerializer(data = query_data)
 
         if(query_data['numBrands'] == 1 or query_data['numBrands'] == 2):
-            query_data['brand3'] = 'FalseFalse'
+            query_data['brand3'] = str('FalseFalse')
             if(query_data['numBrands'] == 1):
                 query_data['brand2'] = 'FalseFalse'
 
         
-
+        query_serializer = QuerySerializer(data = query_data)
         if query_serializer.is_valid():
             query_serializer.save()
             queryId = query_serializer['QueryId'].value
