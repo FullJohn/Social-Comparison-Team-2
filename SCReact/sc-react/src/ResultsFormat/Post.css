@@ -68,10 +68,9 @@
     max-width: auto;
     justify-self: start;
     margin-left: 15px;
-    
 }
 .Post-Description{
-    margin-left: 15px;
+    margin-left: 10px;
     font-size: medium;
     max-height: auto;
     min-height: auto;
