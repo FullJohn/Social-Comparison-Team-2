@@ -125,20 +125,14 @@ class TwitterUser:
             post = twitter_post.TwitterPost(div, self.brand_name)
             post.followers = self.followers
             post.scrape_post()
-            if post not in self.posts:
+            
+            should_save = 1
+            for existing_post in self.posts
+                if post.post_url == existing_post.post_url:
+                    should_save = 0
+            if should_save == 1:
                 self.posts.append(post)
         
-        temp_list = []
-        for post in self.posts:
-            cnt = 0
-            for i in range(len(self.posts)):
-                if post == self.posts[i]:
-                    cnt = cnt + 1
-            if cnt < 2:
-                temp_list.append(post)
-        self.posts = temp_list
-        print(temp_list)
-        print(len(temp_list))
         
         for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
