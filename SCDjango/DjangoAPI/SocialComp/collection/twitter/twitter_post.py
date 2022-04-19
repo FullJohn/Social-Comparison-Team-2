@@ -45,6 +45,13 @@ class TwitterPost:
 
     def __init__(self, div, brand_name):
         # Class initialization function
+        
+        def __eq__(self, cmp):
+            return cmp.post_url == self.post_url
+
+        def __ne__(self, cmp):
+            return cmp.post_url != self.post_url
+        
         self.post_html = div
         
         self.post_url = ''
