@@ -22,7 +22,8 @@ def run_pinterest_collect(brands, date_range, query_id):
         date_range.reverse()
     
     for brand_name in brands:
-        pinterest_user.PinterestUser(brand_name, date_range, query_id)
+        if(brand_name != 'FalseFalse'):
+            pinterest_user.PinterestUser(brand_name, date_range, query_id)
     
     #for brand_name in brands:
     #    t = threading.Thread(target=init_brand, args=(brand_name, date_range, query_id,))
