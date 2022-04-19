@@ -85,7 +85,6 @@ def queryAPI(request, id=0):
     elif request.method == 'POST':
         query_data = JSONParser().parse(request)
         print(query_data, type(query_data))
-        query_serializer = QuerySerializer(data = query_data)
 
         if(query_data['numBrands'] == 1 or query_data['numBrands'] == 2):
             query_data['brand3'] = str('FalseFalse')
@@ -93,6 +92,7 @@ def queryAPI(request, id=0):
                 query_data['brand2'] = 'FalseFalse'
 
         
+        print(query_data, type(query_data))
         query_serializer = QuerySerializer(data = query_data)
         if query_serializer.is_valid():
             query_serializer.save()
