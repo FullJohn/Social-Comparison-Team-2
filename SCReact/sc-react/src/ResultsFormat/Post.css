@@ -39,7 +39,7 @@
 }
 
 .Post-Title{
-    font-size: larger;
+    font-size: large;
     display: flex;
     margin-left: 3px;
 }
@@ -54,6 +54,7 @@
     margin-left: 15px;
     margin-top:0px;
     justify-content: left;
+    font-size: large;
     max-height: auto;
     min-height: auto;
     min-width: auto;

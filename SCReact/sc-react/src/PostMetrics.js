@@ -26,11 +26,11 @@ export function RenderMetrics(metrics){
         <Table>
             
             <thead className="Table-Display">
-                <tr>
-                    <th>Total Impressions</th>
-                    <th>Average Impressions</th>
-                    <th>Average Engagements</th>
-                </tr>
+                    <tr>
+                        <th>Total Impressions</th>
+                        <th>Average Impressions</th>
+                        <th>Average Engagements</th>
+                    </tr>
             </thead>
             <tbody className="Table-Display">
                 <td>{metrics.totalImpressions}</td>
