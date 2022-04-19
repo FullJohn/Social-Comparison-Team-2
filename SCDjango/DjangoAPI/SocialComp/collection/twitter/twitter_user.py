@@ -129,6 +129,14 @@ class TwitterUser:
                 self.posts.append(post)
         
         for post in self.posts:
+            unique = 0
+            for i in range(len(self.posts)):
+                if post.post_url == self.posts[i].post_url:
+                    unique = unique + 1
+                    if unique > 1:
+                        self.posts.remove(post)
+        
+        for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
                 self.posts.remove(post)
             else:
