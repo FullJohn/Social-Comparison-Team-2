@@ -102,7 +102,7 @@ class TwitterUser:
             elif(cnt != prev_cnt):
                 change_break == 0
             
-            if(change_break == 1000):
+            if(change_break == 200):
                 scrolling = False
             
             #@NOTE(P): Scrape dates on page, breaking out of the loop if we find a date before the beginning of our date range
@@ -117,8 +117,6 @@ class TwitterUser:
         self.followers = temp_followers.get_text() if temp_followers else "{Error Retrieving Followers}"
         self.driver.quit()
         
-        #Remove dupes
-        
 
     def parse_divs(self):
         #@NOTE(P): Parse the posts and add them to a list
@@ -127,7 +125,8 @@ class TwitterUser:
             post = twitter_post.TwitterPost(div, self.brand_name)
             post.followers = self.followers
             post.scrape_post()
-            self.posts.append(post)
+            if post not in self.posts:
+                self.posts.append(post)
         
         for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
