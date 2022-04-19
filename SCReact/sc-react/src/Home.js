@@ -11,6 +11,9 @@ import youtubelogo from './Icons/youtube-circ-modified.png';
 import twitterlogo from './Icons/twitterlogo.png';
 import './Home.css';
 import RadioFormat from './RadioButtonIcons';
+import RenderBrandInputBoxes from './RenderBrandInputBoxes';
+import RenderBrandCountButton from './RenderBrandCountButton';
+
 
 
 export class Home extends Component{
@@ -18,7 +21,8 @@ export class Home extends Component{
     constructor(props) {
         super(props);
 
-        this.state = {queryId: '', platform: '', brand1: '', brand2: '', brand3: '', startDate: new Date(), endDate: new Date(), 
+        
+        this.state = {queryId: '', platform: '', brand1: '', brand2: '', brand3: '', numBrands: 1, startDate: new Date(), endDate: new Date(), 
         redirect: false, queryId: '', buttonChecked: false};
   
         this.handleChange = this.handleChange.bind(this);
@@ -36,9 +40,26 @@ export class Home extends Component{
       endDateChange(date) {this.setState({endDate: date}); }
       handleChange(event) {this.setState({[event.target.name]: event.target.value}); }
 
-      handleSubmit(event) {
-        const { platform, brand1, brand2, brand3, startDate, endDate} = this.state;
+      
+      addButtonChange = () => {
+        this.setState({ numBrands: this.state.numBrands + 1 });
+      }
+      subtractButtonChange = () => {
+        this.setState({ numBrands: this.state.numBrands - 1 });
+      }
+      
+      
 
+      handleSubmit(event) {
+        const { platform, brand1, brand2, brand3, numBrands, startDate, endDate} = this.state;
+
+        if(numBrands === 1){
+            brand2 = false;
+            brand3 = false;
+        }
+        if(numBrands === 2){
+            brand3 = false;
+        }
 
         event.preventDefault();
         fetch('http://54.144.107.206:8000/query/', {
@@ -53,7 +74,8 @@ export class Home extends Component{
                 brand2:brand2,
                 brand3:brand3,
                 startDate:startDate,
-                endDate:endDate
+                endDate:endDate,
+                numBrands:numBrands
             })
         })
         .then(response=>response.json())
@@ -135,32 +157,26 @@ export class Home extends Component{
                         
                     </div>
                     <br></br>
-
-                    <div className='Brand-wrapper'>
-
-                        <div className='Brand-field'>
-                        <label htmlFor='brand1'>Brand 1</label>
-                        <input type="text" name="brand1" value={this.state.brand1} onChange={this.handleChange}/>
-                   
-
-                        </div>
-                        <div className='Brand-field'>
-                        <label htmlFor='brand2'>Brand 2</label>
-                        <input type="text" name="brand2" value={this.state.brand2} onChange={this.handleChange}/>
                     
-                            
-                        </div>
-                        <div className='Brand-field'>
-                        <label htmlFor='brand3'>Brand 3</label>
-                        <input type="text" name="brand3" value={this.state.brand3} onChange={this.handleChange}/>
-                    
-                            
-                        </div>
-
-                    </div>
-                    <br></br>
-                    <br></br>
+                        {RenderBrandInputBoxes({
+                            numBrands:this.state.numBrands, 
+                            brand1: this.state.brand1, 
+                            brand2: this.state.brand2, 
+                            brand3: this.state.brand3, 
+                            change: this.handleChange
+                            }  
+                        )}
                         
+
+                        {RenderBrandCountButton({
+                            numBrands:this.state.numBrands,
+                            addButtonChange: this.addButtonChange,
+                            subtractButtonChange: this.subtractButtonChange
+                            })}
+    
+
+                    
+                    <br></br>
                     <input className='Submit-button' type='submit' value='Submit'></input>
                     
                      </form>

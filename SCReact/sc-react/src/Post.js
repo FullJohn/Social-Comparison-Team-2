@@ -182,7 +182,6 @@ export class Post extends Component{
                         <h2 id="B1">{brand1name}</h2>
                         {RenderMetrics(brand1Metrics)}
                        
-                        
                         {renderposts({brand: brand1, platform: platform})}
                     </div>
                     <div className='Row-Wrapper-Center'>
