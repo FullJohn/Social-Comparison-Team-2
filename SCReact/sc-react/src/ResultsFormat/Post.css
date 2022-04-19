@@ -39,12 +39,12 @@
 }
 
 .Post-Title{
-    font-size: 16pt;
+    font-size: medium;
     display: flex;
     margin-left: 3px;
 }
 .Post-Date{
-    font-size: 16pt;
+    font-size: medium;
     display: flex;
     margin-left: 3px;
 }
@@ -54,7 +54,7 @@
     margin-left: 15px;
     margin-top:0px;
     justify-content: left;
-    font-size: 16pt;
+    font-size: medium;
     max-height: auto;
     min-height: auto;
     min-width: auto;
