@@ -63,6 +63,7 @@ class QueryModel(models.Model):
     brand3 = models.CharField(max_length=100)
     startDate = models.CharField(max_length=100)
     endDate = models.CharField(max_length=100)
+    numBrands = models.IntegerField(max_length=100)
 
 
 class QueryExecutedModel(models.Model):
