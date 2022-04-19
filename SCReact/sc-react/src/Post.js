@@ -165,43 +165,101 @@ export class Post extends Component{
         
         const platform1 = []
         // loading brand name subheader titles
+        if(brand1name){
+            document.getElementById("B1").innerHTML=brand1name;
+        }
+        if(brand2name != "" && brand2name != "FalseFalse"){
+            document.getElementById("B2").innerHTML=brand2name;
+        }
+        if(brand3name != "" && brand3name != "FalseFalse"){
+            document.getElementById("B3").innerHTML=brand3name;
+        }
+
+        /*
         if (brand1name && brand2name && brand3name && (brand1name != brand2name) && (brand2name != brand3name)) {
             document.getElementById("B1").innerHTML=brand1name;
             document.getElementById("B2").innerHTML=brand2name;
             document.getElementById("B3").innerHTML=brand3name;
         }
+        */
  
-        return(
-            <div className='Table-Wrapper'>
-                <br></br>
-                <br></br>
+        if(brand1name && brand2name === "" && brand3name === ""){
+            return(
                 <div className='Table-Wrapper'>
-                    <div className='Row-Wrapper'>
-                        <br></br>
-                        <br></br>
-                        <h2 id="B1">{brand1name}</h2>
-                        {RenderMetrics(brand1Metrics)}
-                       
-                        {renderposts({brand: brand1, platform: platform})}
-                    </div>
-                    <div className='Row-Wrapper-Center'>
-                        <br></br>
-                        <br></br>
-                        <h2 id="B2">{brand2name}</h2>
-                        {RenderMetrics(brand2Metrics)}
+                    <br></br>
+                    <br></br>
+                    <div className='Table-Wrapper'>
+                        <div className='Row-Wrapper'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B1">{brand1name}</h2>
+                            {RenderMetrics(brand1Metrics)}
                         
-                        {renderposts({brand: brand2, platform: platform})}
-                    </div>
-                    <div className='Row-Wrapper'>
-                        <br></br>
-                        <br></br>
-                        <h2 id="B3">{brand3name}</h2>
-                        {RenderMetrics(brand3Metrics)}
-                        
-                        {renderposts({brand: brand3, platform: platform})}
+                            {renderposts({brand: brand1, platform: platform})}
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else if(brand1name && brand2name && brand3name === ""){
+            return(
+                <div className='Table-Wrapper'>
+                    <br></br>
+                    <br></br>
+                    <div className='Table-Wrapper'>
+                        <div className='Row-Wrapper'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B1">{brand1name}</h2>
+                            {RenderMetrics(brand1Metrics)}
+                        
+                            {renderposts({brand: brand1, platform: platform})}
+                        </div>
+                        <div className='Row-Wrapper-Center'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B2">{brand2name}</h2>
+                            {RenderMetrics(brand2Metrics)}
+                            
+                            {renderposts({brand: brand2, platform: platform})}
+                        </div>
+                    </div>
+                </div>
+                )
+        }
+        else{
+            return(
+                <div className='Table-Wrapper'>
+                    <br></br>
+                    <br></br>
+                    <div className='Table-Wrapper'>
+                        <div className='Row-Wrapper'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B1">{brand1name}</h2>
+                            {RenderMetrics(brand1Metrics)}
+                        
+                            {renderposts({brand: brand1, platform: platform})}
+                        </div>
+                        <div className='Row-Wrapper-Center'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B2">{brand2name}</h2>
+                            {RenderMetrics(brand2Metrics)}
+                            
+                            {renderposts({brand: brand2, platform: platform})}
+                        </div>
+                        <div className='Row-Wrapper'>
+                            <br></br>
+                            <br></br>
+                            <h2 id="B3">{brand3name}</h2>
+                            {RenderMetrics(brand3Metrics)}
+                            
+                            {renderposts({brand: brand3, platform: platform})}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
