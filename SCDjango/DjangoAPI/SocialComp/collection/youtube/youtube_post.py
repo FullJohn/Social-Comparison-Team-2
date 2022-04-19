@@ -96,15 +96,12 @@ class YouTubePost:
         post_datetime = datetime.date(year, month, day)
         out_of_date_range = False
         
-        if self.date_range[0] >= post_datetime or self.date_range[1] <= post_datetime:
+        if self.date_range[0] > post_datetime or self.date_range[1] < post_datetime:
             out_of_date_range = True
 
         if out_of_date_range:
             self.include_post = False
-
-        if out_of_date_range:
-            self.include_post = False
-        
+    
         else:
             self.include_post = True
 

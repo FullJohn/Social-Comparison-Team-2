@@ -23,7 +23,9 @@
   .Brand-wrapper{
     display:flex;
     column-count: 3;
-    margin:auto;
+    column-gap: 100px;
+    justify-content:center;
+
   }
   
   .Brand-field{
@@ -31,9 +33,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:auto;
+    
     font-size: larger;
-    color: #3f4b65
+    color: #3f4b65;
+    
   }
   
   .Icon-wrapper{
@@ -58,6 +61,8 @@
     min-height: 50px;
     min-width: 100px;
   }
+  
+  
   
   .Instruction-Text{
     color:#3f4b65;
@@ -104,5 +109,27 @@
     width:125px;
     display:flex;
     margin: auto;
+  }
+
+  .Add-Brands-Wrapper{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+
+  }
+
+  .Brand-button{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    margin-top:auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: large;
+    color: #3f4b65
+    
   }
  

@@ -14,7 +14,8 @@ def run_youtube_collect(brands, date_range, query_id):
         date_range.reverse()
 
     for brand in brands:
-        youtube_channel.YouTubeChannel(brand, date_range, query_id)
+        if(brand != 'FalseFalse'):
+            youtube_channel.YouTubeChannel(brand, date_range, query_id)
 
 
 def pre_collect(date_range):

@@ -39,21 +39,22 @@
 }
 
 .Post-Title{
-    font-size: larger;
+    font-size: medium;
     display: flex;
     margin-left: 3px;
 }
 .Post-Date{
-    font-size: large;
+    font-size: medium;
     display: flex;
     margin-left: 3px;
 }
 
 .Post-Details{
     margin: auto;
-    margin-left: 15px;
+    margin-left: auto;
     margin-top:0px;
     justify-content: left;
+    font-size: medium;
     max-height: auto;
     min-height: auto;
     min-width: auto;
@@ -66,15 +67,17 @@
     min-width: auto;
     max-width: auto;
     justify-self: start;
-    font-size: large;
+    margin-left: 3px;
 }
 .Post-Description{
-    margin-left: 15px;
+    
+    font-size: medium;
     max-height: auto;
     min-height: auto;
     min-width: auto;
     max-width: auto;
     text-overflow: wrap;
+    margin-left: 3px;
 }
 
 .Row-Wrapper{
@@ -104,10 +107,11 @@
     align-items: center;
 }
 .Table-Display{
-    font-size:larger;
+    font-size:large #3f4b65;
     padding:8px black;
     border-bottom: black;
     border-right: black;
+    
 }
 .Table-Grid{
     outline-width: 8px solid black;

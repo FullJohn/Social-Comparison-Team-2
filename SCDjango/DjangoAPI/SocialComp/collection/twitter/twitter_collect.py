@@ -12,7 +12,8 @@ def run_twitter_collect(brands, date_range, query_id):
         date_range.reverse()
 
     for brand in brands:
-        twitter_user.TwitterUser(brand, date_range, query_id)
+        if(brand != 'FalseFalse'):
+            twitter_user.TwitterUser(brand, date_range, query_id)
 
 
 def pre_collect(date_range):
