@@ -28,7 +28,7 @@ class PostSerializer_TikTok(serializers.ModelSerializer):
 class QuerySerializer(serializers.ModelSerializer):
     class Meta:
         model = QueryModel
-        fields = ('QueryId', 'platform', 'brand1', 'brand2', 'brand3', 'startDate', 'endDate')
+        fields = ('QueryId', 'platform', 'brand1', 'brand2', 'brand3', 'startDate', 'endDate', 'numBrands')
 
 class QueryExecutedSerializer(serializers.ModelSerializer):
     class Meta:
