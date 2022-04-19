@@ -2,6 +2,7 @@ import random
 import time
 import datetime
 import re
+import numpy as np
 
 import selenium.webdriver as webdriver
 from bs4 import BeautifulSoup
@@ -128,6 +129,8 @@ class TwitterUser:
             if post not in self.posts:
                 self.posts.append(post)
         
+        self.posts = np.unique(self.posts).tolist()
+        """
         temp_list = []
         for post in self.posts:
             num_of_occurences = 0
@@ -138,7 +141,7 @@ class TwitterUser:
                         temp_list.append(post)
         for post in temp_list:
             self.posts.remove(post)
-        
+        """
         for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
                 self.posts.remove(post)
