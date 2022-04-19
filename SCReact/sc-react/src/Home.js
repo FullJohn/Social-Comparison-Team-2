@@ -48,11 +48,11 @@ export class Home extends Component{
       }
       subtractButtonChange = () => {
         this.setState({ numBrands: this.state.numBrands - 1 });
-        if(numBrands === 1){
+        if(this.state.numBrands === 1){
             this.setState({brand3: ''})
             this.setState({brand2: ''})
         }
-        if(numBrands === 2){
+        if(this.state.numBrands === 2){
             this.setState({ brand3: ''})
         }
       }
