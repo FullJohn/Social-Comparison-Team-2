@@ -127,7 +127,7 @@ class TwitterUser:
             post.scrape_post()
             
             should_save = 1
-            for existing_post in self.posts
+            for existing_post in self.posts:
                 if post.post_url == existing_post.post_url:
                     should_save = 0
             if should_save == 1:
