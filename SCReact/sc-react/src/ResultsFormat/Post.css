@@ -104,10 +104,11 @@
     align-items: center;
 }
 .Table-Display{
-    font-size:larger;
+    font-size:large #3f4b65;
     padding:8px black;
     border-bottom: black;
     border-right: black;
+    
 }
 .Table-Grid{
     outline-width: 8px solid black;
