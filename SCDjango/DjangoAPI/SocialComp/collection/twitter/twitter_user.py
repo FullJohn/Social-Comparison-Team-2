@@ -127,20 +127,19 @@ class TwitterUser:
             post.scrape_post()
             if post not in self.posts:
                 self.posts.append(post)
-        """
+        
         temp_list = []
         for post in self.posts:
-            num_of_occurences = 0
+            cnt = 0
             for i in range(len(self.posts)):
-                if post.post_url == self.posts[i].post_url:
-                    num_of_occurences = num_of_occurences + 1
-                    if num_of_occurences > 1:#not unique
-                        
-                        temp_list.append(post)
-        
+                if post == self.posts[i]:
+                    cnt = cnt + 1
+            if cnt < 2:
+                temp_list.append(post)
+        self.posts = temp_list
         print(temp_list)
         print(len(temp_list))
-        """
+        
         for post in self.posts:
             if post.date.date() < self.firstDate or post.date.date() > self.lastDate:
                 self.posts.remove(post)

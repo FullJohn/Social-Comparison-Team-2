@@ -10,9 +10,9 @@ from ...models import PostModel_Twitter
 def convert_string_num(str):
         result = re.search("(\d*)\.?(\d*)([MKmk])", str)
         number = ''
-        print('0\t' + result.group(0))
-        print('1\t' + result.group(1))
-        print('2\t' + result.group(2))
+        #print('0\t' + result.group(0))
+        #print('1\t' + result.group(1))
+        #print('2\t' + result.group(2))
         if result is not None:
             number = number + result.group(1)
             if result.group(2) == 'M' or result.group(2) == 'm':
@@ -25,7 +25,8 @@ def convert_string_num(str):
                     number = number + "00000"
                 elif result.group(3) == 'K' or result.group(3) == 'k':
                     number = number + "00"
-        
+        else:
+            number = '0'
         return int(number)
 
 class TwitterPost:
