@@ -43,23 +43,22 @@ export class Home extends Component{
       
       addButtonChange = () => {
         this.setState({ numBrands: this.state.numBrands + 1 });
+        
+        
       }
       subtractButtonChange = () => {
         this.setState({ numBrands: this.state.numBrands - 1 });
-      }
-      
-      
-
-      handleSubmit(event) {
-        const { platform, brand1, brand2, brand3, numBrands, startDate, endDate} = this.state;
-
         if(numBrands === 1){
-            brand2 = false;
-            brand3 = false;
+            this.setState({brand3: ''})
+            this.setState({brand2: ''})
         }
         if(numBrands === 2){
-            brand3 = false;
+            this.setState({ brand3: ''})
         }
+      }
+      
+      handleSubmit(event) {
+        const { platform, brand1, brand2, brand3, numBrands, startDate, endDate} = this.state;
 
         event.preventDefault();
         fetch('http://54.144.107.206:8000/query/', {
